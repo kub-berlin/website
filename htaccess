@@ -1,0 +1,17 @@
+<Files ~ "(^\.ht|\.sqlite$)">
+	Deny from all
+</Files>
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule . - [L]
+
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule . - [L]
+
+RewriteRule ^.*[^/]$ /xi/$0/ [L,R=301]
+
+RewriteRule ^$ /xi/de/ [L,R=301]
+
+RewriteRule ^(.*)$ index.php?path=$1 [QSA]
