@@ -14,4 +14,8 @@ RewriteRule ^.*[^/]$ /xi/$0/ [L,R=301]
 
 RewriteRule ^$ /xi/de/ [L,R=301]
 
-RewriteRule ^(.*)$ index.php?path=$1 [QSA]
+RewriteCond %{REQUEST_URI} ^/xi/(.*)/$
+RewriteCond %{DOCUMENT_ROOT}/xi/cache/%1/index.html -f
+RewriteRule . cache/%1/index.html [L]
+
+RewriteRule ^(.*)$ cache.php?path=$1 [QSA]

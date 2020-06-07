@@ -2,6 +2,22 @@
 
 include_once('../common.php');
 
+function rrmdir($path)
+{
+	if (!file_exists($path)) {
+		return;
+	} elseif (is_dir($path)) {
+		foreach (scandir($path) as $fn) {
+			if ($fn !== '.' && $fn !== '..') {
+				rrmdir("$path/$fn");
+			}
+		}
+		return rmdir($path);
+	} else {
+		return unlink($path);
+	}
+}
+
 function render_side_nav($page, $current, $path='/', $maxdepth=10)
 {
 ?>
@@ -20,6 +36,8 @@ $page_id = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $lang_id = isset($_GET['lang']) ? intval($_GET['lang']) : 1;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	rrmdir('../cache');
+
 	if ($_GET['action'] === 'create-page') {
 		$stmt = $db->prepare('INSERT INTO pages (slug, parent) VALUES (:slug, :parent)');
 		$stmt->execute(array('slug' => $_POST['slug'], 'parent' => $page_id));
