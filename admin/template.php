@@ -70,6 +70,7 @@
 		</ul>
 	</nav>
 
+	<script src="tinymce/tinymce.js"></script>
 	<script src="admin.js"></script>
 </body>
 </html>
