@@ -34,7 +34,7 @@
 			<label>
 				Layout
 				<select name="layout">
-					<?php foreach (array('default', 'overview', 'home') as $value) : ?>
+					<?php foreach (array('default', 'overview', 'home', 'accordion') as $value) : ?>
 						<option <?php if ($page['layout'] === $value) : ?>selected<?php endif ?>><?php e($value) ?></option>
 					<?php endforeach ?>
 				</select>

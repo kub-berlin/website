@@ -86,7 +86,7 @@
 				<?php render_side_nav() ?>
 			</nav>
 			<main id="main" class="m-sidenav">
-				<div class="item-page">
+				<div class="item-page <?php if ($page['layout'] === 'accordion') : ?>accordion<?php endif ?>">
 					<h2><?php e($page['title']) ?></h2>
 					<?php echo $page['body'] ?>
 				</div>
@@ -112,5 +112,9 @@
 			<?php endforeach ?>
 		</div>
 	</footer>
+
+	<script src="<?php e($baseurl) ?>/static/accordion.js"></script>
+	<script src="<?php e($baseurl) ?>/static/nav.js"></script>
+	<script src="<?php e($baseurl) ?>/static/table.js"></script>
 </body>
 </html>
