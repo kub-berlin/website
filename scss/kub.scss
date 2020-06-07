@@ -1,6 +1,5 @@
 @import "../node_modules/sass-planifolia/sass/math";
 @import "../node_modules/sass-planifolia/sass/contrast";
-@import "../node_modules/sass-planifolia/sass/color";
 @import "../node_modules/sass-planifolia/sass/clearfix";
 
 @import "../node_modules/mfbs/sass/variables";
@@ -8,15 +7,12 @@
 @import "../node_modules/mfbs/sass/base";
 @import "../node_modules/mfbs/sass/form";
 @import "components/layout";
-@import "components/form";
 @import "components/type";
 @import "components/nav";
-@import "components/breadcrumb";
 @import "components/header";
 @import "components/footer";
 @import "components/article";
 @import "components/subpages";
-@import "components/search";
 @import "components/table";
 @import "components/toc";
 @import "components/home";
@@ -31,24 +27,6 @@ html {
 
     @media print {
         background-color: white;
-    }
-}
-
-.accessibility-aid {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: 0;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-}
-
-// error message for cloaked email addresses in italics
-[id^=cloak] {
-    font-style: italic;
-
-    a {
-        font-style: normal;
     }
 }
 
@@ -72,11 +50,6 @@ summary {
         margin: 0;
         font-size: inherit;
     }
-}
-
-.jfdefaulttext {
-    font-style: italic;
-    margin-bottom: 1em;
 }
 
 #alert,

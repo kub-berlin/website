@@ -34,15 +34,13 @@
         list-style: none;
     }
 
-    a {
+    ul a {
         display: block;
         text-decoration: none;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
 
-    a {
         @include nav-color($color-brand, $color-brand-dark);
         padding: 0.5em;
         margin-bottom: 1px;
@@ -100,12 +98,8 @@
         }
     }
 
-    ul ul ul a {
+    ul ul a {
         padding-left: $indentation;
-    }
-
-    ul ul ul ul {
-        display: none;
     }
 
     .current > a {

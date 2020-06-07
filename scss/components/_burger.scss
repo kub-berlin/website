@@ -53,3 +53,7 @@ $x: ($size - 3 * $thickness) / 2 + $thickness;
         }
     }
 }
+
+.button.m-round {
+    border-radius: 50%;
+}
