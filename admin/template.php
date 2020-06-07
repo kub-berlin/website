@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html class="admin">
 <head>
 	<meta charset="utf-8" />
 	<title>KuB Administration</title>
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="../static/kub-ltr.css" />
 </head>
 <body>
 	<main>
@@ -60,11 +60,11 @@
 
 	<nav class="nav-langs" aria-label="Languages">
 		<?php foreach (get_langs() as $l) : ?>
-			<a href="<?php e("?page=$page_id&lang=${l['id']}") ?>" <?php if ($l['id'] == $lang_id) : ?>class="current"<?php endif ?>><?php e($l['code']) ?></a>
+			<a href="<?php e("?page=$page_id&lang=${l['id']}") ?>" class="button <?php if ($l['id'] != $lang_id) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
 		<?php endforeach ?>
 	</nav>
 
-	<nav class="nav-pages" aria-label="Pages">
+	<nav id="section-nav" class="nav-pages" aria-label="Pages">
 		<ul>
 			<?php render_side_nav($root, $page_id) ?>
 		</ul>

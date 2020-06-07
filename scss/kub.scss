@@ -20,10 +20,16 @@
 @import "components/burger";
 @import "components/infobox";
 @import "components/newsletter";
+@import "components/admin";
 
 html {
-    background-color: $color-brand;
     line-height: 1.5;
+    padding: 0.5em;
+}
+
+html.bg {
+    background-color: $color-brand;
+    padding: 0;
 
     @media print {
         background-color: white;

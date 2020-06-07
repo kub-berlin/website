@@ -21,8 +21,8 @@ function rrmdir($path)
 function render_side_nav($page, $current, $path='/', $maxdepth=10)
 {
 ?>
-	<li>
-		<a href="<?php e("?page=${page['id']}") ?>" <?php if ($page['id'] == $current) : ?>class="current"<?php endif ?>><?php e($path) ?></a>
+	<li <?php if ($page['id'] == $current) : ?>class="current"<?php endif ?>>
+		<a href="<?php e("?page=${page['id']}") ?>"><?php e($path) ?></a>
 	</li>
 <?php
 	if ($maxdepth > 0) {

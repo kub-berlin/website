@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" prefix="s: http://schema.org/ og: http://ogp.me/ns#">
+<html lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" prefix="s: http://schema.org/ og: http://ogp.me/ns#" class="bg">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
