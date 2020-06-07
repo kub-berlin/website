@@ -1,0 +1,43 @@
+.homeRow-address {
+    font-style: normal;
+}
+
+.homeRow-map img {
+    border: 0.5em solid $color-brand;
+}
+
+@media screen and (min-width: $breakpoint) {
+    .homeRow-map {
+        float: right;
+        max-width: 50%;
+    }
+}
+
+.homeRow {
+    .homeRow-address {
+        font-size: 80%;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        > div {
+            display: grid;
+            grid-gap: $gutter;
+            grid-auto-flow: dense;
+            grid-template-columns: 2fr 3fr 3fr;
+        }
+
+        .homeRow-address {
+            grid-column: 1;
+            padding-right: $gutter / 2;
+            margin-right: -$gutter / 2;
+            border-right: 1px solid $color-brand;
+        }
+        .homeRow-about {
+            grid-column: 2;
+        }
+        .homeRow-map {
+            max-width: none;
+            grid-column: 3;
+        }
+    }
+}

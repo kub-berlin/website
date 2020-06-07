@@ -1,0 +1,70 @@
+#header-container,
+#main-container,
+#top,
+#footer {
+    background: $color-bg;
+    margin-bottom: 1.5em;
+}
+
+#header,
+#main,
+#top,
+#aside,
+#footer {
+    padding: $padding;
+}
+
+body {
+    margin: 0 auto;
+    padding: 0;
+}
+
+@media screen and (min-width: 36em) {  // body max-width
+    body {
+        margin: 1em auto 2em;
+        padding: 0.5em;
+    }
+}
+
+@media screen and (min-width: $breakpoint) {
+    #alert,
+    #header,
+    #main-container,
+    #top,
+    #footer {
+        box-shadow: 0 0 2em rgba(black, 0.5);
+    }
+
+    body {
+        max-width: 40em * 12 / 7;
+    }
+
+    #header-container {
+        margin-bottom: 0;  // nav takes role of separator
+    }
+    #main-container {
+        display: grid;
+        grid-gap: $gutter;
+        grid-template-columns: 3fr 7fr 2fr;
+        word-wrap: break-word;
+    }
+    #section-nav {
+        grid-column: 1;
+    }
+    #main {
+        grid-column: 1 / 4;
+
+        &.m-sidenav {
+            grid-column: 2;
+        }
+    }
+    #aside {
+        grid-column: 3;
+    }
+}
+
+@media print {
+    body {
+        max-width: none;
+    }
+}

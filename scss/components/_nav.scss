@@ -1,0 +1,170 @@
+@mixin nav-color($color, $color-focus) {
+    background: $color;
+    color: contrast-color($color);
+
+    &:hover, &:focus {
+        background: $color-focus;
+        color: contrast-color($color-focus);
+    }
+}
+
+#nav {
+    font-size: 110%;
+    clear: both;
+
+    // It is only possible to transition from one fixed value to another.  So
+    // we can not do a transition based on height as it is set to `auto`.  We
+    // can however do a transition on max-height between 0 and an overly large
+    // value.  The timing functions are chosen in a way that they are faster to
+    // the end, making up for the distance between max-height and actual
+    // height.
+    max-height: 0;
+    overflow-y: hidden;
+    // FIXME: huge lag on mobile
+    // transition: max-height 0.4s ease-out;
+
+    &.is-visible {
+        max-height: 100em;
+        transition-timing-function: ease-in;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    a {
+        @include nav-color($color-brand, $color-brand-dark);
+        padding: 0.5em;
+        margin-bottom: 1px;
+    }
+
+    ul ul {
+        text-indent: $indentation;
+        font-size: (100% / 1.1);
+    }
+
+    ul ul ul {
+        display: none;
+    }
+
+    .current > a {
+        @include nav-color($color-brand-dark, $color-brand-dark);
+    }
+
+    > ul > li {
+        margin-bottom: 2px;
+    }
+
+    @media print {
+        display: none !important;
+    }
+}
+
+#section-nav {
+    display: none;
+    font-size: 80%;
+    margin-top: 1px;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .nav > li.active > a,
+    .nav > li:not(.active) {
+        display: none;
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+
+        padding: 0.3em $padding;
+        border-bottom: 1px solid black;
+
+        &:hover, &:focus {
+            background: $color-brand-light;
+            color: contrast-color($color-brand-light);
+        }
+    }
+
+    ul ul ul a {
+        padding-left: $indentation;
+    }
+
+    ul ul ul ul {
+        display: none;
+    }
+
+    .current > a {
+        @include nav-color($color-brand-dark, $color-brand-dark);
+    }
+}
+
+.menu-button {
+    position: absolute;
+    top: $padding;
+    right: $padding;
+}
+
+@media screen and (min-width: $breakpoint) {
+    .menu-button {
+        display: none;
+    }
+
+    #nav {
+        max-height: none !important;
+        overflow-x: hidden;  // clearfix
+
+        a,
+        > ul > li {
+            margin-bottom: 0;
+        }
+
+        ul {
+            display: grid;
+            grid-gap: 1px;
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        ul ul {
+            display: none;
+        }
+
+        li {
+            text-align: center;
+        }
+
+        .nav > li.active > a {
+            @include nav-color($color-brand-dark, $color-brand-dark);
+        }
+    }
+
+    #section-nav {
+        display: block;
+    }
+
+    #search {
+        position: absolute;
+        top: $padding;
+        right: $padding;
+    }
+}
+
+@media print {
+    .menu-button {
+        display: none;
+    }
+}

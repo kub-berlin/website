@@ -1,0 +1,19 @@
+.moduletable.infobox {
+    @include clearfix;
+    border: 0.2em solid $color-brand;
+    background: $color-bg-tint;
+    padding: 1em;
+    margin-bottom: $spacer;
+
+    h3:first-child {
+        margin-top: 0;
+    }
+
+    img {
+        float: right;
+        width: 8em;
+        margin-left: 0.5em;
+        margin-bottom: 0.5em;
+        shape-outside: circle();
+    }
+}

@@ -1,0 +1,22 @@
+h1, h2, h3, h4, h5, h6, {
+    font-family: Futura, sans-serif;
+}
+
+h2, h3 {
+    font-weight: normal;
+}
+h2 {
+    border-bottom: 1px solid $color-border;
+}
+h4, h6 {
+    color: $color-brand;
+}
+h6 {
+    text-transform: uppercase;
+}
+
+@for $i from 1 through 6 {
+    h#{$i} {
+        font-size: 100% * pow(1.4, 4.5 - $i);
+    }
+}

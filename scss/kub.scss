@@ -1,0 +1,95 @@
+@import "../node_modules/sass-planifolia/sass/math";
+@import "../node_modules/sass-planifolia/sass/contrast";
+@import "../node_modules/sass-planifolia/sass/color";
+@import "../node_modules/sass-planifolia/sass/clearfix";
+
+@import "../node_modules/mfbs/sass/variables";
+@import "vars";
+@import "../node_modules/mfbs/sass/base";
+@import "../node_modules/mfbs/sass/form";
+@import "components/layout";
+@import "components/form";
+@import "components/type";
+@import "components/nav";
+@import "components/breadcrumb";
+@import "components/header";
+@import "components/footer";
+@import "components/article";
+@import "components/subpages";
+@import "components/search";
+@import "components/table";
+@import "components/toc";
+@import "components/home";
+@import "components/shortcuts";
+@import "components/burger";
+@import "components/infobox";
+@import "components/newsletter";
+
+html {
+    background-color: $color-brand;
+    line-height: 1.5;
+
+    @media print {
+        background-color: white;
+    }
+}
+
+.accessibility-aid {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+// error message for cloaked email addresses in italics
+[id^=cloak] {
+    font-style: italic;
+
+    a {
+        font-style: normal;
+    }
+}
+
+.u-columns {
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+}
+
+.button--block {
+    display: block;
+    margin-bottom: $spacer;
+}
+
+summary {
+    @extend h3;
+    cursor: pointer;
+
+    h3 {
+        display: inline;
+        margin: 0;
+        font-size: inherit;
+    }
+}
+
+.jfdefaulttext {
+    font-style: italic;
+    margin-bottom: 1em;
+}
+
+#alert,
+.alert {
+    background-color: #ffb600;
+    padding: 2 * $padding;
+    margin-bottom: $spacer * 2;
+
+    :last-child {
+        margin-bottom: 0;
+    }
+}
+
+#alert {
+    font-size: 120%;
+}

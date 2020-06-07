@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php e($page['title'])?> - KuB</title>
 	<link href="/templates/kub/favicon.ico" rel="shortcut icon" type="image/x-icon">
-	<link href="/templates/kub/css/kub-<?php e($lang['dir']) ?>.css" rel="stylesheet" type="text/css" />
+	<link href="<?php e($baseurl) ?>/static/kub-<?php e($lang['dir']) ?>.css" rel="stylesheet" type="text/css" />
 
 	<?php foreach (get_langs() as $l): ?>
 		<?php if ($l['code'] !== $lang['code']) : ?>

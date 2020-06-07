@@ -1,0 +1,38 @@
+$color-fg: #111;
+
+@function mix-lightness($a, $b, $f: 0.5) {
+    @return $f * $a + (1 - $f) * $b;
+}
+
+$hue: pf-hue(#67999A);
+$lightness: 35;
+
+$color-brand: lch($lightness, 27.4, $hue);
+$color-brand-light: lch(mix-lightness($lightness, pf-lightness($color-bg), 0.3), 13.5, $hue);
+$color-brand-dark: lch(mix-lightness($lightness, pf-lightness($color-fg)), 26.6, $hue);
+
+$color-bg-tint: mix(#f8f8f8, $color-brand-light);
+$color-border: $color-fg;
+$color-link: $color-brand;
+$color-link-focus: $color-brand-dark;
+$font-size-min: 1em;
+$font-size-max: 1em;
+
+$planifolia-contrast-dark-default: $color-fg;
+$planifolia-contrast-light-default: $color-bg;
+
+$breakpoint: 50em;
+$padding: 0.5rem;
+$indentation: 1.5rem;
+$gutter: 3rem;
+
+@each $color in (
+    $color-bg,
+    $color-fg,
+    $color-bg-tint,
+    $color-brand,
+    $color-brand-light,
+    $color-brand-dark
+) {
+    $_: contrast-check($color, contrast-color($color), 7);
+}

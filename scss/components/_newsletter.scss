@@ -1,0 +1,12 @@
+.partial--newsletter-subscribe form {
+    display: flex;
+
+    input[type="email"] {
+        flex: 1;
+    }
+
+    .button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}

@@ -4,13 +4,14 @@ document.addEventListener('submit', function(event) {
 	}
 });
 
+var dir = document.querySelector('textarea').dir;
 tinymce.init({
 	selector: 'textarea',
 	menubar: false,
 	contextmenu: false,
 	plugins: 'code image link table lists',
 	toolbar: 'undo redo | formatselect | bold italic link | image table numlist bullist infobox | outdent indent | code',
-	content_css: '/templates/kub/css/kub-ltr.css',
+	content_css: '/xi/static/kub-' + dir + '.css',
 	formats: {
 		info: {block: 'div', classes: 'moduletable infobox', wrapper: true},
 		warning: {block: 'div', classes: 'alert', wrapper: true},
@@ -19,5 +20,5 @@ tinymce.init({
 	image_dimensions: false,
 	convert_urls: false,
 	entity_encoding: 'raw',
-	directionality: document.querySelector('textarea').dir,
+	directionality: dir,
 });

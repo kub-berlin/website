@@ -1,0 +1,18 @@
+// see table.js
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: $spacer;
+
+    table {
+        margin: 0;
+    }
+}
+
+table {
+    width: 100%;
+    font-size: 80%;
+}
+
+tr:nth-child(even) td {
+    background-color: $color-bg-tint;
+}

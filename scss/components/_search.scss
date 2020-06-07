@@ -1,0 +1,79 @@
+// may also include language switcher from http://joogpot.eu/lanternfish
+#search {
+    font-size: 1rem;
+    padding: 0.2em;
+
+    label {
+        display: none;
+    }
+    div,
+    select,
+    input {
+        display: block;
+        width: 100%;
+
+        @media screen and (min-width: $breakpoint) {
+            width: auto;
+            display: inline-block;
+            box-sizing: content-box;
+            height: 1.4em;
+        }
+    }
+    select,
+    input {
+        line-height: 1.4;
+        margin-bottom: $spacer / 2;
+        vertical-align: top;
+    }
+}
+
+#searchForm {
+    @include clearfix;
+
+    // full width searchword
+    .btn-toolbar {
+        display: flex;
+
+        div:first-child {
+            flex: auto;
+        }
+    }
+    // .searchintro and .form-limit on one line
+    .searchintro {
+        float: left;
+    }
+    .form-limit {
+        text-align: right;
+
+        label {
+            display: inline;
+        }
+    }
+
+    .phrases {
+        display: none;
+    }
+}
+
+#search-searchword {
+    width: 99%;
+}
+
+.search-results {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin-bottom: 2 * $spacer;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid $color-border;
+            padding-bottom: 2 * $spacer;
+        }
+    }
+
+    .result-category {
+        font-style: italic;
+    }
+}
