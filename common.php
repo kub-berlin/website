@@ -113,17 +113,6 @@ function get_page_by_path($path)
 	return fetch_or_404($stmt);
 }
 
-function get_path($page)
-{
-	global $db;
-	if ($page['id'] == 1) {
-		return '/';
-	} else {
-		$parent = get_page_by_id($page['parent']);
-		return get_path($parent) . $page['slug'] . '/';
-	}
-}
-
 function get_subpages($id, $include_hidden=false)
 {
 	global $db;
