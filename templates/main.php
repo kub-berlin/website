@@ -41,11 +41,13 @@
 					<a href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a>
 				<?php endforeach ?>
 			</div>
-			<ul>
+			<ul class="nav">
 				<?php foreach (array('/', '/angebote/', '/unterstuetzung/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
 					<?php $navpage = get_page_by_path($navpath) ?>
 					<?php fetch_translation($navpage, $lang) ?>
-					<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>"><?php e($navpage['title']) ?></a></li>
+					<li <?php if (trim($navpath, '/') === $area) : ?>class="active"<?php endif ?>>
+						<a href="<?php e("$baseurl/${lang['code']}$navpath")?>"><?php e($navpage['title']) ?></a>
+					</li>
 				<?php endforeach ?>
 			</ul>
 		</nav>

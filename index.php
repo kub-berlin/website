@@ -27,10 +27,12 @@ function fetch_translation(&$page, $lang)
 
 function render_side_nav($root=NULL, $rootpath='', $maxdepth=4)
 {
-	global $path, $lang, $baseurl;
+	global $path, $lang, $area, $baseurl;
+	if (empty($area)) {
+		return;
+	}
 	if ($root === NULL) {
-		$slug = path_shift($path, False);
-		$rootpath = "/$slug/";
+		$rootpath = "/$area/";
 		$root = get_page_by_path($rootpath);
 	}
 
@@ -55,6 +57,7 @@ $fallback_lang = get_lang_by_code('de');
 
 $path = '/' . $_GET['path'];
 $code = path_shift($path);
+$area = path_shift($path, False);
 $lang = get_lang_by_code($code);
 $page = get_page_by_path($path);
 fetch_translation($page, $lang);
