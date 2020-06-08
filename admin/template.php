@@ -28,7 +28,7 @@
 			<h3>Edit this page</h3>
 			<label>
 				Slug
-				<input name="slug" value="<?php e($page['slug']) ?>" required>
+				<input name="slug" value="<?php e($page['slug']) ?>" <?php if ($page_id === 1) : ?>readonly<?php else : ?>required<?php endif ?>>
 			</label>
 
 			<label>
