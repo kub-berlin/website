@@ -45,11 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$stmt->execute(array('slug' => $_POST['slug'], 'parent' => $parent));
 		$id = $db->lastInsertId();
 		header("Location: ?page=$id&lang=$lang_id", true, 302);
-	} else if ($_GET['action'] === 'delete-page') {
+	} elseif ($_GET['action'] === 'delete-page') {
 		$stmt = $db->prepare('DELETE FROM pages WHERE id=:id');
 		$stmt->execute(array('id' => $page_id));
 		header("Location: ?", true, 302);
-	} else if ($_GET['action'] === 'edit-page') {
+	} elseif ($_GET['action'] === 'edit-page') {
 		$stmt = $db->prepare('UPDATE pages SET slug=:slug, layout=:layout, order_by=:order_by, show_in_nav=:show_in_nav WHERE id=:id');
 		$stmt->execute(array(
 			'slug' => $_POST['slug'],
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'id' => $page_id,
 		));
 		header("Location: ?page=$page_id&lang=$lang_id", true, 302);
-	} else if ($_GET['action'] === 'edit-translation') {
+	} elseif ($_GET['action'] === 'edit-translation') {
 		$stmt = $db->prepare('UPDATE translations SET title=:title, body=:body WHERE page=:page AND lang=:lang');
 		$stmt->execute(array(
 			'title' => $_POST['title'],

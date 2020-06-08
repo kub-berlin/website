@@ -39,13 +39,13 @@ function get_module($slug)
 	return $page;
 }
 
-function render_side_nav($root=NULL, $rootpath='', $maxdepth=4)
+function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 {
 	global $path, $lang, $area, $baseurl;
 	if (empty($area)) {
 		return;
 	}
-	if ($root === NULL) {
+	if ($root === null) {
 		$rootpath = "/$area/";
 		$root = get_page_by_path($rootpath);
 	}
@@ -74,7 +74,7 @@ $error = null;
 try {
 	$path = '/' . $_GET['path'];
 	$code = path_shift($path);
-	$area = path_shift($path, False);
+	$area = path_shift($path, false);
 	$lang = get_lang_by_code($code);
 	$page = get_page_by_path($path);
 	fetch_translation($page, $lang);

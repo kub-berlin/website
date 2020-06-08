@@ -38,7 +38,7 @@ function path_pop(&$path, $mod=true)
 	$parts = explode('/', $path);
 	$tmp = array_pop($parts);
 	$result = array_pop($parts);
-	if ($result === NULL) {
+	if ($result === null) {
 		throw new HttpException('Not Found', 404);
 	}
 	if ($mod) {
@@ -53,7 +53,7 @@ function path_shift(&$path, $mod=true)
 	$parts = explode('/', $path);
 	$tmp = array_shift($parts);
 	$result = array_shift($parts);
-	if ($result === NULL) {
+	if ($result === null) {
 		throw new HttpException('Not Found', 404);
 	}
 	if ($mod) {
