@@ -67,7 +67,7 @@ function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 }
 
 $baseurl = '/xi';
-$fallback_lang = get_lang_by_code('de');
+$fallback_lang = get_lang_by_code($fallback_lang_code);
 $lang = $fallback_lang;
 $error = null;
 
