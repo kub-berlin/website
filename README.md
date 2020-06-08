@@ -2,7 +2,7 @@
 
 This is the custom PHP code that powers <https://kub-berlin.org/>.
 
-Main Features:
+# Features
 
 -	**translations**: The website is translated into 6 languages, with german as
 	a fallback if a translation does not exist. The language is determined via a
@@ -20,3 +20,12 @@ Main Features:
 -	**modules**: Some parts of the website appear on every page but should still
 	be editable by regular users. These are modelled as top-level pages and
 	therefore have just the same features (translation and flexible editing).
+
+# Installation
+
+-	copy the files from this repo to the server
+-	get TinyMCE (e.g. `npm i tinymce`) and copy it to the admin folder
+-	rename `htaccess` to `.htaccess`
+-	add a `.htaccess` and `.htpasswd` to the admin folder for authentication
+-	adapt `config.php`
+-	create a root page and some languages via SQL
