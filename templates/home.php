@@ -1,7 +1,6 @@
 <div vocab="http://schema.org/" typeof="NGO Place" resource="https://kub-berlin.org/#kub">
 	<div class="homeRow-about" property="description">
 		<?php echo $page['body'] ?>
-		<a class="button button--block" href="https://www.betterplace.org/de/projects/20142-fluchtlinge-und-migranten-unterstutzen-und-beraten-spende-fur-die-kub">TPL_KUB_DONATE</a>
 	</div>
 	<div class="homeRow-map" property="location" typeof="place">
 		<a href="https://www.openstreetmap.org/node/874357616" property="hasMap" target="_blank">
