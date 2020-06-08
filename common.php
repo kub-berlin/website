@@ -2,6 +2,8 @@
 
 ini_set('display_errors', 'On');
 
+class HttpException extends Exception {}
+
 $db = new PDO('sqlite:'.__DIR__.'/db.sqlite');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
@@ -37,7 +39,7 @@ function path_pop(&$path, $mod=true)
 	$tmp = array_pop($parts);
 	$result = array_pop($parts);
 	if ($result === NULL) {
-		throw new Exception('Not Found', 404);
+		throw new HttpException('Not Found', 404);
 	}
 	if ($mod) {
 		array_push($parts, $tmp);
@@ -52,7 +54,7 @@ function path_shift(&$path, $mod=true)
 	$tmp = array_shift($parts);
 	$result = array_shift($parts);
 	if ($result === NULL) {
-		throw new Exception('Not Found', 404);
+		throw new HttpException('Not Found', 404);
 	}
 	if ($mod) {
 		array_unshift($parts, $tmp);
@@ -65,7 +67,7 @@ function fetch_or_404($stmt)
 {
 	$result = $stmt->fetch();
 	if (!$result) {
-		throw new Exception('Not Found', 404);
+		throw new HttpException('Not Found', 404);
 	}
 	return $result;
 }
