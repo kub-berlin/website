@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 include_once('../common.php');
+include_once('csrf.php');
 
 function rrmdir($path)
 {

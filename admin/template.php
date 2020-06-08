@@ -9,6 +9,8 @@
 <body>
 	<main>
 		<form method="post" action="<?php e("?action=edit-translation&page=$page_id&lang=$lang_id") ?>">
+			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
+
 			<label>
 				Title
 				<input name="title" value="<?php e($translation['title']) ?>" lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" required>
@@ -26,6 +28,8 @@
 	<aside>
 		<form method="post" action="<?php e("?action=edit-page&page=$page_id&lang=$lang_id") ?>">
 			<h3>Edit this page</h3>
+			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
+
 			<label>
 				Slug
 				<input name="slug" value="<?php e($page['slug']) ?>" <?php if ($page_id === 1) : ?>readonly<?php else : ?>required<?php endif ?>>
@@ -55,11 +59,13 @@
 
 		<form method="post" action="<?php e("?action=delete-page&page=$page_id") ?>" data-js="confirm">
 			<h3>Delete this page</h3>
+			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 			<button>Delete</button>
 		</form>
 
 		<form method="post" action="<?php e("?action=create-page&page=$page_id") ?>">
 			<h3>Create a new subpage</h3>
+			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 			<label>
 				Slug
 				<input name="slug" required>
@@ -69,6 +75,7 @@
 
 		<form method="post" action="<?php e("?action=create-page") ?>">
 			<h3>Create a new module</h3>
+			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 			<label>
 				Slug
 				<input name="slug" required>
