@@ -18,14 +18,14 @@ function rrmdir($path)
 	}
 }
 
-function render_side_nav($id=1, $path='/', $maxdepth=10)
+function render_side_nav($id=null, $path='', $maxdepth=10)
 {
 	global $page_id;
-?>
-	<li <?php if ($id == $page_id) : ?>class="current"<?php endif ?>>
-		<a href="<?php e("?page=$id") ?>"><?php e($path) ?></a>
-	</li>
-<?php
+	if ($id !== null) { ?>
+		<li <?php if ($id == $page_id) : ?>class="current"<?php endif ?>>
+			<a href="<?php e("?page=$id") ?>"><?php e($path) ?></a>
+		</li>
+	<?php }
 	if ($maxdepth > 0) {
 		foreach (get_subpages($id, true) as $p) {
 			render_side_nav($p['id'], $path . $p['slug'] . '/', $maxdepth - 1);
@@ -40,8 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	rrmdir('../cache');
 
 	if ($_GET['action'] === 'create-page') {
+		$parent = isset($_GET['page']) ? $page_id : null;
 		$stmt = $db->prepare('INSERT INTO pages (slug, parent, order_by, show_in_nav) VALUES (:slug, :parent, 10, 1)');
-		$stmt->execute(array('slug' => $_POST['slug'], 'parent' => $page_id));
+		$stmt->execute(array('slug' => $_POST['slug'], 'parent' => $parent));
 		$id = $db->lastInsertId();
 		header("Location: ?page=$id&lang=$lang_id", true, 302);
 	} else if ($_GET['action'] === 'delete-page') {

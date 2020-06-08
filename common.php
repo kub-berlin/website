@@ -116,7 +116,8 @@ function get_page_by_path($path)
 function get_subpages($id, $include_hidden=false)
 {
 	global $db;
-	$sql = 'SELECT * FROM pages WHERE parent=:parent';
+	$sql = 'SELECT * FROM pages WHERE ';
+	$sql .= $id === null ? 'parent IS :parent' : 'parent=:parent';
 	$sql .= $include_hidden ? '' : ' AND show_in_nav=1';
 	$sql .= ' ORDER BY order_by';
 	$stmt = $db->prepare($sql);
