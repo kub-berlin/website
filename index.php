@@ -68,12 +68,20 @@ function render_side_nav($root=NULL, $rootpath='', $maxdepth=4)
 
 $baseurl = '/xi';
 $fallback_lang = get_lang_by_code('de');
+$lang = $fallback_lang;
+$error = null;
 
-$path = '/' . $_GET['path'];
-$code = path_shift($path);
-$area = path_shift($path, False);
-$lang = get_lang_by_code($code);
-$page = get_page_by_path($path);
-fetch_translation($page, $lang);
+try {
+	$path = '/' . $_GET['path'];
+	$code = path_shift($path);
+	$area = path_shift($path, False);
+	$lang = get_lang_by_code($code);
+	$page = get_page_by_path($path);
+	fetch_translation($page, $lang);
+} catch (HttpException $e) {
+	$area = null;
+	$page = get_module('404');
+	$error = $e;
+}
 
 include('templates/main.php');
