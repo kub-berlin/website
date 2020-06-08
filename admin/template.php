@@ -85,7 +85,7 @@
 
 	<nav id="section-nav" class="nav-pages" aria-label="Pages">
 		<ul>
-			<?php render_side_nav($root, $page_id) ?>
+			<?php render_side_nav() ?>
 		</ul>
 	</nav>
 

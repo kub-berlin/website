@@ -18,16 +18,17 @@ function rrmdir($path)
 	}
 }
 
-function render_side_nav($page, $current, $path='/', $maxdepth=10)
+function render_side_nav($id=1, $path='/', $maxdepth=10)
 {
+	global $page_id;
 ?>
-	<li <?php if ($page['id'] == $current) : ?>class="current"<?php endif ?>>
-		<a href="<?php e("?page=${page['id']}") ?>"><?php e($path) ?></a>
+	<li <?php if ($id == $page_id) : ?>class="current"<?php endif ?>>
+		<a href="<?php e("?page=$id") ?>"><?php e($path) ?></a>
 	</li>
 <?php
 	if ($maxdepth > 0) {
-		foreach (get_subpages($page['id'], true) as $p) {
-			render_side_nav($p, $current, $path . $p['slug'] . '/', $maxdepth - 1);
+		foreach (get_subpages($id, true) as $p) {
+			render_side_nav($p['id'], $path . $p['slug'] . '/', $maxdepth - 1);
 		}
 	}
 }
