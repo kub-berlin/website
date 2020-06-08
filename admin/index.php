@@ -26,7 +26,7 @@ function render_side_nav($page, $current, $path='/', $maxdepth=10)
 	</li>
 <?php
 	if ($maxdepth > 0) {
-		foreach (get_subpages($page['id']) as $p) {
+		foreach (get_subpages($page['id'], true) as $p) {
 			render_side_nav($p, $current, $path . $p['slug'] . '/', $maxdepth - 1);
 		}
 	}
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	rrmdir('../cache');
 
 	if ($_GET['action'] === 'create-page') {
-		$stmt = $db->prepare('INSERT INTO pages (slug, parent) VALUES (:slug, :parent)');
+		$stmt = $db->prepare('INSERT INTO pages (slug, parent, order_by, show_in_nav) VALUES (:slug, :parent, 10, 1)');
 		$stmt->execute(array('slug' => $_POST['slug'], 'parent' => $page_id));
 		$id = $db->lastInsertId();
 		header("Location: ?page=$id&lang=$lang_id", true, 302);
@@ -48,10 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$stmt->execute(array('id' => $page_id));
 		header("Location: ?", true, 302);
 	} else if ($_GET['action'] === 'edit-page') {
-		$stmt = $db->prepare('UPDATE pages SET slug=:slug, layout=:layout WHERE id=:id');
+		$stmt = $db->prepare('UPDATE pages SET slug=:slug, layout=:layout, order_by=:order_by, show_in_nav=:show_in_nav WHERE id=:id');
 		$stmt->execute(array(
 			'slug' => $_POST['slug'],
 			'layout' => $_POST['layout'],
+			'order_by' => $_POST['order_by'],
+			'show_in_nav' => isset($_POST['show_in_nav']),
 			'id' => $page_id,
 		));
 		header("Location: ?page=$page_id&lang=$lang_id", true, 302);

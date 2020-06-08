@@ -17,6 +17,8 @@ $db->query("CREATE TABLE IF NOT EXISTS pages (
 	id INTEGER PRIMARY KEY,
 	slug TEXT,
 	layout TEXT,
+	order_by INTEGER,
+	show_in_nav BOOLEAN,
 	parent INTEGER REFERENCES pages(id) ON DELETE CASCADE,
 	UNIQUE(slug, parent)
 );");
@@ -122,10 +124,13 @@ function get_path($page)
 	}
 }
 
-function get_subpages($id)
+function get_subpages($id, $include_hidden=false)
 {
 	global $db;
-	$stmt = $db->prepare('SELECT * FROM pages WHERE parent=:parent');
+	$sql = 'SELECT * FROM pages WHERE parent=:parent';
+	$sql .= $include_hidden ? '' : ' AND show_in_nav=1';
+	$sql .= ' ORDER BY order_by';
+	$stmt = $db->prepare($sql);
 	$stmt->execute(array('parent' => $id));
 	return $stmt->fetchAll();
 }

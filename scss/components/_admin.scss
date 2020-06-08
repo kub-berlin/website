@@ -58,6 +58,11 @@ html.admin {
 		width: 100%;
 	}
 
+	input[type="checkbox"] {
+		display: inline-block;
+		width: auto;
+	}
+
 	textarea {
 		min-height: 50vh;
 		resize: vertical;

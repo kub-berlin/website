@@ -40,6 +40,16 @@
 				</select>
 			</label>
 
+			<label>
+				Order
+				<input name="order_by" type="number" value="<?php e($page['order_by']) ?>" required>
+			</label>
+
+			<label>
+				<input name="show_in_nav" type="checkbox" <?php if ($page['show_in_nav']) : ?>checked<?php endif ?>>
+				Show in navigation
+			</label>
+
 			<button>Save</button>
 		</form>
 
