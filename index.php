@@ -8,8 +8,6 @@ function fetch_translation(&$page, $lang, $show_fallback_text=true)
 	$translation = get_translation($page['id'], $lang['id']);
 	$fallback = get_translation($page['id'], $fallback_lang['id']);
 
-	$fallback_text = "<p><em>Sorry, no tanslation available</em></p>\n";  // TODO translate
-
 	foreach (array('title', 'body') as $key) {
 		if ($translation && $translation[$key] !== '') {
 			$page[$key] = $translation[$key];
@@ -17,7 +15,7 @@ function fetch_translation(&$page, $lang, $show_fallback_text=true)
 			if ($key === 'body') {
 				$page[$key] = str_replace("/${fallback_lang['code']}/", "/${lang['code']}/", $fallback[$key]);
 				if ($show_fallback_text) {
-					$page[$key] = $fallback_text . $page[$key];
+					$page[$key] = '<p><em>' . htmlspecialchars($lang['missing']) . "</em></p>\n" . $page[$key];
 				}
 			} else {
 				$page[$key] = $fallback[$key];

@@ -11,7 +11,8 @@ $db->query("CREATE TABLE IF NOT EXISTS langs (
 	id INTEGER PRIMARY KEY,
 	name TEXT NOT NULL,
 	code TEXT NOT NULL UNIQUE,
-	dir TEXT NOT NULL
+	dir TEXT NOT NULL,
+	missing TEXT
 );");
 $db->query("CREATE TABLE IF NOT EXISTS pages (
 	id INTEGER PRIMARY KEY,
