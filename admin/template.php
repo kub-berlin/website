@@ -66,6 +66,15 @@
 			</label>
 			<button>Create</button>
 		</form>
+
+		<form method="post" action="<?php e("?action=create-page") ?>">
+			<h3>Create a new module</h3>
+			<label>
+				Slug
+				<input name="slug" required>
+			</label>
+			<button>Create</button>
+		</form>
 	</aside>
 
 	<nav class="nav-langs" aria-label="Languages">

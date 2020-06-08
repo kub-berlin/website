@@ -28,7 +28,7 @@
 			TPL_KUB_BUS: <bdi>M29 Moritzplatz</bdi>
 		</p>
 		<div property="openingHoursSpecification" content="Mo,Tu,Th,Fr 09:00-17:00">
-			TODO: include opening hours
+			<?php echo get_module('opening-hours')['body'] ?>
 		</div>
 	</address>
 </div>

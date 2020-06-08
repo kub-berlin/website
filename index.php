@@ -2,7 +2,7 @@
 
 include_once('common.php');
 
-function fetch_translation(&$page, $lang)
+function fetch_translation(&$page, $lang, $show_fallback_text=true)
 {
 	global $fallback_lang;
 	$translation = get_translation($page['id'], $lang['id']);
@@ -15,7 +15,10 @@ function fetch_translation(&$page, $lang)
 			$page[$key] = $translation[$key];
 		} elseif ($fallback && $fallback[$key] !== '') {
 			if ($key === 'body') {
-				$page[$key] = $fallback_text . str_replace("/${fallback_lang['code']}/", "/${lang['code']}/", $fallback[$key]);
+				$page[$key] = str_replace("/${fallback_lang['code']}/", "/${lang['code']}/", $fallback[$key]);
+				if ($show_fallback_text) {
+					$page[$key] = $fallback_text . $page[$key];
+				}
 			} else {
 				$page[$key] = $fallback[$key];
 			}
@@ -23,6 +26,19 @@ function fetch_translation(&$page, $lang)
 			$page[$key] = '';
 		}
 	}
+}
+
+function get_module($slug)
+{
+	global $db, $lang;
+	$stmt = $db->prepare('SELECT * FROM pages WHERE slug=:slug AND parent IS NULL');
+	$stmt->execute(array('slug' => $slug));
+	$page = $stmt->fetch();
+	if (!$page) {
+		return '';
+	}
+	fetch_translation($page, $lang, false);
+	return $page;
 }
 
 function render_side_nav($root=NULL, $rootpath='', $maxdepth=4)

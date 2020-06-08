@@ -24,15 +24,7 @@
 				</picture>
 			</a>
 			<div id="header-bottom">
-				<address id="address">
-					<ul>
-						<li>Oranienstr. 159</li>
-						<li>10969 Berlin</li>
-						<li>Tel: 030 / 614 94 00</li>
-						<li>Fax: 030 / 615 45 34</li>
-						<li><a href="mailto:kontakt@kub-berlin.org">kontakt@kub-berlin.org</a></li>
-					</ul>
-				</address>
+				<?php echo get_module('header-bottom')['body'] ?>
 			</div>
 		</header>
 		<nav id="nav">
@@ -107,11 +99,7 @@
 
 	<footer id="footer">
 		<div id="footer2">
-			<?php foreach (array('/ueber-die-kub/transparenz/', '/datenschutz/', '/impressum/') as $navpath) : ?>
-				<?php $navpage = get_page_by_path($navpath) ?>
-				<?php fetch_translation($navpage, $lang) ?>
-				<a href="<?php e("$baseurl/${lang['code']}$navpath")?>"><?php e($navpage['title']) ?></a></li>
-			<?php endforeach ?>
+			<?php echo get_module('footer')['body'] ?>
 		</div>
 	</footer>
 
