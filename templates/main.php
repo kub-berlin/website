@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php e($page['title'])?> - KuB</title>
 	<link href="/templates/kub/favicon.ico" rel="shortcut icon" type="image/x-icon">
-	<link href="<?php e($baseurl) ?>/static/kub-<?php e($lang['dir']) ?>.css" rel="stylesheet" type="text/css" />
+	<link href="<?php cachebust("/static/kub-${lang['dir']}.css") ?>" rel="stylesheet" type="text/css" />
 
 	<?php foreach (get_langs() as $l): ?>
 		<?php if ($l['code'] !== $lang['code']) : ?>
@@ -103,8 +103,8 @@
 		</div>
 	</footer>
 
-	<script src="<?php e($baseurl) ?>/static/accordion.js"></script>
-	<script src="<?php e($baseurl) ?>/static/nav.js"></script>
-	<script src="<?php e($baseurl) ?>/static/table.js"></script>
+	<script src="<?php cachebust('/static/accordion.js') ?>"></script>
+	<script src="<?php cachebust('/static/nav.js') ?>"></script>
+	<script src="<?php cachebust('/static/table.js') ?>"></script>
 </body>
 </html>

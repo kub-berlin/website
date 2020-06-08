@@ -140,3 +140,10 @@ function e($string)
 {
 	echo htmlspecialchars(strval($string), ENT_QUOTES, 'UTF-8');
 }
+
+function cachebust($path)
+{
+	global $baseurl;
+	$hash = hash_file('md5', __DIR__.$path);
+	e("$baseurl$path?$hash");
+}
