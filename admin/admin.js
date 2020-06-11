@@ -13,7 +13,7 @@ tinymce.init({
 	toolbar: 'undo redo | formatselect | bold italic link | image table numlist bullist infobox | outdent indent | code',
 	content_css: '/xi/static/kub-' + dir + '.css',
 	formats: {
-		info: {block: 'div', classes: 'moduletable infobox', wrapper: true},
+		info: {block: 'aside', classes: 'infobox', wrapper: true},
 		warning: {block: 'div', classes: 'alert', wrapper: true},
 	},
 	block_formats: 'Paragraph=p; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Info Box=info; Warning Box=warning',
