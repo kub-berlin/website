@@ -20,6 +20,5 @@ tinymce.init({
 	image_dimensions: false,
 	convert_urls: false,
 	entity_encoding: 'raw',
-	forced_root_block: false,
 	directionality: dir,
 });
