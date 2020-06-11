@@ -11,7 +11,6 @@
 @import "components/nav";
 @import "components/header";
 @import "components/footer";
-@import "components/article";
 @import "components/subpages";
 @import "components/table";
 @import "components/toc";
@@ -21,20 +20,6 @@
 @import "components/infobox";
 @import "components/newsletter";
 @import "components/admin";
-
-html {
-    line-height: 1.5;
-    padding: 0.5em;
-}
-
-html.bg {
-    background-color: $color-brand;
-    padding: 0;
-
-    @media print {
-        background-color: white;
-    }
-}
 
 .u-columns {
     -webkit-columns: 2;
@@ -55,17 +40,6 @@ summary {
         display: inline;
         margin: 0;
         font-size: inherit;
-    }
-}
-
-#alert,
-.alert {
-    background-color: #ffb600;
-    padding: 2 * $padding;
-    margin-bottom: $spacer * 2;
-
-    :last-child {
-        margin-bottom: 0;
     }
 }
 

@@ -17,3 +17,13 @@
         shape-outside: circle();
     }
 }
+
+.alert {
+    background-color: #ffb600;
+    padding: 2 * $padding;
+    margin-bottom: $spacer * 2;
+
+    :last-child {
+        margin-bottom: 0;
+    }
+}
