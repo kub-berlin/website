@@ -1,14 +1,23 @@
-#top .nav {
-    // reset
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
+#shortcuts {
     text-align: center;
 
-    display: grid;
-    grid-gap: $spacer;
-    grid-template-columns: repeat(2, 1fr);
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        display: grid;
+        grid-gap: $spacer;
+        grid-template-columns: repeat(2, 1fr);
+
+        @media (min-width: (200px * 2)) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media print, (min-width: $breakpoint) {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
 
     a {
         display: block;
@@ -19,13 +28,5 @@
         &:hover, &:focus {
             text-decoration: underline;
         }
-    }
-
-    @media (min-width: (200px * 2)) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media print, (min-width: $breakpoint) {
-        grid-template-columns: repeat(6, 1fr);
     }
 }

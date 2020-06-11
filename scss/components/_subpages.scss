@@ -1,89 +1,82 @@
-@media screen {
-    .subpages {
-        margin: 2 * $spacer 0;
-        padding: 0;
-        list-style: none;
+.subpages {
+    margin: 2 * $spacer 0;
+    padding: 0;
+    list-style: none;
 
-        display: grid;
-        grid-gap: $spacer;
-        grid-template-columns: 1fr;
+    display: grid;
+    grid-gap: $spacer;
+    grid-template-columns: 1fr;
 
-        &::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+    @media (min-width: $breakpoint) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
 
-        @media (min-width: $breakpoint) {
-            grid-template-columns: 1fr 1fr;
-        }
+.subpages li {
+    position: relative;
+    margin: 0;
+
+    a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: $spacer;
     }
 
-    .subpage {
-        display: table;
-        width: 100%;
-        position: relative;
+    &:nth-child(2n+1) a::after {
+        top: 0;
+        background: linear-gradient(to top left, transparent 48%, $color-bg 51%);
+    }
 
-        a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: $spacer;
-        }
+    &:nth-child(2n+2) a::after {
+        bottom: 0;
+        background: linear-gradient(to bottom right, transparent 48%, $color-bg 51%);
+    }
 
-        &:nth-child(2n+1) a::after {
-            top: 0;
-            background: linear-gradient(to top left, transparent 48%, $color-bg 51%);
-        }
+    &:nth-child(2n+1) {
+        margin-top: -$spacer;
+    }
 
-        &:nth-child(2n+2) a::after {
+    @media (min-width: $breakpoint) {
+        margin-top: -$spacer;
+
+        &:nth-child(4n+3) a::after {
             bottom: 0;
+            top: auto;
             background: linear-gradient(to bottom right, transparent 48%, $color-bg 51%);
         }
 
-        &:nth-child(2n+1) {
-            margin-top: -$spacer;
+        &:nth-child(4n+4) a::after {
+            top: 0;
+            bottom: auto;
+            background: linear-gradient(to top left, transparent 48%, $color-bg 51%);
         }
 
-        @media (min-width: $breakpoint) {
-            margin-top: -$spacer;
-
-            &:nth-child(4n+3) a::after {
-                bottom: 0;
-                top: auto;
-                background: linear-gradient(to bottom right, transparent 48%, $color-bg 51%);
-            }
-
-            &:nth-child(4n+4) a::after {
-                top: 0;
-                bottom: auto;
-                background: linear-gradient(to top left, transparent 48%, $color-bg 51%);
-            }
-
-            &:nth-child(4n+3) {
-                margin-top: 0;
-            }
+        &:nth-child(4n+3) {
+            margin-top: 0;
         }
+    }
+}
 
-        a {
-            text-decoration: none;
+.subpages a {
+    text-decoration: none;
 
-            padding: 1em;
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-            height: 8em;
-            font-weight: bold;
-            font-size: 110%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
-            background: $color-brand-light;
-            color: contrast-color($color-brand-light);
+    padding: 1em;
+    height: 8em;
+    font-weight: bold;
+    font-size: 110%;
 
-            &:focus, &:hover {
-                background: $color-brand;
-                color: contrast-color($color-brand);
-            }
-        }
+    background: $color-brand-light;
+    color: contrast-color($color-brand-light);
+
+    &:focus, &:hover {
+        background: $color-brand;
+        color: contrast-color($color-brand);
     }
 }

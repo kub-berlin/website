@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" prefix="s: http://schema.org/ og: http://ogp.me/ns#" class="bg">
+<html lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" class="website">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
@@ -26,27 +26,28 @@
 			<div id="header-bottom">
 				<?php echo get_module('header-bottom')['body'] ?>
 			</div>
+			<nav id="language-nav" aria-label="language">
+				<ul>
+					<?php foreach (get_langs() as $l): ?>
+						<li><a href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
+					<?php endforeach ?>
+				</ul>
+			</nav>
 		</header>
-		<nav id="nav">
-			<div id="search" role="search">
-				<?php foreach (get_langs() as $l): ?>
-					<a href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a>
-				<?php endforeach ?>
-			</div>
-			<ul class="nav">
+		<nav id="nav" aria-label="main">
+			<ul>
 				<?php foreach (array('/', '/angebote/', '/unterstuetzung/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
 					<?php $navpage = get_page_by_path($navpath) ?>
 					<?php fetch_translation($navpage, $lang) ?>
-					<li <?php if (trim($navpath, '/') === $area) : ?>class="active"<?php endif ?>>
-						<a href="<?php e("$baseurl/${lang['code']}$navpath")?>"><?php e($navpage['title']) ?></a>
-					</li>
+					<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
 				<?php endforeach ?>
 			</ul>
 		</nav>
 	</div>
+
 	<?php if ($page['layout'] === 'home') : ?>
-		<div id="top">
-			<ul class="nav">
+		<nav id="shortcuts" aria-label="shortcut">
+			<ul>
 				<?php foreach (array(
 					'/angebote/beratung/asyl-und-aufenthalt/' => '/images/icons/Beratung_Asyl_Aufenthalt.svg',
 					'/angebote/beratung/frauen/' => '/images/icons/Frauen_beratung.svg',
@@ -65,42 +66,36 @@
 					</li>
 				<?php endforeach ?>
 			</ul>
-		</div>
+		</nav>
 	<?php endif ?>
 
 	<div id="main-container">
 		<?php if ($page['layout'] === 'home') : ?>
-			<main id="main">
-				<div class="homeRow">
-					<?php include('home.php') ?>
-				</div>
+			<main id="main" class="home">
+				<?php include('home.php') ?>
 			</main>
 		<?php else : ?>
-			<nav id="section-nav">
-				<?php render_side_nav() ?>
-			</nav>
-			<main id="main" class="m-sidenav">
-				<div class="item-page <?php if ($page['layout'] === 'accordion') : ?>accordion<?php endif ?>">
-					<h2><?php e($page['title']) ?></h2>
-					<?php echo $page['body'] ?>
-				</div>
+			<main id="main" class="<?php e($page['layout']) ?>">
+				<h2><?php e($page['title']) ?></h2>
+				<?php echo $page['body'] ?>
 
 				<?php if ($page['layout'] === 'overview') : ?>
 					<ul class="subpages">
 						<?php foreach (get_subpages($page['id']) as $p) : ?>
 							<?php fetch_translation($p, $lang) ?>
-							<li class="subpage"><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
+							<li><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
 						<?php endforeach ?>
 					</ul>
 				<?php endif ?>
 			</main>
+			<nav id="section-nav" aria-label="section">
+				<?php render_side_nav() ?>
+			</nav>
 		<?php endif ?>
 	</div>
 
 	<footer id="footer">
-		<div id="footer2">
-			<?php echo get_module('footer')['body'] ?>
-		</div>
+		<?php echo get_module('footer')['body'] ?>
 	</footer>
 
 	<script src="<?php cachebust('/static/accordion.js') ?>"></script>

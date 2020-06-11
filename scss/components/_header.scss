@@ -20,13 +20,9 @@
             margin-right: 1em;
         }
     }
-
-    @media print {
-        text-align: right;
-    }
 }
 
-@media screen and (min-width: $breakpoint) {
+@media (min-width: $breakpoint) {
     .brand-link img {
         max-width: 40%;
     }

@@ -3,7 +3,7 @@ html {
 }
 
 @media screen {
-    html.bg {
+    html.website {
         background-color: $color-brand;
         padding: 0;
     }
@@ -11,7 +11,7 @@ html {
 
 #header-container,
 #main-container,
-#top,
+#shortcuts,
 #footer {
     background: $color-bg;
     margin-bottom: 1.5em;
@@ -19,8 +19,7 @@ html {
 
 #header,
 #main,
-#top,
-#aside,
+#shortcuts,
 #footer {
     padding: $padding;
 }
@@ -41,7 +40,7 @@ body {
     #alert,
     #header,
     #main-container,
-    #top,
+    #shortcuts,
     #footer {
         box-shadow: 0 0 2em rgba(black, 0.5);
     }
@@ -61,16 +60,13 @@ body {
     }
     #section-nav {
         grid-column: 1;
+        grid-row: 1;
     }
     #main {
-        grid-column: 1 / 4;
-
-        &.m-sidenav {
-            grid-column: 2;
-        }
+        grid-column: 2;
     }
-    #aside {
-        grid-column: 3;
+    #main.home {
+        grid-column: 1 / 4;
     }
 }
 

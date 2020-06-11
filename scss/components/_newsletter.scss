@@ -1,11 +1,11 @@
-.partial--newsletter-subscribe form {
+.form-combined {
     display: flex;
 
-    input[type="email"] {
+    input {
         flex: 1;
     }
 
-    .button {
+    button {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
