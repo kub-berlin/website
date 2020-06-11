@@ -3,7 +3,7 @@
     border: 0.2em solid $color-brand;
     background: $color-bg-tint;
     padding: 1em;
-    margin-bottom: $spacer;
+    margin-bottom: 2 * $spacer;
 
     :first-child {
         margin-top: 0;
