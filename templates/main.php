@@ -77,6 +77,11 @@
 		<?php else : ?>
 			<main id="main" class="<?php e($page['layout']) ?>">
 				<h2><?php e($page['title']) ?></h2>
+
+				<?php if ($page['layout'] === 'contact') : ?>
+					<?php include('home.php') ?>
+				<?php endif ?>
+
 				<?php echo $page['body'] ?>
 
 				<?php if ($page['layout'] === 'overview') : ?>
