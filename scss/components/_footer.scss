@@ -2,6 +2,14 @@
     text-align: right;
     font-size: 80%;
 
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        display: inline;
+    }
+
     @media print {
         display: none;
     }

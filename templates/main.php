@@ -95,7 +95,19 @@
 	</div>
 
 	<footer id="footer">
-		<?php echo get_module('footer')['body'] ?>
+		<nav aria-label="<?php e($lang['legal']) ?>">
+			<ul>
+				<?php foreach (array(
+					'/ueber-die-kub/transparenz/',
+					'/datenschutz/',
+					'/impressum/',
+				) as $navpath) : ?>
+					<?php $navpage = get_page_by_path($navpath) ?>
+					<?php fetch_translation($navpage, $lang) ?>
+					<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>"><?php e($navpage['title']) ?></a></li>
+				<?php endforeach ?>
+			</ul>
+		</nav>
 	</footer>
 
 	<script src="<?php cachebust('/static/accordion.js') ?>"></script>
