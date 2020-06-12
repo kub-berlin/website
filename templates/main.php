@@ -26,7 +26,7 @@
 			<div id="header-bottom">
 				<?php echo get_module('header-bottom')['body'] ?>
 			</div>
-			<nav id="language-nav" aria-label="language">
+			<nav id="language-nav" aria-label="<?php e($lang['languages']) ?>">
 				<ul>
 					<?php foreach (get_langs() as $l): ?>
 						<li><a href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
@@ -34,7 +34,7 @@
 				</ul>
 			</nav>
 		</header>
-		<nav id="nav" aria-label="main">
+		<nav id="nav">
 			<ul>
 				<?php foreach (array('/', '/angebote/', '/unterstuetzung/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
 					<?php $navpage = get_page_by_path($navpath) ?>
@@ -46,7 +46,7 @@
 	</div>
 
 	<?php if ($page['layout'] === 'home') : ?>
-		<nav id="shortcuts" aria-label="shortcut">
+		<nav id="shortcuts" aria-label="<?php e($lang['shortcuts']) ?>">
 			<ul>
 				<?php foreach (array(
 					'/angebote/beratung/asyl-und-aufenthalt/' => '/images/icons/Beratung_Asyl_Aufenthalt.svg',
@@ -88,7 +88,7 @@
 					</ul>
 				<?php endif ?>
 			</main>
-			<nav id="section-nav" aria-label="section">
+			<nav id="section-nav" aria-label="<?php e($lang['section']) ?>">
 				<?php render_side_nav() ?>
 			</nav>
 		<?php endif ?>

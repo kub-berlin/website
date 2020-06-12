@@ -4,7 +4,7 @@
 	</div>
 	<div class="homeRow-map" property="location" typeof="place">
 		<a href="https://www.openstreetmap.org/node/874357616" property="hasMap" target="_blank">
-			<img src="/templates/kub/images/stadtplan.svg" alt="TPL_KUB_MAP" />
+			<img src="/templates/kub/images/stadtplan.svg" alt="<?php e($lang['map']) ?>" />
 		</a>
 		<div property="geo" typeof="GeoCoordinates">
 			<meta property="latitude" content="52.5026297" />
@@ -18,14 +18,14 @@
 			<bdi><span property="postalCode">10969</span> <span property="addressLocality">Berlin-Kreuzberg</span></bdi>
 		</p>
 		<p>
-			TPL_KUB_TELEPHONE: <a href="tel:+49-30-614-94-00" property="telephone"><bdi>030 / 614 94 00</bdi></a><br />
-			TPL_KUB_FAX: <bdi property="faxNumber">030 / 615 45 34</bdi><br />
-			TPL_KUB_EMAIL:  <a property="email" href="mailto:kontakt@kub-berlin.org">kontakt@kub-berlin.org</a><br />
+			<?php e($lang['telephone']) ?>: <a href="tel:+49-30-614-94-00" property="telephone"><bdi>030 / 614 94 00</bdi></a><br />
+			<?php e($lang['fax']) ?>: <bdi property="faxNumber">030 / 615 45 34</bdi><br />
+			<?php e($lang['email']) ?>:  <a property="email" href="mailto:kontakt@kub-berlin.org">kontakt@kub-berlin.org</a><br />
 			<a href="/images/kub-pubkey.asc" target="_blank"><bdi>Public PGP-Key</bdi></a>
 		</p>
 		<p>
-			TPL_KUB_SUBWAY: <bdi>U8 Moritzplatz</bdi><br />
-			TPL_KUB_BUS: <bdi>M29 Moritzplatz</bdi>
+			<?php e($lang['subway']) ?>: <bdi>U8 Moritzplatz</bdi><br />
+			<?php e($lang['bus']) ?>: <bdi>M29 Moritzplatz</bdi>
 		</p>
 		<div property="openingHoursSpecification" content="Mo,Tu,Th,Fr 09:00-17:00">
 			<?php echo get_module('opening-hours')['body'] ?>
