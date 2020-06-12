@@ -9,13 +9,6 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-$db->query("CREATE TABLE IF NOT EXISTS langs (
-	id INTEGER PRIMARY KEY,
-	name TEXT NOT NULL,
-	code TEXT NOT NULL UNIQUE,
-	dir TEXT NOT NULL,
-	missing TEXT
-);");
 $db->query("CREATE TABLE IF NOT EXISTS pages (
 	id INTEGER PRIMARY KEY,
 	slug TEXT,
@@ -30,7 +23,7 @@ $db->query("CREATE TABLE IF NOT EXISTS translations (
 	title TEXT,
 	body TEXT,
 	page INTEGER REFERENCES pages(id) ON DELETE CASCADE NOT NULL,
-	lang INTEGER REFERENCES langs(id) ON DELETE CASCADE NOT NULL
+	lang TEXT NOT NULL
 );");
 
 function path_pop(&$path, $mod=true)
@@ -72,26 +65,23 @@ function fetch_or_404($stmt)
 	return $result;
 }
 
-function get_lang_by_id($id)
+function get_lang($code)
 {
-	global $db;
-	$stmt = $db->prepare('SELECT * FROM langs WHERE id=:id');
-	$stmt->execute(array('id' => $id));
-	return fetch_or_404($stmt);
-}
-
-function get_lang_by_code($code)
-{
-	global $db;
-	$stmt = $db->prepare('SELECT * FROM langs WHERE code=:code');
-	$stmt->execute(array('code' => $code));
-	return fetch_or_404($stmt);
+	$lang = parse_ini_file(__DIR__."/langs/$code.ini");
+	if (!$lang) {
+		throw new HttpException('Not Found', 404);
+	}
+	$lang['code'] = $code;
+	return $lang;
 }
 
 function get_langs()
 {
-	global $db;
-	return $db->query('SELECT * FROM langs')->fetchAll();
+	$langs = array();
+	foreach (array('de', 'en', 'fr', 'es', 'ar', 'fa') as $code) {
+		array_push($langs, get_lang($code));
+	}
+	return $langs;
 }
 
 function get_page_by_id($id)
@@ -128,11 +118,11 @@ function get_subpages($id, $include_hidden=false)
 	return $stmt->fetchAll();
 }
 
-function get_translation($page_id, $lang_id)
+function get_translation($page_id, $lang_code)
 {
 	global $db;
 	$stmt = $db->prepare('SELECT * FROM translations WHERE page=:page AND lang=:lang');
-	$stmt->execute(array('page' => $page_id, 'lang' => $lang_id));
+	$stmt->execute(array('page' => $page_id, 'lang' => $lang_code));
 	return $stmt->fetch();
 }
 

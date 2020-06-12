@@ -28,4 +28,4 @@ This is the custom PHP code that powers <https://kub-berlin.org/>.
 -	rename `htaccess` to `.htaccess`
 -	add a `.htaccess` and `.htpasswd` to the admin folder for authentication
 -	adapt `config.php`
--	create a root page and some languages via SQL
+-	create a root page via SQL

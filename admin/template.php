@@ -8,7 +8,7 @@
 </head>
 <body>
 	<main>
-		<form method="post" action="<?php e("?action=edit-translation&page=$page_id&lang=$lang_id") ?>">
+		<form method="post" action="<?php e("?action=edit-translation&page=$page_id&lang=${lang['code']}") ?>">
 			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 
 			<label>
@@ -26,7 +26,7 @@
 	</main>
 
 	<aside>
-		<form method="post" action="<?php e("?action=edit-page&page=$page_id&lang=$lang_id") ?>">
+		<form method="post" action="<?php e("?action=edit-page&page=$page_id&lang=${lang['code']}") ?>">
 			<h3>Edit this page</h3>
 			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 
@@ -86,7 +86,7 @@
 
 	<nav class="nav-langs" aria-label="Languages">
 		<?php foreach (get_langs() as $l) : ?>
-			<a href="<?php e("?page=$page_id&lang=${l['id']}") ?>" class="button <?php if ($l['id'] != $lang_id) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
+			<a href="<?php e("?page=$page_id&lang=${l['code']}") ?>" class="button <?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
 		<?php endforeach ?>
 	</nav>
 

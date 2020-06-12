@@ -5,8 +5,8 @@ include_once('common.php');
 function fetch_translation(&$page, $lang, $show_fallback_text=true)
 {
 	global $fallback_lang;
-	$translation = get_translation($page['id'], $lang['id']);
-	$fallback = get_translation($page['id'], $fallback_lang['id']);
+	$translation = get_translation($page['id'], $lang['code']);
+	$fallback = get_translation($page['id'], $fallback_lang['code']);
 
 	foreach (array('title', 'body') as $key) {
 		if ($translation && $translation[$key] !== '') {
@@ -67,7 +67,7 @@ function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 }
 
 $baseurl = '/xi';
-$fallback_lang = get_lang_by_code($fallback_lang_code);
+$fallback_lang = get_lang($fallback_lang_code);
 $lang = $fallback_lang;
 $error = null;
 
@@ -75,7 +75,7 @@ try {
 	$path = '/' . $_GET['path'];
 	$code = path_shift($path);
 	$area = path_shift($path, false);
-	$lang = get_lang_by_code($code);
+	$lang = get_lang($code);
 	$page = get_page_by_path($path);
 	fetch_translation($page, $lang);
 } catch (HttpException $e) {

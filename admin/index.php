@@ -35,7 +35,7 @@ function render_side_nav($id=null, $path='', $maxdepth=10)
 }
 
 $page_id = isset($_GET['page']) ? intval($_GET['page']) : 1;
-$lang_id = isset($_GET['lang']) ? intval($_GET['lang']) : 1;
+$lang = get_lang(isset($_GET['lang']) ? $_GET['lang'] : $fallback_lang_code);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	rrmdir('../cache');
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$stmt = $db->prepare('INSERT INTO pages (slug, parent, order_by, show_in_nav) VALUES (:slug, :parent, 10, 1)');
 		$stmt->execute(array('slug' => $_POST['slug'], 'parent' => $parent));
 		$id = $db->lastInsertId();
-		header("Location: ?page=$id&lang=$lang_id", true, 302);
+		header("Location: ?page=$id&lang=${lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'delete-page') {
 		$stmt = $db->prepare('DELETE FROM pages WHERE id=:id');
 		$stmt->execute(array('id' => $page_id));
@@ -59,25 +59,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'show_in_nav' => isset($_POST['show_in_nav']),
 			'id' => $page_id,
 		));
-		header("Location: ?page=$page_id&lang=$lang_id", true, 302);
+		header("Location: ?page=$page_id&lang=${lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'edit-translation') {
 		$stmt = $db->prepare('UPDATE translations SET title=:title, body=:body WHERE page=:page AND lang=:lang');
 		$stmt->execute(array(
 			'title' => $_POST['title'],
 			'body' => $_POST['body'],
 			'page' => $page_id,
-			'lang' => $lang_id,
+			'lang' => $lang['code'],
 		));
-		header("Location: ?page=$page_id&lang=$lang_id", true, 302);
+		header("Location: ?page=$page_id&lang=${lang['code']}", true, 302);
 	}
 } else {
 	$page = get_page_by_id($page_id);
-	$lang = get_lang_by_id($lang_id);
 	$root = get_page_by_id(1);
 
-	$translation = get_translation($page_id, $lang_id);
+	$translation = get_translation($page_id, $lang['code']);
 	if (!$translation) {
-		$translation = array('page' => $page_id, 'lang' => $lang_id, 'title' => '', 'body' => '');
+		$translation = array('page' => $page_id, 'lang' => $lang['code'], 'title' => '', 'body' => '');
 		$stmt = $db->prepare('INSERT INTO translations (page, lang, title, body) VALUES (:page, :lang, :title, :body)');
 		$stmt->execute($translation);
 	}
