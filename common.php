@@ -83,6 +83,13 @@ function rrm($path)
 	}
 }
 
+function mkdirp($path)
+{
+	if (!file_exists($path)) {
+		mkdir($path, 0777, true);
+	}
+}
+
 function fetch_or_404($stmt)
 {
 	$result = $stmt->fetch();

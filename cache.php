@@ -6,9 +6,7 @@ $html = ob_get_clean();
 
 if ($error === null) {
 	$dir = 'cache/' . $_GET['path'];
-	if (!file_exists($dir)) {
-		mkdir($dir, 0777, true);
-	}
+	mkdirp($dir);
 	file_put_contents("$dir/index.html", $html);
 }
 
