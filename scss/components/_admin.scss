@@ -82,3 +82,32 @@ html.admin {
 		white-space: nowrap !important;
 	}
 }
+
+.file-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: $spacer;
+
+	li {
+		border-bottom: 1px solid $color-border;
+		padding: ($padding / 2) $padding;
+		display: flex;
+		align-items: center;
+	}
+
+	.file-list__main {
+		flex: 1 1 auto;
+	}
+
+	.file-list__icon {
+		width: 1em;
+		margin-right: $padding;
+	}
+
+	.button,
+	button {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+}
