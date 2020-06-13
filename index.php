@@ -14,9 +14,7 @@ function fetch_translation(&$page, $lang, $show_fallback_text=true)
 		} elseif ($fallback && $fallback[$key] !== '') {
 			if ($key === 'body') {
 				$page[$key] = str_replace("/${fallback_lang['code']}/", "/${lang['code']}/", $fallback[$key]);
-				if ($show_fallback_text) {
-					$page[$key] = '<p><em>' . htmlspecialchars($lang['missing']) . "</em></p>\n" . $page[$key];
-				}
+				$page[$key.'_fallback'] = true;
 			} else {
 				$page[$key] = $fallback[$key];
 			}
