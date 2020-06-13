@@ -3,22 +3,6 @@
 include_once('../common.php');
 include_once('csrf.php');
 
-function rrmdir($path)
-{
-	if (!file_exists($path)) {
-		return;
-	} elseif (is_dir($path)) {
-		foreach (scandir($path) as $fn) {
-			if ($fn !== '.' && $fn !== '..') {
-				rrmdir("$path/$fn");
-			}
-		}
-		return rmdir($path);
-	} else {
-		return unlink($path);
-	}
-}
-
 function render_side_nav($id=null, $path='', $maxdepth=10)
 {
 	global $page_id;
@@ -38,7 +22,7 @@ $page_id = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $lang = get_lang(isset($_GET['lang']) ? $_GET['lang'] : $fallback_lang_code);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	rrmdir('../cache');
+	rrm('../cache');
 
 	if ($_GET['action'] === 'create-page') {
 		$parent = isset($_GET['page']) ? $page_id : null;

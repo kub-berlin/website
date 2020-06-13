@@ -56,6 +56,22 @@ function path_shift(&$path, $mod=true)
 	return $result;
 }
 
+function rrm($path)
+{
+	if (!file_exists($path)) {
+		return;
+	} elseif (is_dir($path)) {
+		foreach (scandir($path) as $fn) {
+			if ($fn !== '.' && $fn !== '..') {
+				rrm("$path/$fn");
+			}
+		}
+		return rmdir($path);
+	} else {
+		return unlink($path);
+	}
+}
+
 function fetch_or_404($stmt)
 {
 	$result = $stmt->fetch();
