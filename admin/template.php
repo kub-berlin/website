@@ -97,6 +97,6 @@
 	</nav>
 
 	<script src="tinymce/tinymce.js"></script>
-	<script src="admin.js"></script>
+	<script src="static/admin.js"></script>
 </body>
 </html>
