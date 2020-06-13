@@ -106,7 +106,7 @@ function get_langs()
 {
 	$langs = array();
 	foreach (array('de', 'en', 'fr', 'es', 'ar', 'fa') as $code) {
-		array_push($langs, get_lang($code));
+		$langs[] = get_lang($code);
 	}
 	return $langs;
 }
