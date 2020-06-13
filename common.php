@@ -26,6 +26,17 @@ $db->query("CREATE TABLE IF NOT EXISTS translations (
 	lang TEXT NOT NULL
 );");
 
+function validate_path($path)
+{
+	if (
+		(strlen($path) > 1 && $path[0] !== '/') ||
+		substr($path, -1) !== '/' ||
+		strpos($path, '..') !== false
+	) {
+		throw new HttpException('Not Found', 404);
+	}
+}
+
 function path_pop(&$path, $mod=true)
 {
 	$parts = explode('/', $path);

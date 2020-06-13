@@ -73,9 +73,9 @@ $error = null;
 
 try {
 	$path = '/' . $_GET['path'];
-	$code = path_shift($path);
+	$lang = get_lang(path_shift($path));
+	validate_path($path);
 	$area = path_shift($path, false);
-	$lang = get_lang($code);
 	$page = get_page_by_path($path);
 	fetch_translation($page, $lang);
 } catch (HttpException $e) {
