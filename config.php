@@ -8,3 +8,4 @@ $fallback_lang_code = 'de';
 $db_dsn = 'sqlite:'.__DIR__.'/db.sqlite';
 $db_user = '';
 $db_password = '';
+$allowed_extensions = array('gif', 'jpeg', 'png', 'svg', 'jpg', 'pdf', 'm4a', 'mp3', 'asc');

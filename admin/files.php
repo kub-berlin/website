@@ -11,6 +11,10 @@ validate_path($path);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_FILES['file'])) {
 		$file = $_FILES['file'];
+		$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+		if (!in_array($ext, $allowed_extensions)) {
+			throw new HttpException('Invalid File Extension', 400);
+		}
 		move_uploaded_file($file['tmp_name'], "$root$path${file['name']}");
 		header('Location: ', true, 302);
 	} elseif (isset($_POST['folder'])) {
