@@ -2,6 +2,11 @@
 	@include button-color($color-brand-light, contrast-color($color-brand-light), darken($color-brand-light, 10%));
 }
 
+.button-small {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
 html.admin {
 	/* layout */
 	body {
@@ -103,11 +108,5 @@ html.admin {
 	.file-list__icon {
 		width: 1em;
 		margin-right: $padding;
-	}
-
-	.button,
-	button {
-		padding-top: 0;
-		padding-bottom: 0;
 	}
 }

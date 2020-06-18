@@ -89,7 +89,7 @@ function get_files($path)
 				<?php if ($file['name'] != '..') : ?>
 					<form method="post">
 						<input type="hidden" name="name" value="<?php e($file['name']) ?>">
-						<button name="delete">Delete</button>
+						<button name="delete" class="button-small">Delete</button>
 					</form>
 				<?php endif ?>
 			</li>
