@@ -10,20 +10,23 @@ $db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 $db->query("CREATE TABLE IF NOT EXISTS pages (
-	id INTEGER PRIMARY KEY,
-	slug TEXT,
-	layout TEXT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	slug VARCHAR(32),
+	layout VARCHAR(32),
 	order_by INTEGER,
 	show_in_nav BOOLEAN,
-	parent INTEGER REFERENCES pages(id) ON DELETE CASCADE,
-	UNIQUE(slug, parent)
+	parent INTEGER,
+	FOREIGN KEY (parent) REFERENCES pages(id) ON DELETE CASCADE,
+	UNIQUE KEY (slug, parent)
 );");
 $db->query("CREATE TABLE IF NOT EXISTS translations (
-	id INTEGER PRIMARY KEY,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	title TEXT,
 	body TEXT,
-	page INTEGER REFERENCES pages(id) ON DELETE CASCADE NOT NULL,
-	lang TEXT NOT NULL
+	page INTEGER NOT NULL,
+	lang VARCHAR(2) NOT NULL,
+	FOREIGN KEY (page) REFERENCES pages(id) ON DELETE CASCADE,
+	UNIQUE KEY (page, lang)
 );");
 
 function validate_path($path)
