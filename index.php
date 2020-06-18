@@ -53,8 +53,8 @@ function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 		fetch_translation($p, $lang);
 		$ppath = $rootpath . $p['slug'] . '/';
 		?>
-			<li <?php if ($ppath === $path) : ?>class="current"<?php endif ?>>
-				<a href="<?php e("$baseurl/${lang['code']}$ppath") ?>"><?php e($p['title']) ?></a>
+			<li>
+				<a  <?php if ($ppath === $path) : ?>class="active"<?php endif ?> href="<?php e("$baseurl/${lang['code']}$ppath") ?>"><?php e($p['title']) ?></a>
 				<?php if ($maxdepth > 0) : ?>
 					<?php render_side_nav($p, $ppath, $maxdepth - 1) ?>
 				<?php endif ?>

@@ -7,8 +7,8 @@ function render_side_nav($id=null, $path='', $maxdepth=10)
 {
 	global $page_id;
 	if ($id !== null) { ?>
-		<li <?php if ($id == $page_id) : ?>class="current"<?php endif ?>>
-			<a href="<?php e("?page=$id") ?>"><?php e($path) ?></a>
+		<li>
+			<a <?php if ($id == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page=$id") ?>"><?php e($path) ?></a>
 		</li>
 	<?php }
 	if ($maxdepth > 0) {
