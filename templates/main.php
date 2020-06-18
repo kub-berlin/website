@@ -87,7 +87,9 @@
 				<?php endif ?>
 				<?php echo $page['body'] ?>
 
-				<?php if ($page['layout'] === 'overview') : ?>
+				<?php if ($page['layout'] === 'module') : ?>
+					<?php echo get_module($page['slug'])['body'] ?>
+				<?php elseif ($page['layout'] === 'overview') : ?>
 					<ul class="subpages">
 						<?php foreach (get_subpages($page['id']) as $p) : ?>
 							<?php fetch_translation($p, $lang) ?>
