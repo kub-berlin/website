@@ -15,6 +15,10 @@
 	<?php endforeach ?>
 </head>
 <body>
+	<div id="alert" class="alert">
+		<?php echo get_module('alert')['body'] ?>
+	</div>
+
 	<div id="header-container">
 		<header id="header">
 			<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
