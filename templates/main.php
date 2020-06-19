@@ -100,6 +100,14 @@
 							<li><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
 						<?php endforeach ?>
 					</ul>
+				<?php elseif ($page['layout'] === 'blog') : ?>
+					<?php foreach (get_subpages($page['id'], true) as $p) : ?>
+						<?php fetch_translation($p, $lang) ?>
+						<article>
+							<h3><?php e($p['title']) ?></h3>
+							<?php echo $p['body'] ?>
+						</article>
+					<?php endforeach ?>
 				<?php endif ?>
 			</main>
 			<nav id="section-nav" aria-label="<?php e($lang['section']) ?>">
