@@ -112,7 +112,7 @@
 		<nav aria-label="<?php e($lang['legal']) ?>">
 			<ul>
 				<?php foreach (array(
-					'/ueber-die-kub/transparenz/',
+					'/transparenz/',
 					'/datenschutz/',
 					'/impressum/',
 				) as $navpath) : ?>
