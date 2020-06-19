@@ -9,6 +9,7 @@ h1, h2, h3, h4, h5, h6, {
 h2, h3 {
     font-weight: normal;
 }
+.blog article h3,
 h2 {
     border-bottom: 1px solid $color-border;
     margin-top: 3rem;
@@ -29,4 +30,8 @@ h6 {
 
 main li {
     margin-bottom: 0.5em;
+}
+
+.blog article {
+    margin-bottom: 6em;
 }
