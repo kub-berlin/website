@@ -21,3 +21,21 @@ tinymce.init({
 	entity_encoding: 'raw',
 	directionality: dir,
 });
+
+var unsavedForms = [];
+document.addEventListener('change', function(event) {
+	var form = event.target.closest('form');
+	if (form && !unsavedForms.includes(form)) {
+		unsavedForms.push(form);
+	}
+});
+window.addEventListener('submit', function(event) {
+	unsavedForms = unsavedForms.filter(f => f !== event.target);
+});
+window.addEventListener('beforeunload', function(event) {
+	if (unsavedForms.length) {
+		event.preventDefault();
+		event.returnValue = '';
+		return event.returnValue;
+	}
+});
