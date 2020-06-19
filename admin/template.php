@@ -85,7 +85,7 @@
 	</aside>
 
 	<nav class="nav-langs" aria-label="Languages">
-		<?php foreach (get_langs() as $l) : ?>
+		<?php foreach (get_langs(true) as $l) : ?>
 			<a href="<?php e("?page=$page_id&lang=${l['code']}") ?>" class="button <?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
 		<?php endforeach ?>
 	</nav>
