@@ -14,6 +14,7 @@ $db->query("CREATE TABLE IF NOT EXISTS pages (
 	slug VARCHAR(32),
 	layout VARCHAR(32),
 	order_by INTEGER,
+	published BOOLEAN,
 	show_in_nav BOOLEAN,
 	parent INTEGER,
 	FOREIGN KEY (parent) REFERENCES pages(id) ON DELETE CASCADE,
@@ -133,7 +134,7 @@ function get_page_by_id($id)
 	return fetch_or_404($stmt);
 }
 
-function get_page_by_path($path)
+function get_page_by_path($path, $include_pub=false)
 {
 	global $db;
 	if ($path === '/') {
@@ -141,18 +142,21 @@ function get_page_by_path($path)
 	} else {
 		$slug = path_pop($path);
 		$parent = get_page_by_path($path);
-		$stmt = $db->prepare('SELECT * FROM pages WHERE slug=:slug AND parent=:parent');
+		$sql = 'SELECT * FROM pages WHERE slug=:slug AND parent=:parent';
+		$sql .= $include_pub ? '' : ' AND published=1';
+		$stmt = $db->prepare($sql);
 		$stmt->execute(array('slug' => $slug, 'parent' => $parent['id']));
 	}
 	return fetch_or_404($stmt);
 }
 
-function get_subpages($id, $include_hidden=false)
+function get_subpages($id, $include_nav=false, $include_pub=false)
 {
 	global $db;
 	$sql = 'SELECT * FROM pages WHERE ';
 	$sql .= $id === null ? 'parent IS :parent' : 'parent=:parent';
-	$sql .= $include_hidden ? '' : ' AND show_in_nav=1';
+	$sql .= $include_nav ? '' : ' AND show_in_nav=1';
+	$sql .= $include_pub ? '' : ' AND published=1';
 	$sql .= ' ORDER BY order_by';
 	$stmt = $db->prepare($sql);
 	$stmt->execute(array('parent' => $id));

@@ -50,6 +50,11 @@
 			</label>
 
 			<label>
+				<input name="published" type="checkbox" <?php if ($page['published'] === '1') : ?>checked<?php endif ?>>
+				Published
+			</label>
+
+			<label>
 				<input name="show_in_nav" type="checkbox" <?php if ($page['show_in_nav'] === '1') : ?>checked<?php endif ?>>
 				Show in navigation
 			</label>
