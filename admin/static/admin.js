@@ -10,7 +10,7 @@ tinymce.init({
 	menubar: false,
 	contextmenu: false,
 	plugins: 'code image link table lists',
-	toolbar: 'undo redo | formatselect | bold italic link | image table numlist bullist infobox | outdent indent | code',
+	toolbar: 'undo redo | formatselect | bold italic link | image table numlist bullist infobox | outdent indent | readmore | code',
 	content_css: '/xi/static/kub-' + dir + '.css',
 	formats: {
 		info: {block: 'aside', classes: 'infobox', wrapper: true},
@@ -20,6 +20,15 @@ tinymce.init({
 	convert_urls: false,
 	entity_encoding: 'raw',
 	directionality: dir,
+	setup: (editor) => {
+		editor.ui.registry.addButton('readmore', {
+			icon: 'horizontal-rule',
+			tooltip: 'read more',
+			onAction: function () {
+				return editor.execCommand('mceInsertContent', false, '<hr class="system-read-more" />');
+			}
+		});
+	}
 });
 
 var unsavedForms = [];

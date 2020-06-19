@@ -2,6 +2,16 @@
 
 include_once('common.php');
 
+function truncate($body, $truncate) {
+	$marker = '<hr class="system-read-more" />';
+	$parts = explode($marker, $body);
+	if ($truncate) {
+		return $parts[0];
+	} else {
+		return implode('', $parts);
+	}
+}
+
 function fetch_translation(&$page, $lang, $show_fallback_text=true)
 {
 	global $fallback_lang;
@@ -22,6 +32,10 @@ function fetch_translation(&$page, $lang, $show_fallback_text=true)
 			$page[$key] = '';
 		}
 	}
+
+	$body = $page['body'];
+	$page['body'] = truncate($body, false);
+	$page['truncated'] = truncate($body, true);
 }
 
 function get_module($slug)

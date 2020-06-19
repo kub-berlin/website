@@ -105,7 +105,10 @@
 						<?php fetch_translation($p, $lang) ?>
 						<article>
 							<h3><?php e($p['title']) ?></h3>
-							<?php echo $p['body'] ?>
+							<?php echo $p['truncated'] ?>
+							<?php if ($p['truncated'] !== $p['body']) : ?>
+								<p><a href="<?php e("${p['slug']}/") ?>"><?php e($lang['readmore']) ?>: <?php e($p['title']) ?></a></p>
+							<?php endif ?>
 						</article>
 					<?php endforeach ?>
 				<?php endif ?>
