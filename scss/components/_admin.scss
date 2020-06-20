@@ -92,13 +92,18 @@ html.admin {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	margin-bottom: $spacer;
+	display: grid;
+	grid-gap: $spacer;
+	grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
 
 	li {
-		border-bottom: 1px solid $color-border;
-		padding: ($padding / 2) $padding;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
+		padding: $padding * 2;
+		border-radius: $padding;
+		background-color: $color-bg-tint;
+		text-align: center;
+		word-wrap: break-word;
 	}
 
 	.file-list__main {
@@ -106,8 +111,8 @@ html.admin {
 	}
 
 	.file-list__icon {
-		width: 1em;
-		margin-right: $padding;
+		height: 4em;
+		object-fit: contain;
 	}
 }
 
