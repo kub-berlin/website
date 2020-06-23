@@ -99,6 +99,7 @@ html.admin {
 	li {
 		display: flex;
 		flex-direction: column;
+		position: relative;
 		padding: $padding * 2;
 		border-radius: $padding;
 		background-color: $color-bg-tint;
@@ -113,6 +114,18 @@ html.admin {
 	.file-list__icon {
 		height: 4em;
 		object-fit: contain;
+	}
+
+	button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: 0;
+	}
+
+	li:hover button,
+	button:focus {
+		opacity: 1;
 	}
 }
 
