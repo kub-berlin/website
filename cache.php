@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 ob_start();
-include('index.php');
+include('main.php');
 $html = ob_get_clean();
 
 if ($error === null) {
