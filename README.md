@@ -23,6 +23,7 @@ This is the custom PHP code that powers <https://kub-berlin.org/>.
 
 # Installation
 
+-	build CSS by running `make`
 -	copy the files from this repo to the server
 -	get TinyMCE (e.g. `npm i tinymce`) and copy it to the admin folder
 -	rename `htaccess` to `.htaccess`
