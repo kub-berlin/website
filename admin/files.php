@@ -91,7 +91,7 @@ function get_files($path)
 				<?php endif ?>
 
 				<?php if ($file['name'] != '..') : ?>
-					<form method="post">
+					<form method="post" data-js="confirm">
 						<input type="hidden" name="name" value="<?php e($file['name']) ?>">
 						<button name="delete" class="button-small">Delete</button>
 					</form>
@@ -99,5 +99,7 @@ function get_files($path)
 			</li>
 		<?php endforeach ?>
 	</ul>
+
+	<script src="static/admin.js"></script>
 </body>
 </html>
