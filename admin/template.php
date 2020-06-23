@@ -87,6 +87,8 @@
 			</label>
 			<button>Create</button>
 		</form>
+
+		<a class=" button" href="files.php">Manage files</a>
 	</aside>
 
 	<nav class="nav-langs" aria-label="Languages">
