@@ -62,6 +62,15 @@
     ul ul a {
         padding-left: $indentation;
     }
+    ul ul ul a {
+        padding-left: $indentation * 2;
+    }
+    ul ul ul ul a {
+        padding-left: $indentation * 3;
+    }
+    ul ul ul ul ul a {
+        padding-left: $indentation * 4;
+    }
 
     a.active {
         @include nav-color($color-brand-dark, $color-brand-dark);

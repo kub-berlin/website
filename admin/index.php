@@ -3,7 +3,7 @@
 include_once('../common.php');
 include_once('csrf.php');
 
-function render_side_nav($id=null, $path='', $maxdepth=10)
+function render_side_nav($id=null, $slug='', $maxdepth=10)
 {
 	global $page_id, $langs;
 	$translations = array();
@@ -11,7 +11,8 @@ function render_side_nav($id=null, $path='', $maxdepth=10)
 		$translation = get_translation($id, $lang['code']);
 		$translations[$lang['code']] = $translation && !empty($translation['body']);
 	}
-	if ($id !== null) { ?>
+?>
+	<?php if ($id !== null) : ?>
 		<li>
 			<a <?php if ($id == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page=$id") ?>">
 				<span class="langs-available">
@@ -19,16 +20,18 @@ function render_side_nav($id=null, $path='', $maxdepth=10)
 						<?php e($exists ? $code : '') ?>
 					<?php endforeach ?>
 				</span>
-				<?php e($path) ?>
+				<?php e(empty($slug) ? 'home' : $slug) ?>
 			</a>
 		</li>
-	<?php }
-	if ($maxdepth > 0) {
-		foreach (get_subpages($id, true, true) as $p) {
-			render_side_nav($p['id'], $path . $p['slug'] . '/', $maxdepth - 1);
-		}
-	}
-}
+	<?php endif ?>
+	<ul>
+		<?php if ($maxdepth > 0) : ?>
+			<?php foreach (get_subpages($id, true, true) as $p) : ?>
+				<?php render_side_nav($p['id'], $p['slug'], $maxdepth - 1) ?>
+			<?php endforeach ?>
+		<?php endif ?>
+	</ul>
+<?php }
 
 $page_id = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $lang = get_lang(isset($_GET['lang']) ? $_GET['lang'] : $fallback_lang_code);

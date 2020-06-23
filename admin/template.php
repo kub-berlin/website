@@ -96,9 +96,7 @@
 	</nav>
 
 	<nav id="section-nav" class="nav-pages" aria-label="Pages">
-		<ul>
-			<?php render_side_nav() ?>
-		</ul>
+		<?php render_side_nav() ?>
 	</nav>
 
 	<script src="tinymce/tinymce.js"></script>
