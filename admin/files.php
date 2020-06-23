@@ -5,7 +5,7 @@ include_once('../common.php');
 $root = '../../images';
 $root_url = '/images';
 
-$path = $_GET['path'];
+$path = isset($_GET['path']) ? $_GET['path'] : '/';
 validate_path($path);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
