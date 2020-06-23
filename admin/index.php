@@ -5,10 +5,22 @@ include_once('csrf.php');
 
 function render_side_nav($id=null, $path='', $maxdepth=10)
 {
-	global $page_id;
+	global $page_id, $langs;
+	$translations = array();
+	foreach ($langs as $lang) {
+		$translation = get_translation($id, $lang['code']);
+		$translations[$lang['code']] = $translation && !empty($translation['body']);
+	}
 	if ($id !== null) { ?>
 		<li>
-			<a <?php if ($id == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page=$id") ?>"><?php e($path) ?></a>
+			<a <?php if ($id == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page=$id") ?>">
+				<span class="langs-available">
+					<?php foreach ($translations as $code => $exists) : ?>
+						<?php e($exists ? $code : '') ?>
+					<?php endforeach ?>
+				</span>
+				<?php e($path) ?>
+			</a>
 		</li>
 	<?php }
 	if ($maxdepth > 0) {
@@ -20,6 +32,7 @@ function render_side_nav($id=null, $path='', $maxdepth=10)
 
 $page_id = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $lang = get_lang(isset($_GET['lang']) ? $_GET['lang'] : $fallback_lang_code);
+$langs = get_langs();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	rrm('../cache');
