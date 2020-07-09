@@ -4,6 +4,24 @@ document.addEventListener('submit', function(event) {
 	}
 });
 
+var unsavedForms = [];
+document.addEventListener('change', function(event) {
+	var form = event.target.closest('form');
+	if (form && !unsavedForms.includes(form)) {
+		unsavedForms.push(form);
+	}
+});
+window.addEventListener('submit', function(event) {
+	unsavedForms = unsavedForms.filter(f => f !== event.target);
+});
+window.addEventListener('beforeunload', function(event) {
+	if (unsavedForms.length) {
+		event.preventDefault();
+		event.returnValue = '';
+		return event.returnValue;
+	}
+});
+
 var dir = document.querySelector('textarea').dir;
 tinymce.init({
 	selector: 'textarea',
@@ -28,23 +46,11 @@ tinymce.init({
 				return editor.execCommand('mceInsertContent', false, '<hr class="system-read-more" />');
 			}
 		});
-	}
-});
-
-var unsavedForms = [];
-document.addEventListener('change', function(event) {
-	var form = event.target.closest('form');
-	if (form && !unsavedForms.includes(form)) {
-		unsavedForms.push(form);
-	}
-});
-window.addEventListener('submit', function(event) {
-	unsavedForms = unsavedForms.filter(f => f !== event.target);
-});
-window.addEventListener('beforeunload', function(event) {
-	if (unsavedForms.length) {
-		event.preventDefault();
-		event.returnValue = '';
-		return event.returnValue;
+		editor.on('input', function() {
+			var form = editor.getElement().closest('form');
+			if (form && !unsavedForms.includes(form)) {
+				unsavedForms.push(form);
+			}
+		});
 	}
 });
