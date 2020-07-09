@@ -1,5 +1,8 @@
-<Files ~ "(^\.ht|\.sqlite$)">
+<Files ~ "(^\.ht|\.sqlite|\.php$)">
 	Deny from all
+</Files>
+<Files "cache.php">
+	Allow from all
 </Files>
 
 RewriteEngine On
