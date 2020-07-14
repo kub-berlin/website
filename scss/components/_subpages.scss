@@ -13,25 +13,20 @@
 }
 
 .subpages li {
-    position: relative;
     margin: 0;
 
-    a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: $spacer;
+    &:nth-child(2n+1) a {
+        clip-path: polygon(0 $spacer, 100% 0, 100% 100%, 0 100%);
+        &:dir(rtl) {
+            clip-path: polygon(100% $spacer, 0 0, 0 100%, 100% 100%);
+        }
     }
 
-    &:nth-child(2n+1) a::after {
-        top: 0;
-        background: linear-gradient(to top left, transparent 48%, $color-bg 51%);
-    }
-
-    &:nth-child(2n+2) a::after {
-        bottom: 0;
-        background: linear-gradient(to bottom right, transparent 48%, $color-bg 51%);
+    &:nth-child(2n+2) a {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - #{$spacer}), 0 100%);
+        &:dir(rtl) {
+            clip-path: polygon(100% 0, 0 0, 0 calc(100% - #{$spacer}), 100% 100%);
+        }
     }
 
     &:nth-child(2n+1) {
@@ -39,16 +34,18 @@
     }
 
     @media (min-width: $breakpoint) {
-        &:nth-child(4n+3) a::after {
-            bottom: 0;
-            top: auto;
-            background: linear-gradient(to bottom right, transparent 48%, $color-bg 51%);
+        &:nth-child(4n+3) a {
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - #{$spacer}), 0 100%);
+            &:dir(rtl) {
+                clip-path: polygon(100% 0, 0 0, 0 calc(100% - #{$spacer}), 100% 100%);
+            }
         }
 
-        &:nth-child(4n+4) a::after {
-            top: 0;
-            bottom: auto;
-            background: linear-gradient(to top left, transparent 48%, $color-bg 51%);
+        &:nth-child(4n+4) a {
+            clip-path: polygon(0 $spacer, 100% 0, 100% 100%, 0 100%);
+            &:dir(rtl) {
+                clip-path: polygon(100% $spacer, 0 0, 0 100%, 100% 100%);
+            }
         }
 
         &:nth-child(2n+1) {
