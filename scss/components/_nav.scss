@@ -78,6 +78,8 @@
 }
 
 #language-nav {
+    margin: 2 * $spacer 0 $spacer;
+
     ul {
         margin: 0;
         padding: 0;
@@ -85,6 +87,16 @@
 
     li {
         display: inline;
+    }
+
+    a {
+        display: inline-block;
+        text-decoration: none;
+        padding: 0 0.2em;
+
+        &.selected {
+            border-bottom: 0.2em solid;
+        }
     }
 }
 
@@ -131,6 +143,7 @@
         position: absolute;
         top: $padding;
         right: $padding;
+        margin: 0;
     }
 }
 
