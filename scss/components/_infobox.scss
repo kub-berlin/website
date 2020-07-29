@@ -3,11 +3,7 @@
     border: 0.2em solid $color-brand;
     background: $color-bg-tint;
     padding: 1em;
-    margin-bottom: 2 * $spacer;
-
-    :first-child {
-        margin-top: 0;
-    }
+    margin: 2 * $spacer 0;
 
     img {
         float: right;
