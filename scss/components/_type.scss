@@ -2,7 +2,7 @@ html {
     line-height: 1.5;
 }
 
-h1, h2, h3, h4, h5, h6, {
+h1, h2, h3, h4, h5, h6, .subheading {
     font-family: Futura, sans-serif;
 }
 
@@ -20,6 +20,15 @@ h4, h6 {
 }
 h6 {
     text-transform: uppercase;
+}
+
+.subheading {
+    font-size: 100% * pow(1.4, 4.5 - 3);
+    line-height: 1.2;
+}
+h2 + .subheading {
+    margin-top: -1rem;
+    margin-bottom: 2rem;
 }
 
 @for $i from 1 through 6 {
