@@ -35,6 +35,7 @@ tinymce.init({
 		warning: {block: 'div', classes: 'alert', wrapper: true},
 	},
 	block_formats: 'Paragraph=p; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Info Box=info; Warning Box=warning',
+	image_dimensions: false,
 	convert_urls: false,
 	entity_encoding: 'raw',
 	directionality: dir,
