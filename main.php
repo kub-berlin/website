@@ -91,6 +91,7 @@ try {
 	fetch_translation($page, $lang);
 } catch (HttpException $e) {
 	$area = null;
+	http_response_code(404);
 	$page = get_module('404');
 	$error = $e;
 }
