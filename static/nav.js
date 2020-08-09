@@ -4,7 +4,7 @@ window.addEventListener('load', function() {
     var langNav = document.getElementById('language-nav');
 
     var wrapper = document.createElement('div');
-    wrapper.innerHTML = '<button type="button" class="menu-button button m-round"></button>';
+    wrapper.innerHTML = '<button type="button" class="menu-button"></button>';
 
     var menuButton = wrapper.children[0];
     menuButton.innerHTML = '<i class="icon-menu"></i>';
