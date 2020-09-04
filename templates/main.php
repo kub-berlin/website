@@ -7,6 +7,12 @@
 	<title><?php e($page['title'])?> - KuB</title>
 	<link href="/templates/kub/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	<link href="<?php cachebust("/static/kub-${lang['dir']}.css") ?>" rel="stylesheet" type="text/css" />
+
+	<?php foreach (get_langs() as $l): ?>
+		<?php if ($l['code'] !== $lang['code']) : ?>
+			<link href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" rel="<?php e($l['code'] == 'de' ? 'canonical' : 'alternate') ?>" />
+		<?php endif ?>
+	<?php endforeach ?>
 </head>
 <body>
 	<div id="alert" class="alert">
@@ -27,7 +33,7 @@
 			<nav id="language-nav" aria-label="<?php e($lang['languages']) ?>">
 				<ul>
 					<?php foreach (get_langs() as $l): ?>
-						<li><a href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" rel="alternate" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
+						<li><a href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
 					<?php endforeach ?>
 				</ul>
 			</nav>
