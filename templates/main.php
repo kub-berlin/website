@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?php e($page['title'])?> - KuB</title>
+	<title><?php e($page['title'])?> &middot; Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e. V.</title>
 	<link href="/templates/kub/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	<link href="<?php cachebust("/static/kub-${lang['dir']}.css") ?>" rel="stylesheet" type="text/css" />
 
