@@ -137,6 +137,5 @@
 
 	<script src="<?php cachebust('/static/accordion.js') ?>"></script>
 	<script src="<?php cachebust('/static/nav.js') ?>"></script>
-	<script src="<?php cachebust('/static/table.js') ?>"></script>
 </body>
 </html>
