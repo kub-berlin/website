@@ -1,4 +1,5 @@
 window.addEventListener('load', function() {
+    var label = document.documentElement.dataset['menu'];
     var header = document.getElementById('header');
     var nav = document.getElementById('nav');
     var langNav = document.getElementById('language-nav');
@@ -7,7 +8,8 @@ window.addEventListener('load', function() {
     wrapper.innerHTML = '<button type="button" class="menu-button"></button>';
 
     var menuButton = wrapper.children[0];
-    menuButton.innerHTML = '<i class="icon-menu"></i>';
+    menuButton.innerHTML = '<i class="icon-menu" aria-label="' + label + '"></i>';
+    menuButton.title = label;
 
     menuButton.addEventListener('click', function(event) {
         nav.classList.toggle('is-visible');

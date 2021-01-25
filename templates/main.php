@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" class="website">
+<html lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" data-menu="<?php e($lang['menu']) ?>" class="website">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
