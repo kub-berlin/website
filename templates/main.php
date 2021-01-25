@@ -22,7 +22,7 @@
 	<div id="header-container">
 		<header id="header">
 			<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
-				<img alt="KuB" src="/static/logo.svg" />
+				<img alt="KuB" src="/static/logo.svg" width="331" height="100" />
 			</a>
 			<div id="header-bottom">
 				<?php echo get_module('header-bottom')['body'] ?>
@@ -61,7 +61,7 @@
 					<?php fetch_translation($navpage, $lang) ?>
 					<li>
 						<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
-							<img src="<?php e($icon) ?>" alt="">
+							<img src="<?php e($icon) ?>" alt="" width="510" height="510">
 							<span class="image-title"><?php e($navpage['title']) ?></span>
 						</a>
 					</li>

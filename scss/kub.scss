@@ -21,6 +21,11 @@
 @import "components/newsletter";
 @import "components/admin";
 
+// overwrite dimensions set in HTML
+img {
+    height: auto;
+}
+
 .u-columns {
     -webkit-columns: 2;
     -moz-columns: 2;
