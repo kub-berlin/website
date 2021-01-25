@@ -22,10 +22,7 @@
 	<div id="header-container">
 		<header id="header">
 			<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
-				<picture>
-					<source srcset="/static/logo.svg" type="image/svg+xml" />
-					<img alt="KuB" src="/static/logo.png" />
-				</picture>
+				<img alt="KuB" src="/static/logo.svg" />
 			</a>
 			<div id="header-bottom">
 				<?php echo get_module('header-bottom')['body'] ?>
