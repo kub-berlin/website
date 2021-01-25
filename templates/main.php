@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php e($page['title'])?> &middot; Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e. V.</title>
-	<link href="/templates/kub/favicon.ico" rel="icon">
+	<link href="/static/favicon.ico" rel="icon">
 	<link href="<?php cachebust("/static/kub-${lang['dir']}.css") ?>" rel="stylesheet" type="text/css" />
 
 	<?php foreach (get_langs() as $l): ?>
@@ -23,8 +23,8 @@
 		<header id="header">
 			<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
 				<picture>
-					<source srcset="/templates/kub/images/logo.svg" type="image/svg+xml" />
-					<img alt="KuB" src="/templates/kub/images/logo.png" />
+					<source srcset="/static/logo.svg" type="image/svg+xml" />
+					<img alt="KuB" src="/static/logo.png" />
 				</picture>
 			</a>
 			<div id="header-bottom">

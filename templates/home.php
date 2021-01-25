@@ -6,7 +6,7 @@
 	<?php endif ?>
 	<div class="homeRow-map" property="location" typeof="place">
 		<a href="https://www.openstreetmap.org/node/874357616" property="hasMap" target="_blank">
-			<img src="/templates/kub/images/stadtplan.svg" alt="<?php e($lang['map']) ?>" />
+			<img src="/static/stadtplan.svg" alt="<?php e($lang['map']) ?>" />
 		</a>
 		<div property="geo" typeof="GeoCoordinates">
 			<meta property="latitude" content="52.5026297" />
