@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (!isset($_COOKIE['csrf_token'])) {
 	$_COOKIE['csrf_token'] = bin2hex(random_bytes(5));
 	setcookie('csrf_token', $_COOKIE['csrf_token'], array(
-		'expired' => time() + 60 * 60,
+		'expires' => time() + 60 * 60,
 		'secure' => true,
 		'httponly' => true,
 		'samesite' => 'Strict',
