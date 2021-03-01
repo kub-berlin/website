@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		header("Location: ?page=$page_id&lang=${lang['code']}", true, 302);
 	}
 
-	exit()
+	exit();
 } else {
 	$page = get_page_by_id($page_id);
 	$root = get_page_by_id(1);
