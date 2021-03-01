@@ -108,6 +108,8 @@
 							<?php endif ?>
 						</article>
 					<?php endforeach ?>
+				<?php elseif ($page['layout'] === 'tandem') : ?>
+					<?php include('tandem.php') ?>
 				<?php endif ?>
 			</main>
 			<nav id="section-nav" aria-label="<?php e($lang['section']) ?>">
