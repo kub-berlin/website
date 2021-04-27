@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[webseite-2.template]
+source_file = langs/de.ini
+source_lang = de
+type = INI
+file_filter = langs/<lang>.ini
