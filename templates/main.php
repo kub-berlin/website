@@ -10,7 +10,7 @@
 
 	<?php foreach (get_langs() as $l): ?>
 		<?php if ($l['code'] !== $lang['code']) : ?>
-			<link href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" rel="<?php e($l['code'] == 'de' ? 'canonical' : 'alternate') ?>" />
+			<link href="<?php e("https://${_SERVER['HTTP_HOST']}$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" rel="<?php e($l['code'] == 'de' ? 'canonical' : 'alternate') ?>" />
 		<?php endif ?>
 	<?php endforeach ?>
 </head>
