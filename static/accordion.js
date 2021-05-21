@@ -1,6 +1,6 @@
 /* Wrap sections on voluntary-work page in <detail> elements */
 
-window.addEventListener('load', function() {
+(function() {
     "use strict";
 
     // wrap sections (starting with <h3>) in <details> elements.
@@ -48,4 +48,4 @@ window.addEventListener('load', function() {
             prependChild(body, sections[0].childNodes[k]);
         }
     }
-});
+})();

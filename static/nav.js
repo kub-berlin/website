@@ -1,4 +1,4 @@
-window.addEventListener('load', function() {
+(function() {
     var label = document.documentElement.dataset['menu'];
     var header = document.getElementById('header');
     var nav = document.getElementById('nav');
@@ -20,4 +20,4 @@ window.addEventListener('load', function() {
     });
 
     header.appendChild(menuButton);
-});
+})();
