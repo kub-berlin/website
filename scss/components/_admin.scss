@@ -137,3 +137,8 @@ html.admin {
 	float: right;
 	margin-left: $padding;
 }
+
+// HACK to fix grid layout
+.tox-tinymce-aux {
+	width: 0 !important;
+}
