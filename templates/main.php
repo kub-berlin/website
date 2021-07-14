@@ -128,7 +128,7 @@
 				) as $navpath) : ?>
 					<?php $navpage = get_page_by_path($navpath) ?>
 					<?php fetch_translation($navpage, $lang) ?>
-					<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>"><?php e($navpage['title']) ?></a></li>
+					<li><a href="<?php e("$baseurl/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
 				<?php endforeach ?>
 			</ul>
 		</nav>
