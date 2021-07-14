@@ -48,7 +48,7 @@ if (textarea) {
 					return editor.execCommand('mceInsertContent', false, '<hr class="system-read-more" />');
 				}
 			});
-			editor.on('input', function() {
+			editor.on('change', function() {
 				var form = editor.getElement().closest('form');
 				if (form && !unsavedForms.includes(form)) {
 					unsavedForms.push(form);
