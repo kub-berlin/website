@@ -83,10 +83,10 @@ $lang = $fallback_lang;
 $error = null;
 
 try {
-	$path = '/' . $_GET['path'];
-	$lang = get_lang(path_shift($path));
+	list($lang_code, $path) = path_shift('/' . $_GET['path']);
+	$lang = get_lang($lang_code);
 	validate_path($path);
-	$area = path_shift($path, false);
+	$area = path_shift($path)[0];
 	$page = get_page_by_path($path);
 	fetch_translation($page, $lang);
 } catch (HttpException $e) {

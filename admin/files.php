@@ -36,8 +36,7 @@ function get_files($path)
 	$u = $root_url . $path;
 	foreach (scandir($p) as $name) {
 		if ($name === '..' && $path !== '/') {
-			$parent = $path;
-			path_pop($parent);
+			$parent = path_pop($path)[0];
 			$files[] = array(
 				'name' => $name,
 				'path' => $parent,

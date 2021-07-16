@@ -41,34 +41,30 @@ function validate_path($path)
 	}
 }
 
-function path_pop(&$path, $mod=true)
+function path_pop($path)
 {
 	$parts = explode('/', $path);
 	$tmp = array_pop($parts);
-	$result = array_pop($parts);
-	if ($result === null) {
+	$tail = array_pop($parts);
+	if ($tail === null) {
 		throw new HttpException('Not Found', 404);
 	}
-	if ($mod) {
-		array_push($parts, $tmp);
-		$path = implode('/', $parts);
-	}
-	return $result;
+	array_push($parts, $tmp);
+	$head = implode('/', $parts);
+	return array($head, $tail);
 }
 
-function path_shift(&$path, $mod=true)
+function path_shift($path)
 {
 	$parts = explode('/', $path);
 	$tmp = array_shift($parts);
-	$result = array_shift($parts);
-	if ($result === null) {
+	$head = array_shift($parts);
+	if ($head === null) {
 		throw new HttpException('Not Found', 404);
 	}
-	if ($mod) {
-		array_unshift($parts, $tmp);
-		$path = implode('/', $parts);
-	}
-	return $result;
+	array_unshift($parts, $tmp);
+	$tail = implode('/', $parts);
+	return array($head, $tail);
 }
 
 function rrm($path)
@@ -140,8 +136,8 @@ function get_page_by_path($path, $include_pub=false)
 	if ($path === '/') {
 		$stmt = $db->query('SELECT * FROM pages WHERE id=1');
 	} else {
-		$slug = path_pop($path);
-		$parent = get_page_by_path($path);
+		list($parent_path, $slug) = path_pop($path);
+		$parent = get_page_by_path($parent_path);
 		$sql = 'SELECT * FROM pages WHERE slug=:slug AND parent=:parent';
 		$sql .= $include_pub ? '' : ' AND published=1';
 		$stmt = $db->prepare($sql);
