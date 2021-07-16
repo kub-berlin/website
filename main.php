@@ -80,19 +80,20 @@ function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 
 $fallback_lang = get_lang($fallback_lang_code);
 $lang = $fallback_lang;
-$error = null;
 
 try {
 	list($lang_code, $path) = path_shift('/' . $_GET['path']);
 	$lang = get_lang($lang_code);
 	validate_path($path);
-	$area = path_shift($path)[0];
+
 	$page = get_page_by_path($path);
 	fetch_translation($page, $lang);
+	$area = path_shift($path)[0];
+	$error = null;
 } catch (HttpException $e) {
-	$area = null;
 	http_response_code(404);
 	$page = get_module('404');
+	$area = null;
 	$error = $e;
 }
 
