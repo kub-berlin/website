@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-include_once('common.php');
+include_once('datasource.php');
 
 function truncate($body, $truncate) {
 	$marker = '<hr class="system-read-more" />';
