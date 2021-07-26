@@ -39,7 +39,7 @@
 			<ul>
 				<?php foreach (array('/', '/angebote/', '/unterstuetzung/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
 					<?php $navpage = get_page_by_path($navpath) ?>
-					<?php fetch_translation($navpage, $lang) ?>
+					<?php add_content($navpage, $lang) ?>
 					<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
 				<?php endforeach ?>
 			</ul>
@@ -58,7 +58,7 @@
 					'/angebote/formulare/' => '/images/icons/Formularprojekt.svg',
 				) as $navpath => $icon) : ?>
 					<?php $navpage = get_page_by_path($navpath) ?>
-					<?php fetch_translation($navpage, $lang) ?>
+					<?php add_content($navpage, $lang) ?>
 					<li>
 						<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
 							<img src="<?php e($icon) ?>" alt="" width="510" height="510">
@@ -93,13 +93,13 @@
 				<?php elseif ($page['layout'] === 'overview') : ?>
 					<ul class="subpages">
 						<?php foreach (get_subpages($page['id']) as $p) : ?>
-							<?php fetch_translation($p, $lang) ?>
+							<?php add_content($p, $lang) ?>
 							<li><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
 						<?php endforeach ?>
 					</ul>
 				<?php elseif ($page['layout'] === 'blog') : ?>
 					<?php foreach (get_subpages($page['id'], true) as $p) : ?>
-						<?php fetch_translation($p, $lang) ?>
+						<?php add_content($p, $lang) ?>
 						<article>
 							<h3><?php e($p['title']) ?></h3>
 							<?php echo $p['truncated'] ?>
@@ -127,7 +127,7 @@
 					'/impressum/',
 				) as $navpath) : ?>
 					<?php $navpage = get_page_by_path($navpath) ?>
-					<?php fetch_translation($navpage, $lang) ?>
+					<?php add_content($navpage, $lang) ?>
 					<li><a href="<?php e("$baseurl/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
 				<?php endforeach ?>
 			</ul>

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-include_once('common.php');
+include_once('datasource.php');
 
 function truncate($body, $truncate) {
 	$marker = '<hr class="system-read-more" />';
@@ -12,7 +12,7 @@ function truncate($body, $truncate) {
 	}
 }
 
-function fetch_translation(&$page, $lang, $show_fallback_text=true)
+function add_content(&$page, $lang)
 {
 	global $fallback_lang;
 	$translation = get_translation($page['id'], $lang['code']);
@@ -47,7 +47,7 @@ function get_module($slug)
 	if (!$page) {
 		return '';
 	}
-	fetch_translation($page, $lang, false);
+	add_content($page, $lang);
 	return $page;
 }
 
@@ -64,7 +64,7 @@ function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 
 	echo '<ul>';
 	foreach (get_subpages($root['id']) as $p) {
-		fetch_translation($p, $lang);
+		add_content($p, $lang);
 		$ppath = $rootpath . $p['slug'] . '/';
 		?>
 			<li>
@@ -87,7 +87,7 @@ try {
 	validate_path($path);
 
 	$page = get_page_by_path($path);
-	fetch_translation($page, $lang);
+	add_content($page, $lang);
 	$area = path_shift($path)[0];
 	$error = null;
 } catch (HttpException $e) {

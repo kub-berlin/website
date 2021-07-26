@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-include_once('../common.php');
+include_once('../datasource.php');
 include_once('csrf.php');
 
 function render_side_nav($id=null, $slug='', $maxdepth=10)

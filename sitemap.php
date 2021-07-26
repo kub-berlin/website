@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-include_once('./common.php');
+include_once('./datasource.php');
 
 function render_sitemap($parent_id, $parent_url)
 {
