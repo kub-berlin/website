@@ -12,7 +12,7 @@ function truncate($body, $truncate) {
 	}
 }
 
-function add_content(&$page, $lang, $show_fallback_text=true)
+function add_content(&$page, $lang)
 {
 	global $fallback_lang;
 	$translation = get_translation($page['id'], $lang['code']);
@@ -47,7 +47,7 @@ function get_module($slug)
 	if (!$page) {
 		return '';
 	}
-	add_content($page, $lang, false);
+	add_content($page, $lang);
 	return $page;
 }
 
