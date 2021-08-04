@@ -82,4 +82,7 @@
         background: $color-brand;
         color: contrast-color($color-brand);
     }
+    &:focus:not(:focus-visible) {
+        color: contrast-color($color-brand);
+    }
 }
