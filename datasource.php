@@ -50,10 +50,7 @@ function get_lang($code)
 function get_langs($include_incomplete=false)
 {
 	$langs = array();
-	$codes = array('de', 'en', 'fr', 'es', 'ar', 'fa');
-	if ($include_incomplete) {
-		array_push($codes, 'ru');
-	}
+	$codes = array('de', 'en', 'fr', 'es', 'ar', 'fa', 'ru');
 	foreach ($codes as $code) {
 		$langs[] = get_lang($code);
 	}
