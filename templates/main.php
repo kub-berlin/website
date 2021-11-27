@@ -83,7 +83,7 @@
 					<?php include('home.php') ?>
 				<?php endif ?>
 
-				<?php if ($page['body_fallback']) : ?>
+				<?php if (!empty($page['body_fallback'])) : ?>
 					<p><em><?php e($lang['missing']) ?></em></p>
 				<?php endif ?>
 				<?php echo $page['body'] ?>
