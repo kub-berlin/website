@@ -27,6 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	exit();
 }
 
+function is_image($path)
+{
+	$p = explode('.', $path);
+	$ext = strtolower(array_pop($p));
+	return in_array($ext, array('png', 'jpg', 'jpeg', 'gif', 'svg'));
+}
+
 function get_files($path)
 {
 	global $root, $root_url;
@@ -48,7 +55,7 @@ function get_files($path)
 				'path' => "$path$name/",
 				'url' => "$u$name",
 				'is_file' => is_file("$p$name"),
-				'is_image' => getimagesize("$p$name"),
+				'is_image' => is_image("$p$name"),
 			);
 		}
 	}
