@@ -30,7 +30,7 @@
 			<nav id="language-nav" aria-label="<?php e($lang['languages']) ?>">
 				<ul>
 					<?php foreach (get_langs() as $l): ?>
-						<li><a href="<?php e("$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
+						<li><a href="<?php e("$baseurl/${l['code']}$path") ?>" lang="<?php e($l['code']) ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
 					<?php endforeach ?>
 				</ul>
 			</nav>
@@ -85,8 +85,12 @@
 
 				<?php if (!empty($page['body_fallback'])) : ?>
 					<p><em><?php e($lang['missing']) ?></em></p>
+					<div dir="ltr" lang="de">
+						<?php echo $page['body'] ?>
+					</dir>
+				<?php else : ?>
+					<?php echo $page['body'] ?>
 				<?php endif ?>
-				<?php echo $page['body'] ?>
 
 				<?php if ($page['layout'] === 'module') : ?>
 					<?php echo get_module($page['slug'])['body'] ?>
