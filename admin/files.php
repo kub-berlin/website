@@ -73,11 +73,11 @@ function get_files($path)
 </head>
 <body>
 	<form method="post" enctype="multipart/form-data" class="form-combined">
-		<input type="file" name="file">
+		<input type="file" name="file" required>
 		<button>Upload file</button>
 	</form>
 	<form method="post" class="form-combined">
-		<input type="text" name="folder">
+		<input type="text" name="folder" required>
 		<button>Create folder</button>
 	</form>
 
