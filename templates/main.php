@@ -19,8 +19,8 @@
 		<?php echo get_module('alert')['body'] ?>
 	</div>
 
-	<div id="header-container">
-		<header id="header">
+	<header id="header-container">
+		<div id="header">
 			<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
 				<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
 			</a>
@@ -34,7 +34,7 @@
 					<?php endforeach ?>
 				</ul>
 			</nav>
-		</header>
+		</div>
 		<nav id="nav">
 			<ul>
 				<?php foreach (array('/', '/angebote/', '/unterstuetzung/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
@@ -44,7 +44,7 @@
 				<?php endforeach ?>
 			</ul>
 		</nav>
-	</div>
+	</header>
 
 	<?php if ($page['layout'] === 'home') : ?>
 		<nav id="shortcuts" aria-label="<?php e($lang['shortcuts']) ?>">
