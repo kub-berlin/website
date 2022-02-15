@@ -21,9 +21,11 @@
 
 	<header id="header-container">
 		<div id="header">
-			<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
-				<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
-			</a>
+			<h1 class="brand">
+				<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
+					<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
+				</a>
+			</h1>
 			<div id="header-bottom">
 				<?php echo get_module('header-bottom')['body'] ?>
 			</div>
