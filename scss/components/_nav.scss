@@ -60,16 +60,16 @@
     }
 
     ul ul a {
-        padding-left: $indentation;
+        padding-left: $padding * 2;
     }
     ul ul ul a {
-        padding-left: $indentation * 2;
+        padding-left: $padding * 3;
     }
     ul ul ul ul a {
-        padding-left: $indentation * 3;
+        padding-left: $padding * 4;
     }
     ul ul ul ul ul a {
-        padding-left: $indentation * 4;
+        padding-left: $padding * 5;
     }
 
     a.active {

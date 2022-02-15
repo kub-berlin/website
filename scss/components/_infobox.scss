@@ -2,7 +2,7 @@
     @include clearfix;
     border: 0.2em solid $color-brand;
     background: $color-bg-tint;
-    padding: 1em;
+    padding: $padding;
     margin: 2 * $spacer 0;
 
     img {
@@ -16,7 +16,7 @@
 
 .alert {
     background-color: #fb0;
-    padding: 2 * $padding;
+    padding: $padding;
     margin-bottom: $spacer * 2;
 
     :last-child {
