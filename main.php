@@ -62,8 +62,13 @@ function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 		$root = $areapage;
 	}
 
+	$subpages = get_subpages($root['id']);
+	if (count($subpages) === 0) {
+		return;
+	}
+
 	echo '<ul>';
-	foreach (get_subpages($root['id']) as $p) {
+	foreach ($subpages as $p) {
 		add_content($p, $lang);
 		$ppath = $rootpath . $p['slug'] . '/';
 		?>
