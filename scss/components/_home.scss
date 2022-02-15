@@ -14,16 +14,12 @@
 }
 
 .home {
-    .homeRow-address {
-        font-size: 80%;
-    }
-
     @media screen and (min-width: $breakpoint) {
         > div {
             display: grid;
             grid-gap: $gutter;
             grid-auto-flow: dense;
-            grid-template-columns: 2fr 3fr 3fr;
+            grid-template-columns: 1fr 1fr 1fr;
         }
 
         .homeRow-address {

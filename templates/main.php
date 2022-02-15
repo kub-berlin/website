@@ -19,11 +19,13 @@
 		<?php echo get_module('alert')['body'] ?>
 	</div>
 
-	<div id="header-container">
-		<header id="header">
-			<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
-				<img alt="KuB" src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
-			</a>
+	<header id="header-container">
+		<div id="header">
+			<h1 class="brand">
+				<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
+					<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
+				</a>
+			</h1>
 			<div id="header-bottom">
 				<?php echo get_module('header-bottom')['body'] ?>
 			</div>
@@ -34,7 +36,7 @@
 					<?php endforeach ?>
 				</ul>
 			</nav>
-		</header>
+		</div>
 		<nav id="nav">
 			<ul>
 				<?php foreach (array('/', '/angebote/', '/unterstuetzung/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
@@ -44,7 +46,7 @@
 				<?php endforeach ?>
 			</ul>
 		</nav>
-	</div>
+	</header>
 
 	<?php if ($page['layout'] === 'home') : ?>
 		<nav id="shortcuts" aria-label="<?php e($lang['shortcuts']) ?>">
@@ -116,9 +118,11 @@
 					<?php include('tandem.php') ?>
 				<?php endif ?>
 			</main>
-			<nav id="section-nav" aria-label="<?php e($lang['section']) ?>">
-				<?php render_side_nav() ?>
-			</nav>
+			<?php if (!empty($area)) : ?>
+				<nav id="section-nav" aria-label="<?php e($areapage['title']) ?>">
+					<?php render_side_nav() ?>
+				</nav>
+			<?php endif ?>
 		<?php endif ?>
 	</div>
 
