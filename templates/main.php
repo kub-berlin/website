@@ -118,9 +118,11 @@
 					<?php include('tandem.php') ?>
 				<?php endif ?>
 			</main>
-			<nav id="section-nav" aria-label="<?php e($lang['section']) ?>">
-				<?php render_side_nav() ?>
-			</nav>
+			<?php if (!empty($area)) : ?>
+				<nav id="section-nav" aria-label="<?php e($areapage['title']) ?>">
+					<?php render_side_nav() ?>
+				</nav>
+			<?php endif ?>
 		<?php endif ?>
 	</div>
 
