@@ -15,6 +15,8 @@
 	<?php endforeach ?>
 </head>
 <body>
+	<a href="#main" class="button skip"><?php e($lang['skip']) ?></a>
+
 	<div id="alert" class="alert">
 		<?php echo get_module('alert')['body'] ?>
 	</div>

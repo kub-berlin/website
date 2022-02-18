@@ -61,3 +61,12 @@ summary {
     grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
     align-items: center;
 }
+
+.skip {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.skip:not(:focus) {
+    clip: rect(0,0,0,0);
+}
