@@ -109,7 +109,7 @@
 					<?php foreach (get_subpages($page['id'], true) as $p) : ?>
 						<?php add_content($p, $lang) ?>
 						<article>
-							<h3><?php e($p['title']) ?></h3>
+							<h3><a href="<?php e("${p['slug']}/") ?>" class="nolink"><?php e($p['title']) ?></a></h3>
 							<?php echo $p['truncated'] ?>
 							<?php if ($p['truncated'] !== $p['body']) : ?>
 								<p><a href="<?php e("${p['slug']}/") ?>"><?php e($lang['readmore']) ?>: <?php e($p['title']) ?></a></p>
