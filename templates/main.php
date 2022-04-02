@@ -106,7 +106,8 @@
 						<?php endforeach ?>
 					</ul>
 				<?php elseif ($page['layout'] === 'blog') : ?>
-					<?php foreach (get_subpages($page['id'], true) as $p) : ?>
+					<?php $articles = get_subpages($page['id'], true) ?>
+					<?php foreach (array_slice($articles, 0, 5) as $p) : ?>
 						<?php add_content($p, $lang) ?>
 						<article>
 							<h3><a href="<?php e("${p['slug']}/") ?>" class="nolink"><?php e($p['title']) ?></a></h3>
@@ -116,6 +117,14 @@
 							<?php endif ?>
 						</article>
 					<?php endforeach ?>
+					<?php if (count($articles) > 5) : ?>
+						<h3><?php e($lang['archive']) ?></h3>
+						<ul>
+							<?php foreach (array_slice($articles, 5) as $p) : ?>
+								<?php add_content($p, $lang) ?>
+								<li><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
+							<?php endforeach ?>
+					<?php endif ?>
 				<?php elseif ($page['layout'] === 'tandem') : ?>
 					<?php include('tandem.php') ?>
 				<?php endif ?>
