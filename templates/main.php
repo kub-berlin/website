@@ -106,16 +106,25 @@
 						<?php endforeach ?>
 					</ul>
 				<?php elseif ($page['layout'] === 'blog') : ?>
-					<?php foreach (get_subpages($page['id'], true) as $p) : ?>
+					<?php $articles = get_subpages($page['id'], true) ?>
+					<?php foreach (array_slice($articles, 0, $blog_featured_articles) as $p) : ?>
 						<?php add_content($p, $lang) ?>
 						<article>
-							<h3><?php e($p['title']) ?></h3>
+							<h3><a href="<?php e("${p['slug']}/") ?>" class="nolink"><?php e($p['title']) ?></a></h3>
 							<?php echo $p['truncated'] ?>
 							<?php if ($p['truncated'] !== $p['body']) : ?>
 								<p><a href="<?php e("${p['slug']}/") ?>"><?php e($lang['readmore']) ?>: <?php e($p['title']) ?></a></p>
 							<?php endif ?>
 						</article>
 					<?php endforeach ?>
+					<?php if (count($articles) > $blog_featured_articles) : ?>
+						<h3><?php e($lang['archive']) ?></h3>
+						<ul>
+							<?php foreach (array_slice($articles, $blog_featured_articles) as $p) : ?>
+								<?php add_content($p, $lang) ?>
+								<li><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
+							<?php endforeach ?>
+					<?php endif ?>
 				<?php elseif ($page['layout'] === 'tandem') : ?>
 					<?php include('tandem.php') ?>
 				<?php endif ?>
