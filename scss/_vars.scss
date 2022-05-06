@@ -1,3 +1,5 @@
+@use "../node_modules/sass-planifolia/sass/contrast";
+
 $color-fg: #111;
 
 $color-brand: #005c5e;
@@ -13,8 +15,8 @@ $color-link-visited-focus: $color-brand-dark;
 $font-size-min: 1em;
 $font-size-max: 1em;
 
-$planifolia-contrast-dark-default: $color-fg;
-$planifolia-contrast-light-default: $color-bg;
+contrast.$planifolia-contrast-dark-default: $color-fg;
+contrast.$planifolia-contrast-light-default: $color-bg;
 
 $breakpoint: 50em;
 $padding: 1rem;

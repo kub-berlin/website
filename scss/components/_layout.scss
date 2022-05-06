@@ -1,3 +1,5 @@
+@use "sass:math";
+
 html {
     padding: 0.5em;
 }
@@ -46,7 +48,7 @@ body {
     }
 
     body {
-        max-width: 40em * 12 / 7;
+        max-width: 40em * math.div(12, 7);
     }
 
     #header-container {

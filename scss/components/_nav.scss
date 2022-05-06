@@ -1,10 +1,12 @@
+@use "../../node_modules/sass-planifolia/sass/contrast";
+
 @mixin nav-color($color, $color-focus) {
     background: $color;
-    color: contrast-color($color);
+    color: contrast.color($color);
 
     &:hover, &:focus {
         background: $color-focus;
-        color: contrast-color($color-focus);
+        color: contrast.color($color-focus);
     }
 }
 
@@ -55,7 +57,7 @@
 
         &:hover, &:focus {
             background: $color-brand-light;
-            color: contrast-color($color-brand-light);
+            color: contrast.color($color-brand-light);
         }
     }
 
