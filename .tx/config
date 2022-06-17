@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[webseite-2.template]
+[o:kub:p:webseite-2:r:template]
 source_file = langs/de.ini
 source_lang = de
 type = INI
