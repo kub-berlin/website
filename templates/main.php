@@ -41,7 +41,7 @@
 		</div>
 		<nav id="nav">
 			<ul>
-				<?php foreach (array('/', '/angebote/', '/unterstuetzung/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
+				<?php foreach (array('/', '/angebote/', '/mitmachen/', '/spenden/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
 					<?php $navpage = get_page_by_path($navpath) ?>
 					<?php add_content($navpage, $lang) ?>
 					<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
