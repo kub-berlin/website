@@ -89,7 +89,7 @@
 
 				<?php if (!empty($page['body_fallback'])) : ?>
 					<p><em><?php e($lang['missing']) ?></em></p>
-					<div dir="ltr" lang="de">
+					<div dir="ltr" lang="de" class="untranslated">
 						<?php echo $page['body'] ?>
 					</dir>
 				<?php else : ?>

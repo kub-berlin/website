@@ -22,6 +22,11 @@
 
     var body = document.querySelector('.accordion');
 
+    var untranslated = body.querySelector('.untranslated');
+    if (untranslated) {
+        body = untranslated;
+    }
+
     if (body) {
         var sections = [document.createElement('details')];
 
