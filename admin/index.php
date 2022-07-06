@@ -99,6 +99,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<link rel="stylesheet" type="text/css" href="../static/kub-ltr.css" />
 </head>
 <body>
+	<nav class="nav-langs" aria-label="Languages">
+		<?php foreach (get_langs(true) as $l) : ?>
+			<a href="<?php e("?page=$page_id&lang=${l['code']}") ?>" class="button <?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
+		<?php endforeach ?>
+	</nav>
+
 	<main>
 		<form method="post" action="<?php e("?action=edit-translation&page=$page_id&lang=${lang['code']}") ?>">
 			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
@@ -182,12 +188,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		<a class=" button" href="files.php">Manage files</a>
 	</aside>
-
-	<nav class="nav-langs" aria-label="Languages">
-		<?php foreach (get_langs(true) as $l) : ?>
-			<a href="<?php e("?page=$page_id&lang=${l['code']}") ?>" class="button <?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
-		<?php endforeach ?>
-	</nav>
 
 	<nav id="section-nav" class="nav-pages" aria-label="Pages">
 		<?php render_side_nav() ?>
