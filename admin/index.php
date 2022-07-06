@@ -20,7 +20,11 @@ function render_side_nav($page=null, $maxdepth=10)
 						<?php e($exists ? $code : '') ?>
 					<?php endforeach ?>
 				</span>
-				<?php e(empty($page['slug']) ? 'home' : $page['slug']) ?>
+				<?php if ($page['published']) : ?>
+					<?php e(empty($page['slug']) ? 'home' : $page['slug']) ?>
+				<?php else : ?>
+					<del><?php e(empty($page['slug']) ? 'home' : $page['slug']) ?></del>
+				<?php endif ?>
 			</a>
 		</li>
 	<?php endif ?>
