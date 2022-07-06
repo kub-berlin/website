@@ -29,7 +29,7 @@ if (textarea) {
 		menubar: false,
 		contextmenu: false,
 		plugins: 'code image link table lists',
-		toolbar: 'undo redo | formatselect | bold italic link | image table numlist bullist infobox | outdent indent | readmore | code',
+		toolbar: 'undo redo blocks bold italic link | image table numlist bullist outdent indent readmore | code',
 		content_css: '/xi/static/kub-' + textarea.dir + '.css',
 		formats: {
 			info: {block: 'aside', classes: 'infobox', wrapper: true},
@@ -44,7 +44,7 @@ if (textarea) {
 			editor.ui.registry.addButton('readmore', {
 				icon: 'horizontal-rule',
 				tooltip: 'read more',
-				onAction: function () {
+				onAction: function() {
 					return editor.execCommand('mceInsertContent', false, '<hr class="system-read-more" />');
 				}
 			});
