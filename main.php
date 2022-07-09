@@ -38,10 +38,12 @@ function add_content(&$page, $lang)
 	$page['truncated'] = truncate($body, true);
 }
 
-function get_module($slug)
+function get_module($slug, $include_pub=false)
 {
 	global $db, $lang;
-	$stmt = $db->prepare('SELECT * FROM pages WHERE slug=:slug AND parent IS NULL');
+	$sql = 'SELECT * FROM pages WHERE slug=:slug AND parent IS NULL';
+	$sql .= $include_pub ? '' : ' AND published=1';
+	$stmt = $db->prepare($sql);
 	$stmt->execute(array('slug' => $slug));
 	$page = $stmt->fetch();
 	if (!$page) {
