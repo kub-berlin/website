@@ -17,9 +17,11 @@
 <body>
 	<a href="#main" class="button skip"><?php e($lang['skip']) ?></a>
 
-	<div id="alert" class="alert">
-		<?php echo get_module('alert')['body'] ?>
-	</div>
+	<?php if ($alert = get_module('alert')) : ?>
+		<div id="alert" class="alert">
+			<?php echo $alert['body'] ?>
+		</div>
+	<?php endif ?>
 
 	<header id="header-container">
 		<div id="header">
