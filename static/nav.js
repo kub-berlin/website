@@ -8,9 +8,11 @@
     wrapper.innerHTML = '<button type="button" class="menu-button"></button>';
 
     var menuButton = wrapper.children[0];
-    menuButton.innerHTML = '<i class="icon-menu" aria-label="' + label + '"></i>';
+    menuButton.innerHTML = '<i class="icon-menu"></i>';
     menuButton.title = label;
+    menuButton.setAttribute('aria-label', label);
     menuButton.setAttribute('aria-expanded', false);
+    menuButton.setAttribute('aria-controls', 'nav language-nav');
 
     menuButton.addEventListener('click', function(event) {
         nav.classList.toggle('is-visible');
