@@ -147,6 +147,13 @@
 	</div>
 
 	<footer id="footer">
+		<nav aria-label="<?php e($lang['socialmedia']) ?>">
+			<ul>
+				<li><a href="https://www.facebook.com/KuBFM/" rel="noreferrer">Facebook</a></li>
+				<li><a href="https://twitter.com/KuB_Berlin" rel="noreferrer">Twitter</a></li>
+				<li><a href="https://www.instagram.com/kub_berlin/" rel="noreferrer">Instagram</a></li>
+			</ul>
+		</nav>
 		<nav aria-label="<?php e($lang['legal']) ?>">
 			<ul>
 				<?php foreach (array(

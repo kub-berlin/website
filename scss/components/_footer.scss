@@ -1,5 +1,7 @@
 #footer {
-    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 80%;
     padding-top: $padding * 0.5;
     padding-bottom: $padding * 0.5;
