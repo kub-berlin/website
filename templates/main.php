@@ -113,7 +113,14 @@
 						<?php add_content($p, $lang) ?>
 						<article>
 							<h3><a href="<?php e("${p['slug']}/") ?>" class="nolink"><?php e($p['title']) ?></a></h3>
-							<?php echo $p['truncated'] ?>
+							<?php if (!empty($p['body_fallback'])) : ?>
+								<p><em><?php e($lang['missing']) ?></em></p>
+								<div dir="ltr" lang="de" class="untranslated">
+									<?php echo $p['truncated'] ?>
+								</dir>
+							<?php else : ?>
+								<?php echo $p['truncated'] ?>
+							<?php endif ?>
 							<?php if ($p['truncated'] !== $p['body']) : ?>
 								<p><a href="<?php e("${p['slug']}/") ?>"><?php e($lang['readmore']) ?>: <?php e($p['title']) ?></a></p>
 							<?php endif ?>
