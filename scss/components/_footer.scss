@@ -11,10 +11,28 @@
         padding: 0;
     }
     li {
-        display: inline;
+        display: inline-block;
+
+        &:not(:last-child) {
+            margin-right: 0.5em;
+        }
     }
 
     @media print {
         display: none;
+    }
+}
+
+.social-nav {
+    a {
+        position: relative;
+        padding-left: 1.2em;
+    }
+    svg {
+        position: absolute;
+        left: 0;
+        top: calc(50% - 0.5em);
+        height: 1em;
+        width: 1em;
     }
 }
