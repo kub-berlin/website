@@ -29,7 +29,7 @@ if (textarea) {
 		menubar: false,
 		contextmenu: false,
 		plugins: 'code image link table lists',
-		toolbar: 'undo redo blocks bold italic link | image table numlist bullist outdent indent readmore | code',
+		toolbar: 'undo redo blocks bold italic link | image table numlist bullist outdent indent readmore module | code',
 		content_css: '/xi/static/kub-' + textarea.dir + '.css',
 		formats: {
 			info: {block: 'aside', classes: 'infobox', wrapper: true},
@@ -46,6 +46,13 @@ if (textarea) {
 				tooltip: 'read more',
 				onAction: function() {
 					return editor.execCommand('mceInsertContent', false, '<hr class="system-read-more" />');
+				}
+			});
+			editor.ui.registry.addButton('module', {
+				icon: 'embed-page',
+				tooltip: 'module',
+				onAction: function() {
+					return editor.execCommand('mceInsertContent', false, '<div class="system-module"></div>');
 				}
 			});
 			editor.on('change', function() {
