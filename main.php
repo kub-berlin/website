@@ -12,7 +12,16 @@ function truncate($body, $truncate) {
 	}
 }
 
-function add_content(&$page, $lang)
+function add_modules($body)
+{
+	$pattern = '|<div class="system-module">([^<]*)</div>|';
+	return preg_replace_callback($pattern, function($match) {
+		$mod = get_module($match[1]);
+		return $mod ? $mod['body'] : '';
+	}, $body);
+}
+
+function add_content(&$page, $lang, $add_modules=true)
 {
 	global $fallback_lang;
 	$translation = get_translation($page['id'], $lang['code']);
@@ -34,6 +43,9 @@ function add_content(&$page, $lang)
 	}
 
 	$body = $page['body'];
+	if ($add_modules) {
+		$body = add_modules($body);
+	}
 	$page['body'] = truncate($body, false);
 	$page['truncated'] = truncate($body, true);
 }
@@ -49,7 +61,8 @@ function get_module($slug, $include_pub=false)
 	if (!$page) {
 		return '';
 	}
-	add_content($page, $lang);
+	// do not add modules inside modules to avoid infinite loops
+	add_content($page, $lang, false);
 	return $page;
 }
 
