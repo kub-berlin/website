@@ -134,6 +134,11 @@ html.admin {
 .system-read-more {
 	border-style: dashed;
 }
+.system-module {
+	border: 2px dashed;
+	padding: $padding;
+	margin-bottom: $spacer;
+}
 
 .langs-available {
 	float: right;
