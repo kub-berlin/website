@@ -16,3 +16,10 @@ table {
 tr:nth-child(even) td {
     background-color: $color-bg-tint;
 }
+
+table ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
