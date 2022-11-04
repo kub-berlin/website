@@ -187,7 +187,7 @@
 		</nav>
 	</footer>
 
-	<script src="<?php cachebust('/static/accordion.js') ?>"></script>
-	<script src="<?php cachebust('/static/nav.js') ?>"></script>
+	<script src="<?php cachebust('/static/accordion.js') ?>" type="module"></script>
+	<script src="<?php cachebust('/static/nav.js') ?>" type="module"></script>
 </body>
 </html>
