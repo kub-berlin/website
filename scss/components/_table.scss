@@ -6,3 +6,11 @@ table {
 tr:nth-child(even) td {
     background-color: $color-bg-tint;
 }
+
+table ul {
+    line-height: 1;
+}
+
+td > :last-child {
+    margin-bottom: 0;
+}
