@@ -32,7 +32,9 @@ if (body) {
     while (i--) {
         var node = body.childNodes[i];
         if (node.nodeType === Node.ELEMENT_NODE && node.nodeName === 'H3') {
-            prependChild(sections[0], wrap(node, 'summary'));
+            var summary = wrap(node, 'summary');
+            summary.className = 'accordion-summary';
+            prependChild(sections[0], summary);
             sections.unshift(document.createElement('details'));
         } else {
             prependChild(sections[0], node);

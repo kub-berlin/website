@@ -33,7 +33,7 @@ img {
     margin-bottom: $spacer;
 }
 
-summary {
+.accordion-summary {
     @extend h3;
     cursor: pointer;
 
