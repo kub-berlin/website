@@ -15,12 +15,13 @@ if (body) {
     while (i--) {
         var node = body.childNodes[i];
         if (node.nodeType === Node.ELEMENT_NODE && node.nodeName === 'H3') {
+            node.before(details);
+
             var summary = document.createElement('summary');
             summary.className = 'accordion-summary';
             summary.append(node);
             details.prepend(summary);
 
-            body.append(details);
             details = document.createElement('details');
         } else {
             details.prepend(node);
