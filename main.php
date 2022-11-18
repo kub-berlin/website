@@ -3,7 +3,7 @@
 include_once('datasource.php');
 
 function truncate($body, $truncate) {
-	$marker = '<hr class="system-read-more" />';
+	$marker = '<hr class="system-read-more">';
 	$parts = explode($marker, $body);
 	if ($truncate) {
 		return $parts[0];
