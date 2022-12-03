@@ -140,11 +140,6 @@
 				<?php if (!empty($area)) : ?>
 					<nav id="section-nav" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
-						<?php if ($area === 'ueber-die-kub') : ?>
-							<a href="/de/ueber-die-kub/transparenz/" class="transparency">
-								<img src="/images/Logos/Transparente_Zivilgesellschaft_bw.svg" alt="Initiative Transparente Zivilgesellschaft">
-							</a>
-						<?php endif ?>
 					</nav>
 				<?php endif ?>
 			<?php endif ?>
@@ -182,7 +177,6 @@
 			<nav aria-label="<?php e($lang['legal']) ?>">
 				<ul>
 					<?php foreach (array(
-						'/ueber-die-kub/transparenz/',
 						'/datenschutz/',
 						'/impressum/',
 					) as $navpath) : ?>
@@ -192,6 +186,12 @@
 					<?php endforeach ?>
 				</ul>
 			</nav>
+
+			<div class="footer-logos">
+				<a href="<?php e("$baseurl/${lang['code']}/ueber-die-kub/transparenz/") ?>">
+					<img src="/images/Logos/Transparente_Zivilgesellschaft_bw_inverted.svg" alt="Initiative Transparente Zivilgesellschaft">
+				</a>
+			</div>
 		</footer>
 	</div>
 
