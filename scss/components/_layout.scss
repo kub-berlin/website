@@ -6,7 +6,7 @@ html {
 
 @media screen {
     html.website {
-        background-color: $color-brand;
+        background-color: #eee;
         padding: 0;
     }
 }
@@ -35,7 +35,7 @@ body {
     }
 
     #content-container {
-        box-shadow: 0 0 2em rgba(black, 0.5);
+        box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.5);
     }
     #main-container {
         display: grid;
