@@ -1,20 +1,31 @@
+@use "../../node_modules/sass-planifolia/sass/contrast";
+
 #footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 80%;
-    padding-top: $padding * 0.5;
-    padding-bottom: $padding * 0.5;
+    background-color: $color-brand;
+    color: contrast.color($color-brand);
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
 
     ul {
-        margin: 0;
+        list-style: none;
         padding: 0;
     }
-    li {
-        display: inline-block;
 
-        &:not(:last-child) {
-            margin-right: 0.5em;
+    @media screen and (min-width: $breakpoint) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 4fr;
+        grid-gap: $gutter;
+
+        ul {
+            margin: 0;
         }
     }
 
