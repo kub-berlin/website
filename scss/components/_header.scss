@@ -13,12 +13,9 @@
         margin: 0;
     }
     li {
+        display: inline;
+        margin-right: 1em;
         white-space: nowrap;
-
-        @media (min-width: $breakpoint) {
-            display: inline;
-            margin-right: 1em;
-        }
     }
 }
 
