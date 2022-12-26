@@ -3,7 +3,8 @@ table {
     font-size: 80%;
 }
 
-tr:nth-child(even) td {
+tbody tr:nth-child(even) td,
+tbody tr:nth-child(even) th {
     background-color: $color-bg-tint;
 }
 
