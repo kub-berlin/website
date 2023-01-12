@@ -68,7 +68,7 @@
 						<?php add_content($navpage, $lang) ?>
 						<li>
 							<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
-								<img src="<?php e($icon) ?>" alt="" width="510" height="510" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
+								<img src="<?php e($icon) ?>" alt="" width="100" height="100" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
 								<span class="image-title"><?php e($navpage['title']) ?></span>
 							</a>
 						</li>
