@@ -56,19 +56,19 @@
 		<?php if ($page['layout'] === 'home') : ?>
 			<nav id="shortcuts" aria-label="<?php e($lang['shortcuts']) ?>">
 				<ul>
-					<?php foreach (array(
-						'/angebote/beratung/asyl-und-aufenthalt/' => '/images/icons/Beratung_Asyl_Aufenthalt.svg',
-						'/angebote/beratung/frauen/' => '/images/icons/Frauen_beratung.svg',
-						'/angebote/beratung/psychosozial/' => '/images/icons/Psychosoziale_Beratung.svg',
-						'/angebote/deutschkurse/anmeldung-und-stundenplan/' => '/images/icons/Deutschkurse.svg',
-						'/angebote/deutschkurse/sprach-tandem/' => '/images/icons/Sprachtandem.svg',
-						'/angebote/formulare/' => '/images/icons/Formularprojekt.svg',
-					) as $navpath => $icon) : ?>
+					<?php foreach ([
+						['/angebote/beratung/asyl-und-aufenthalt/', '/images/icons/Beratung_Asyl_Aufenthalt.svg', true],
+						['/angebote/beratung/frauen/', '/images/icons/Frauen_beratung.svg', true],
+						['/angebote/beratung/psychosozial/', '/images/icons/Psychosoziale_Beratung.svg', true],
+						['/angebote/deutschkurse/anmeldung-und-stundenplan/', '/images/icons/Deutschkurse.svg', false],
+						['/angebote/deutschkurse/sprach-tandem/', '/images/icons/Sprachtandem.svg', false],
+						['/angebote/formulare/', '/images/icons/Formularprojekt.svg', true],
+					] as [$navpath, $icon, $mirror]) : ?>
 						<?php $navpage = get_page_by_path($navpath) ?>
 						<?php add_content($navpage, $lang) ?>
 						<li>
 							<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
-								<img src="<?php e($icon) ?>" alt="" width="510" height="510">
+								<img src="<?php e($icon) ?>" alt="" width="510" height="510" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
 								<span class="image-title"><?php e($navpage['title']) ?></span>
 							</a>
 						</li>
