@@ -3,6 +3,7 @@
 ob_start();
 include('main.php');
 $html = ob_get_clean();
+$html = str_replace("\t", '', $html);
 
 if ($error === null) {
 	$dir = 'cache/' . $_GET['path'];
