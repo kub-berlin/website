@@ -103,9 +103,10 @@
 }
 
 .menu-button {
-    position: absolute;
-    top: $padding;
-    right: $padding;
+    grid-row: 1;
+    grid-column: 2;
+    align-self: start;
+    justify-self: end;
 }
 
 #nav,
@@ -142,9 +143,9 @@
     }
 
     #language-nav {
-        position: absolute;
-        top: $padding;
-        right: $padding;
+        grid-row: 1;
+        grid-column: 2;
+        text-align: end;
         margin: 0;
     }
 }
