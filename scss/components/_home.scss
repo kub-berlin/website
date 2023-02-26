@@ -24,9 +24,9 @@
 
         .homeRow-address {
             grid-column: 1;
-            padding-right: $gutter * 0.5;
-            margin-right: -$gutter * 0.5;
-            border-right: 1px solid $color-brand;
+            padding-inline-end: $gutter * 0.5;
+            margin-inline-end: -$gutter * 0.5;
+            border-inline-end: 1px solid $color-brand;
         }
         .homeRow-about {
             grid-column: 2;

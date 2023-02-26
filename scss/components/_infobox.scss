@@ -9,7 +9,7 @@
         float: right;
         width: 8em;
         margin-left: 0.5em;
-        margin-bottom: 0.5em;
+        margin-block-end: 0.5em;
         shape-outside: circle();
     }
 }
@@ -17,9 +17,9 @@
 .alert {
     background-color: #fb0;
     padding: $padding;
-    margin-bottom: $spacer * 2;
+    margin-block-end: $spacer * 2;
 
     :last-child {
-        margin-bottom: 0;
+        margin-block-end: 0;
     }
 }

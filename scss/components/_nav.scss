@@ -29,7 +29,7 @@
 
         @include nav-color($color-brand, $color-brand-dark);
         padding: 0.5em;
-        margin-bottom: 1px;
+        margin-block-end: 1px;
     }
 
     a.active {
@@ -39,7 +39,7 @@
 
 #section-nav {
     font-size: 80%;
-    margin-top: 1px;
+    margin-block-start: 1px;
 
     ul {
         margin: 0;
@@ -52,8 +52,9 @@
         text-decoration: none;
         color: inherit;
 
-        padding: 0.3em $padding;
-        border-bottom: 1px solid black;
+        padding-block: 0.3em;
+        padding-inline: $padding;
+        border-block-end: 1px solid black;
 
         &:hover, &:focus {
             background: $color-brand-light;
@@ -62,16 +63,16 @@
     }
 
     ul ul a {
-        padding-left: $padding * 2;
+        padding-inline-start: $padding * 2;
     }
     ul ul ul a {
-        padding-left: $padding * 3;
+        padding-inline-start: $padding * 3;
     }
     ul ul ul ul a {
-        padding-left: $padding * 4;
+        padding-inline-start: $padding * 4;
     }
     ul ul ul ul ul a {
-        padding-left: $padding * 5;
+        padding-inline-start: $padding * 5;
     }
 
     a.active {
@@ -80,7 +81,7 @@
 }
 
 #language-nav {
-    margin: 2 * $spacer 0 $spacer;
+    margin-block: 2 * $spacer $spacer;
 
     ul {
         display: flex;
@@ -97,7 +98,7 @@
         padding: 0 0.2em;
 
         &.selected {
-            border-bottom: 0.2em solid;
+            border-block-end: 0.2em solid;
         }
     }
 }
@@ -138,7 +139,7 @@
         }
 
         a {
-            margin-bottom: 0;
+            margin-block-end: 0;
         }
     }
 

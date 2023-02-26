@@ -30,7 +30,8 @@ body {
 @media screen and (min-width: $breakpoint) {
     body {
         max-width: 40em * math.div(12, 7);
-        margin: 1em auto 2em;
+        margin-inline: auto;
+        margin-block: 1em 2em;
         padding: 0.5em;
     }
 

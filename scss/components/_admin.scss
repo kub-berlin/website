@@ -5,8 +5,7 @@
 }
 
 .button-small {
-	padding-top: 0;
-	padding-bottom: 0;
+	padding-block: 0;
 }
 
 html.admin {
@@ -77,11 +76,11 @@ html.admin {
 
 	label {
 		display: block;
-		margin: 1em 0;
+		margin-block: 1em;
 	}
 
 	form {
-		margin-bottom: 2em;
+		margin-block-end: 2em;
 	}
 
 	/* tinymce fix */
@@ -137,12 +136,12 @@ html.admin {
 .system-module {
 	border: 2px dashed;
 	padding: $padding;
-	margin-bottom: $spacer;
+	margin-block-end: $spacer;
 }
 
 .langs-available {
 	float: right;
-	margin-left: $padding;
+	margin-inline-start: $padding;
 }
 
 // HACK to fix grid layout
