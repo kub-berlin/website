@@ -29,7 +29,7 @@ body {
 
 @media screen and (min-width: $breakpoint) {
     body {
-        max-width: 40em * math.div(12, 7);
+        max-inline-size: 40em * math.div(12, 7);
         margin-inline: auto;
         margin-block: 1em 2em;
         padding: 0.5em;
@@ -58,6 +58,6 @@ body {
 
 @media print {
     body {
-        max-width: none;
+        max-inline-size: none;
     }
 }

@@ -12,7 +12,7 @@ html.admin {
 	/* layout */
 	body {
 		margin: 0;
-		max-width: none;
+		max-inline-size: none;
 	}
 
 	.nav-langs,
@@ -61,16 +61,16 @@ html.admin {
 	input,
 	select,
 	textarea {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	input[type="checkbox"] {
 		display: inline-block;
-		width: auto;
+		inline-size: auto;
 	}
 
 	textarea {
-		min-height: 50vh;
+		min-block-size: 50vh;
 		resize: vertical;
 	}
 
@@ -113,7 +113,7 @@ html.admin {
 	}
 
 	.file-list__icon {
-		height: 4em;
+		block-size: 4em;
 		object-fit: contain;
 	}
 
@@ -146,5 +146,5 @@ html.admin {
 
 // HACK to fix grid layout
 .tox-tinymce-aux {
-	width: 0 !important;
+	inline-size: 0 !important;
 }

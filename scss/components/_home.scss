@@ -9,7 +9,7 @@
 @media screen and (min-width: $breakpoint) {
     .homeRow-map {
         float: right;
-        max-width: 50%;
+        max-inline-size: 50%;
     }
 }
 
@@ -32,7 +32,7 @@
             grid-column: 2;
         }
         .homeRow-map {
-            max-width: none;
+            max-inline-size: none;
             grid-column: 3;
         }
     }

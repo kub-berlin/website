@@ -19,7 +19,7 @@
 
 // overwrite dimensions set in HTML
 img {
-    height: auto;
+    block-size: auto;
 }
 
 .rtl-mirror:dir(rtl) {
