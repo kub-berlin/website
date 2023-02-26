@@ -68,5 +68,5 @@ img {
     left: 0;
 }
 .skip:not(:focus) {
-    clip: rect(0,0,0,0);
+    clip-path: circle(0);
 }
