@@ -83,12 +83,12 @@
     margin: 2 * $spacer 0 $spacer;
 
     ul {
+        display: flex;
         margin: 0;
         padding: 0;
-    }
-
-    li {
-        display: inline;
+        column-gap: 0.2em;
+        flex-wrap: wrap;
+        list-style: none;
     }
 
     a {
