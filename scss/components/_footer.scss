@@ -19,8 +19,14 @@
         padding: 0;
     }
 
-    .footer-logos img {
-        max-inline-size: 20em;
+    .footer-logos {
+        a {
+            display: inline-block;
+        }
+        img {
+            display: block;
+            max-inline-size: 20em;
+        }
     }
 
     @media screen and (min-width: $breakpoint) {
