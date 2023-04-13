@@ -3,6 +3,7 @@
 #footer {
     background-color: $color-brand;
     color: contrast.color($color-brand);
+    accent-color: contrast.color($color-brand);
 
     a {
         color: inherit;
