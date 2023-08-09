@@ -23,11 +23,11 @@ $x: ($size - 3 * $thickness) * 0.5 + $thickness;
     }
 
     &:before {
-        top: -$x;
+        inset-block-start: -$x;
     }
 
     &:after {
-        top: $x;
+        inset-block-start: $x;
     }
 }
 

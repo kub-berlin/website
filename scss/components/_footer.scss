@@ -55,8 +55,8 @@
     }
     svg {
         position: absolute;
-        left: 0;
-        top: calc(50% - 0.5em);
+        inset-inline-start: 0;
+        inset-block-start: calc(50% - 0.5em);
         block-size: 1em;
         inline-size: 1em;
     }
