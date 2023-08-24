@@ -27,6 +27,5 @@ $url = "/sprach-tandem/index.php?lang=${lang['code']}&action=$action&tid=$id&a=$
     width="100%"
     height="1600"
     frameborder="0"
-    scrolling="auto"
-    seamless="seamless">
+    scrolling="auto">
 </iframe>
