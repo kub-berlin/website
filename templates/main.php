@@ -137,7 +137,7 @@
 						<?php include('tandem.php') ?>
 					<?php endif ?>
 				</main>
-				<?php if (!empty($area)) : ?>
+				<?php if (has_side_nav()) : ?>
 					<nav id="section-nav" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
 					</nav>

@@ -66,6 +66,17 @@ function get_module($slug, $include_pub=false)
 	return $page;
 }
 
+function has_side_nav()
+{
+	global $area, $areapage;
+	if (empty($area)) {
+		return false;
+	}
+
+	$subpages = get_subpages($areapage['id']);
+	return count($subpages) > 0;
+}
+
 function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 {
 	global $path, $lang, $area, $areapage, $baseurl;
