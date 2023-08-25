@@ -79,15 +79,19 @@
 
 		<div id="main-container">
 			<?php if ($page['layout'] === 'home') : ?>
-				<main id="main" class="l-full home">
-					<?php include('home.php') ?>
+				<main id="main" class="l-full home" vocab="http://schema.org/" typeof="NGO Place" resource="https://kub-berlin.org/#kub">
+					<div class="homeRow-about" property="description">
+						<?php echo $page['body'] ?>
+					</div>
+					<?php include('address.php') ?>
+					<?php include('map.php') ?>
 				</main>
 			<?php else : ?>
 				<main id="main" class="l-main <?php e($page['layout']) ?>">
 					<h2><?php e($page['title']) ?></h2>
 
 					<?php if ($page['layout'] === 'contact') : ?>
-						<?php include('home.php') ?>
+						<?php include('address.php') ?>
 					<?php endif ?>
 
 					<?php if (!empty($page['body_fallback'])) : ?>
@@ -137,7 +141,11 @@
 						<?php include('tandem.php') ?>
 					<?php endif ?>
 				</main>
-				<?php if (has_side_nav()) : ?>
+				<?php if ($page['layout'] === 'contact') : ?>
+					<aside class="l-side">
+						<?php include('map.php') ?>
+					</aside>
+				<?php elseif (has_side_nav()) : ?>
 					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
 					</nav>

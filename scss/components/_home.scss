@@ -8,19 +8,10 @@
 }
 
 @media screen and (min-width: $breakpoint) {
-    .homeRow-map {
-        float: right;
-        max-inline-size: 50%;
-    }
-}
-
-.home {
-    @media screen and (min-width: $breakpoint) {
-        > div {
-            display: grid;
-            grid-gap: $gutter;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
+    .home {
+        display: grid;
+        grid-gap: $gutter;
+        grid-template-columns: 1fr 1fr 1fr;
 
         .homeRow-address {
             grid-column: 1;
@@ -34,7 +25,6 @@
             grid-row: 1;
         }
         .homeRow-map {
-            max-inline-size: none;
             grid-column: 3;
             grid-row: 1;
         }
