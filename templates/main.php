@@ -79,11 +79,11 @@
 
 		<div id="main-container">
 			<?php if ($page['layout'] === 'home') : ?>
-				<main id="main" class="home">
+				<main id="main" class="l-full home">
 					<?php include('home.php') ?>
 				</main>
 			<?php else : ?>
-				<main id="main" class="<?php e($page['layout']) ?>">
+				<main id="main" class="l-main <?php e($page['layout']) ?>">
 					<h2><?php e($page['title']) ?></h2>
 
 					<?php if ($page['layout'] === 'contact') : ?>
@@ -138,7 +138,7 @@
 					<?php endif ?>
 				</main>
 				<?php if (has_side_nav()) : ?>
-					<nav id="section-nav" aria-label="<?php e($areapage['title']) ?>">
+					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
 					</nav>
 				<?php endif ?>

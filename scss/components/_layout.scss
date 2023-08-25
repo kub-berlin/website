@@ -16,10 +16,17 @@ html {
 }
 
 #header,
-#main,
+#main-container,
 #shortcuts,
 #footer {
     padding: $padding;
+}
+
+#main-container {
+    padding-block: $padding * 3;
+}
+#main-container :first-child {
+    margin-block-start: 0;
 }
 
 body {
@@ -41,18 +48,17 @@ body {
     #main-container {
         display: grid;
         grid-gap: $gutter;
-        grid-template-columns: 3fr 7fr 2fr;
+        grid-template-columns: repeat(6, 1fr);
         word-wrap: break-word;
     }
-    #section-nav {
-        grid-column: 1;
-        grid-row: 1;
+    .l-side {
+        grid-column: 5 / 7;
     }
-    #main {
-        grid-column: 2;
+    .l-main {
+        grid-column: 1 / 5;
     }
-    #main.home {
-        grid-column: 1 / 4;
+    .l-full {
+        grid-column: 1 / 7;
     }
 }
 
