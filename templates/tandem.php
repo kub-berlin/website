@@ -28,3 +28,4 @@ $url = "/sprach-tandem/index.php?lang=${lang['code']}&action=$action&tid=$id&a=$
     frameborder="0"
     scrolling="auto">
 </iframe>
+<script src="/static/embed.js" type="module"></script>
