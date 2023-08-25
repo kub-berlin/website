@@ -38,9 +38,6 @@
 }
 
 #section-nav {
-    font-size: 80%;
-    margin-block-start: 1px;
-
     ul {
         margin: 0;
         padding: 0;
@@ -52,9 +49,8 @@
         text-decoration: none;
         color: inherit;
 
-        padding-block: 0.3em;
+        padding-block: 0.5em;
         padding-inline: $padding;
-        border-block-end: 1px solid black;
 
         &:hover, &:focus {
             background: $color-brand-light;
@@ -63,15 +59,12 @@
     }
 
     ul ul a {
-        padding-inline-start: $padding * 2;
-    }
-    ul ul ul a {
         padding-inline-start: $padding * 3;
     }
-    ul ul ul ul a {
+    ul ul ul a {
         padding-inline-start: $padding * 4;
     }
-    ul ul ul ul ul a {
+    ul ul ul ul a {
         padding-inline-start: $padding * 5;
     }
 
