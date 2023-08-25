@@ -2,7 +2,7 @@
 <html lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" data-menu="<?php e($lang['menu']) ?>" class="website">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-src 'self' https://spenden.twingle.de">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php e($page['title'])?> &middot; Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e. V.</title>
 	<link href="<?php cachebust('/static/favicon.ico') ?>" rel="icon">
@@ -144,6 +144,10 @@
 				<?php if ($page['layout'] === 'contact') : ?>
 					<aside class="l-side">
 						<?php include('map.php') ?>
+					</aside>
+				<?php elseif ($page['layout'] === 'spenden') : ?>
+					<aside class="l-side">
+						<?php include('spenden.php') ?>
 					</aside>
 				<?php elseif (has_side_nav()) : ?>
 					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">
