@@ -38,6 +38,8 @@
 }
 
 #section-nav {
+    margin-inline: -$padding;
+
     ul {
         margin: 0;
         padding: 0;
@@ -120,6 +122,10 @@
     #nav,
     #language-nav {
         display: block;
+    }
+
+    #section-nav {
+        margin-inline: 0;
     }
 
     #nav {
