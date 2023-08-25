@@ -19,22 +19,24 @@
         > div {
             display: grid;
             grid-gap: $gutter;
-            grid-auto-flow: dense;
             grid-template-columns: 1fr 1fr 1fr;
         }
 
         .homeRow-address {
             grid-column: 1;
+            grid-row: 1;
             padding-inline-end: $gutter * 0.5;
             margin-inline-end: -$gutter * 0.5;
             border-inline-end: 1px solid $color-brand;
         }
         .homeRow-about {
             grid-column: 2;
+            grid-row: 1;
         }
         .homeRow-map {
             max-inline-size: none;
             grid-column: 3;
+            grid-row: 1;
         }
     }
 }
