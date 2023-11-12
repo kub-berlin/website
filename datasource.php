@@ -4,7 +4,7 @@ include_once('common.php');
 
 $db = new PDO($db_dsn, $db_user, $db_password);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
+$db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, true);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 $db->query("CREATE TABLE IF NOT EXISTS pages (
