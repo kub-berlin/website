@@ -149,6 +149,10 @@
 					<aside class="l-side">
 						<?php include('spenden.php') ?>
 					</aside>
+				<?php elseif ($page['layout'] === 'foerderkreis') : ?>
+					<aside class="l-side">
+						<?php include('foerderkreis.php') ?>
+					</aside>
 				<?php elseif (has_side_nav()) : ?>
 					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
