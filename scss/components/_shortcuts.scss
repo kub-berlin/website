@@ -7,17 +7,13 @@
         margin: 0;
         padding: 0;
 
-        display: grid;
-        grid-gap: 2 * $padding;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: flex;
+        gap: 2 * $padding;
+        flex-wrap: wrap;
+    }
 
-        @media (min-width: (200px * 2)) {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        @media print, (min-width: $breakpoint) {
-            grid-template-columns: repeat(6, minmax(0, 1fr));
-        }
+    li {
+        flex: 1 0 10em;
     }
 
     a {

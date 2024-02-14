@@ -62,7 +62,6 @@
 						['/angebote/beratung/psychosozial/', '/images/icons/Psychosoziale_Beratung.svg', true],
 						['/angebote/deutschkurse/anmeldung-und-stundenplan/', '/images/icons/Deutschkurse.svg', false],
 						['/angebote/deutschkurse/sprach-tandem/', '/images/icons/Sprachtandem.svg', false],
-						['/angebote/formulare/', '/images/icons/Formularprojekt.svg', true],
 					] as [$navpath, $icon, $mirror]) : ?>
 						<?php $navpage = get_page_by_path($navpath) ?>
 						<?php add_content($navpage, $lang) ?>
