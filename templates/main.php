@@ -148,6 +148,10 @@
 					<aside class="l-side">
 						<?php spenden('kub-spenden-allgemein/tw64df2b7d9f960') ?>
 					</aside>
+				<?php elseif ($page['layout'] === 'spenden-ccv') : ?>
+					<aside class="l-side">
+						<?php spenden('kub-ccvossel/tw65fc34564f0c6') ?>
+					</aside>
 				<?php elseif ($page['layout'] === 'foerderkreis') : ?>
 					<aside class="l-side">
 						<?php spenden('foerderkreis/tw656d9a25844ef') ?>
