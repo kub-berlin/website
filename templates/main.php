@@ -146,11 +146,11 @@
 					</aside>
 				<?php elseif ($page['layout'] === 'spenden') : ?>
 					<aside class="l-side">
-						<?php include('spenden.php') ?>
+						<?php spenden('kub-spenden-allgemein/tw64df2b7d9f960') ?>
 					</aside>
 				<?php elseif ($page['layout'] === 'foerderkreis') : ?>
 					<aside class="l-side">
-						<?php include('foerderkreis.php') ?>
+						<?php spenden('foerderkreis/tw656d9a25844ef') ?>
 					</aside>
 				<?php elseif (has_side_nav()) : ?>
 					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">

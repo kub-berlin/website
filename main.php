@@ -109,6 +109,20 @@ function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 	echo '</ul>';
 }
 
+function spenden($twid)
+{
+	?>
+	<iframe
+		src="https://spenden.twingle.de/kontakt-und-beratungsstelle-fur-fluchtlinge-und-migrant-innen-e-v/<?php e($twid) ?>/widget"
+		width="100%"
+		height="0"
+		frameborder="0"
+		scrolling="auto">
+	</iframe>
+	<script src="/static/embed.js" type="module"></script>
+	<?php
+}
+
 $fallback_lang = get_lang($fallback_lang_code);
 $lang = $fallback_lang;
 
