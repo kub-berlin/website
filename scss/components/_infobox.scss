@@ -1,7 +1,7 @@
 .infobox {
     overflow: hidden;  // clearfix
-    border: 0.2em solid $color-brand;
-    background: $color-bg-tint;
+    border: 0.2em solid var(--color-brand);
+    background: var(--color-bg-tint);
     padding: $padding;
     margin: 2 * $spacer 0;
 

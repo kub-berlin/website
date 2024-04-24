@@ -4,7 +4,7 @@
 
 .homeRow-map img {
     display: block;
-    border: 0.3em solid $color-brand;
+    border: 0.3em solid var(--color-brand);
 }
 
 @media screen and (min-width: $breakpoint) {
@@ -18,7 +18,7 @@
             grid-row: 1;
             padding-inline-end: $gutter * 0.5;
             margin-inline-end: -$gutter * 0.5;
-            border-inline-end: 1px solid $color-brand;
+            border-inline-end: 1px solid var(--color-brand);
         }
         .homeRow-about {
             grid-column: 2;

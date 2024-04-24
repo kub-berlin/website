@@ -75,11 +75,11 @@
     font-weight: bold;
     font-size: 110%;
 
-    background: $color-brand-light;
-    color: $color-fg;
+    background: var(--color-brand-light);
+    color: var(--color-fg);
 
     &:hover, &:focus-visible {
-        background: $color-brand;
-        color: $color-bg;
+        background: var(--color-brand);
+        color: var(--color-bg);
     }
 }

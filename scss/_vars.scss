@@ -16,3 +16,17 @@ $breakpoint: 54em;
 $padding: 1rem;
 $indentation: 1.5rem;
 $gutter: 3rem;
+
+:root {
+	--color-fg: #{$color-fg};
+	--color-bg: #{$color-bg};
+
+	--color-brand: #{$color-brand};
+	--color-brand-light: #{$color-brand-light};
+	--color-brand-dark: #{$color-brand-dark};
+
+	--color-bg-tint: #{$color-bg-tint};
+	--color-border: #{$color-border};
+	--color-link: #{$color-link};
+	--color-link-focus: #{$color-link-focus};
+}

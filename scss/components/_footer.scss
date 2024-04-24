@@ -1,7 +1,7 @@
 #footer {
-    background-color: $color-brand;
-    color: $color-bg;
-    accent-color: $color-bg;
+    background-color: var(--color-brand);
+    color: var(--color-bg);
+    accent-color: var(--color-bg);
 
     a {
         color: inherit;

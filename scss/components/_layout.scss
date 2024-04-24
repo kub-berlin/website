@@ -12,7 +12,7 @@ html {
 }
 
 #content-container {
-    background-color: $color-bg;
+    background-color: var(--color-bg);
 }
 
 #header,
