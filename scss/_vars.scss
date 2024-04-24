@@ -5,7 +5,7 @@ $color-brand: #005c5e;
 $color-brand-light: #a8cfd0;
 $color-brand-dark: #003738;
 
-$color-bg-tint: mix(#f8f8f8, $color-brand-light);
+$color-bg-tint: mix($color-bg, $color-brand-light);
 $color-border: $color-fg;
 $color-link: $color-brand;
 $color-link-focus: $color-brand-dark;
