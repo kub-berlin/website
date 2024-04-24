@@ -8,7 +8,7 @@
         text-decoration: none;
 
         &:hover,
-        &:focus {
+        &:focus-visible {
             text-decoration: underline;
         }
     }

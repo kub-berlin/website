@@ -22,7 +22,7 @@
         text-decoration: none;
         block-size: 100%;
 
-        &:hover, &:focus {
+        &:hover, &:focus-visible {
             text-decoration: underline;
         }
     }

@@ -56,7 +56,7 @@ main li {
 .nolink {
     &,
     &:hover,
-    &:focus,
+    &:focus-visible,
     &:active {
         text-decoration: none;
         color: inherit !important;

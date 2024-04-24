@@ -78,11 +78,8 @@
     background: $color-brand-light;
     color: $color-fg;
 
-    &:focus, &:hover {
+    &:hover, &:focus-visible {
         background: $color-brand;
-        color: $color-bg;
-    }
-    &:focus:not(:focus-visible) {
         color: $color-bg;
     }
 }
