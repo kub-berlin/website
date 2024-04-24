@@ -1,32 +1,23 @@
-$color-fg: #111;
-$color-bg: #fff;
-
-$color-brand: #005c5e;
-$color-brand-light: #a8cfd0;
-$color-brand-dark: #003738;
-
-$color-bg-tint: mix($color-bg, $color-brand-light);
-$color-border: $color-fg;
-$color-link: $color-brand;
-$color-link-focus: $color-brand-dark;
-$font-size-min: 1em;
-$font-size-max: 1em;
-
 $breakpoint: 54em;
 $padding: 1rem;
+$spacer: 1em;
 $indentation: 1.5rem;
 $gutter: 3rem;
 
 :root {
-	--color-fg: #{$color-fg};
-	--color-bg: #{$color-bg};
+	--color-fg: #111;
+	--color-bg: #fff;
 
-	--color-brand: #{$color-brand};
-	--color-brand-light: #{$color-brand-light};
-	--color-brand-dark: #{$color-brand-dark};
+	--color-brand: #005c5e;
+	--color-brand-light: #a8cfd0;
+	--color-brand-dark: #003738;
 
-	--color-bg-tint: #{$color-bg-tint};
-	--color-border: #{$color-border};
-	--color-link: #{$color-link};
-	--color-link-focus: #{$color-link-focus};
+	--color-bg-tint: color-mix(in oklch, var(--color-bg), var(--color-brand-light));
+	--color-border: var(--color-fg);
+	--color-link: var(--color-brand);
+	--color-link-focus: var(--color-brand-dark);
+
+	--padding: #{$padding};
+	--spacer: #{$spacer};
+	--indentation: #{$indentation};
 }

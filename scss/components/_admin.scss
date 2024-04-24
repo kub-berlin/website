@@ -1,18 +1,7 @@
 .button-light {
-	background-color: var(--color-brand-light);
-	border-color: var(--color-brand-light);
-	color: var(--color-fg);
-
-	&:hover, &:focus-visible {
-		background-color: color-mix(in oklch, var(--color-brand-light), var(--color-fg) 5%);
-		border-color: color-mix(in oklch, var(--color-brand-light), var(--color-fg) 5%);
-		color: var(--color-fg);
-	}
-	&:active {
-		background-color: color-mix(in oklch, var(--color-brand-light), var(--color-fg) 10%);
-		border-color: color-mix(in oklch, var(--color-brand-light), var(--color-fg) 10%);
-		color: var(--color-fg);
-	}
+	--btn-color: var(--color-brand-light);
+	--btn-focus: color-mix(in oklch, var(--color-brand-light), var(--color-fg) 10%);
+	--btn-contrast: var(--color-fg);
 }
 
 .button-small {
