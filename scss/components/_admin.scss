@@ -1,5 +1,5 @@
 .button-light {
-	@include button-color($color-brand-light, $color-fg, darken($color-brand-light, 10%));
+	@include button-color($color-brand-light, $color-fg, mix($color-brand-light, $color-fg, 90%));
 }
 
 .button-small {
