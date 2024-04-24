@@ -1,5 +1,18 @@
 .button-light {
-	@include button-color($color-brand-light, $color-fg, mix($color-brand-light, $color-fg, 90%));
+	background-color: $color-brand-light;
+	border-color: $color-brand-light;
+	color: $color-fg;
+
+	&:hover, &:focus-visible {
+		background-color: mix($color-brand-light, $color-fg, 95%);
+		border-color: mix($color-brand-light, $color-fg, 95%);
+		color: $color-fg;
+	}
+	&:active {
+		background-color: mix($color-brand-light, $color-fg, 90%);
+		border-color: mix($color-brand-light, $color-fg, 90%);
+		color: $color-fg;
+	}
 }
 
 .button-small {
