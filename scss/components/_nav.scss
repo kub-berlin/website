@@ -1,5 +1,3 @@
-@use "../../node_modules/sass-planifolia/sass/contrast";
-
 #nav {
     position: relative;  // elevate above shadow
     font-size: 110%;
@@ -18,11 +16,11 @@
         text-overflow: ellipsis;
 
         background: $color-brand;
-        color: contrast.color($color-brand);
+        color: $color-bg;
 
         &.active, &:hover, &:focus {
             background: $color-brand-dark;
-            color: contrast.color($color-brand-dark);
+            color: $color-bg;
         }
 
         padding: 0.5em;
@@ -49,11 +47,11 @@
 
         &:hover, &:focus {
             background: $color-brand-light;
-            color: contrast.color($color-brand-light);
+            color: $color-fg;
         }
         &.active {
             background: $color-brand-dark;
-            color: contrast.color($color-brand-dark);
+            color: $color-bg;
         }
     }
 

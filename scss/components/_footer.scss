@@ -1,9 +1,7 @@
-@use "../../node_modules/sass-planifolia/sass/contrast";
-
 #footer {
     background-color: $color-brand;
-    color: contrast.color($color-brand);
-    accent-color: contrast.color($color-brand);
+    color: $color-bg;
+    accent-color: $color-bg;
 
     a {
         color: inherit;

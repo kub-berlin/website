@@ -1,7 +1,5 @@
-@use "../../node_modules/sass-planifolia/sass/contrast";
-
 .button-light {
-	@include button-color($color-brand-light, contrast.color($color-brand-light), darken($color-brand-light, 10%));
+	@include button-color($color-brand-light, $color-fg, darken($color-brand-light, 10%));
 }
 
 .button-small {
