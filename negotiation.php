@@ -33,8 +33,12 @@ function match_language($accept, $candidates, $fallback)
 function get_preferred_language()
 {
 	$langs = ['de', 'en', 'fr', 'es', 'ar', 'fa', 'ru'];
-	$accept = parse_accept_language($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-	return match_language($accept, $langs, $langs[0]);
+	if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
+		$accept = parse_accept_language($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+		return match_language($accept, $langs, $langs[0]);
+	} else {
+		return $langs[0];
+	}
 }
 
 $lang = get_preferred_language();
