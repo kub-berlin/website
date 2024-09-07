@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php e($page['title'])?> &middot; Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e. V.</title>
 	<link href="<?php cachebust('/static/favicon.ico') ?>" rel="icon">
-	<link href="<?php cachebust("/static/kub-${lang['dir']}.css") ?>" rel="stylesheet" type="text/css" />
+	<link href="<?php cachebust("/static/kub.css") ?>" rel="stylesheet" type="text/css" />
 
 	<?php foreach (get_langs() as $l): ?>
 		<?php if ($l['code'] !== $lang['code']) : ?>
