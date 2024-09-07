@@ -6,9 +6,9 @@
     margin: 2 * $spacer 0;
 
     img[src*="icons"] {
-        float: right;
+        float: inline-end;
         inline-size: 8em;
-        margin-left: 0.5em;
+        margin-inline-start: 0.5em;
         margin-block-end: 0.5em;
         shape-outside: circle();
     }
