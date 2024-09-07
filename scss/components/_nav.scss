@@ -14,6 +14,8 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        padding: 0.5em;
+        margin-block-end: 1px;
 
         background: var(--color-brand);
         color: var(--color-bg);
@@ -22,9 +24,6 @@
             background: var(--color-brand-dark);
             color: var(--color-bg);
         }
-
-        padding: 0.5em;
-        margin-block-end: 1px;
     }
 }
 
