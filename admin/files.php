@@ -85,15 +85,19 @@ function get_files($path)
 		<?php foreach (get_files($path) as $file) : ?>
 			<li>
 				<?php if ($file['is_file']) : ?>
-					<?php if ($file['is_image']) : ?>
-						<img src="<?php e($file['url']) ?>" class="file-list__icon" alt="image">
-					<?php else : ?>
-						<img src="static/file.png" class="file-list__icon" alt="file">
-					<?php endif ?>
-					<a href="<?php e($file['url']) ?>" target="_blank" class="file-list__main"><?php e($file['name']) ?></a>
+					<a href="<?php e($file['url']) ?>" target="_blank">
+						<?php if ($file['is_image']) : ?>
+							<img src="<?php e($file['url']) ?>" class="file-list__icon" alt="image">
+						<?php else : ?>
+							<img src="static/file.png" class="file-list__icon" alt="file">
+						<?php endif ?>
+						<?php e($file['name']) ?>
+					</a>
 				<?php else : ?>
-					<img src="static/folder.png" class="file-list__icon" alt="folder">
-					<a href="?path=<?php e($file['path']) ?>" class="file-list__main"><?php e($file['name']) ?>/</a>
+					<a href="?path=<?php e($file['path']) ?>">
+						<img src="static/folder.png" class="file-list__icon" alt="folder">
+						<?php e($file['name']) ?>/
+					</a>
 				<?php endif ?>
 
 				<?php if ($file['name'] != '..') : ?>
