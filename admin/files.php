@@ -69,7 +69,7 @@ function get_files($path)
 	<meta charset="utf-8" />
 	<title>KuB Administration</title>
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-	<link rel="stylesheet" type="text/css" href="../static/kub-ltr.css" />
+	<link rel="stylesheet" type="text/css" href="../static/kub.css" />
 </head>
 <body>
 	<form method="post" enctype="multipart/form-data" class="form-combined">

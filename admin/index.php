@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta charset="utf-8" />
 	<title>KuB Administration</title>
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-	<link rel="stylesheet" type="text/css" href="../static/kub-ltr.css" />
+	<link rel="stylesheet" type="text/css" href="../static/kub.css" />
 </head>
 <body>
 	<nav class="nav-langs" aria-label="Languages">
