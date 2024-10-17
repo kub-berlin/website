@@ -30,7 +30,7 @@ if (textarea) {
 		contextmenu: false,
 		plugins: 'code image link table lists',
 		toolbar: 'undo redo blocks bold italic link | image table numlist bullist outdent indent readmore module | code',
-		content_css: `/xi/static/kub-${textarea.dir}.css`,
+		content_css: '/static/kub.css',
 		formats: {
 			info: {block: 'aside', classes: 'infobox', wrapper: true},
 			warning: {block: 'div', classes: 'alert', wrapper: true},
