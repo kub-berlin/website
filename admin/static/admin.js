@@ -25,6 +25,7 @@ window.addEventListener('beforeunload', function(event) {
 var textarea = document.querySelector('textarea');
 if (textarea) {
 	tinymce.init({
+		license_key: 'gpl',
 		target: textarea,
 		menubar: false,
 		contextmenu: false,
