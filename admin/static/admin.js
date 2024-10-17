@@ -46,14 +46,14 @@ if (textarea) {
 				tooltip: 'read more',
 				onAction: function() {
 					return editor.execCommand('mceInsertContent', false, '<hr class="system-read-more" />');
-				}
+				},
 			});
 			editor.ui.registry.addButton('module', {
 				icon: 'embed-page',
 				tooltip: 'module',
 				onAction: function() {
 					return editor.execCommand('mceInsertContent', false, '<div class="system-module"></div>');
-				}
+				},
 			});
 			editor.on('change', function() {
 				var form = editor.getElement().closest('form');
@@ -61,6 +61,6 @@ if (textarea) {
 					unsavedForms.push(form);
 				}
 			});
-		}
+		},
 	});
 }
