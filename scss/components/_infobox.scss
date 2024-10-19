@@ -3,7 +3,7 @@
     border: 0.2em solid var(--color-brand);
     background: var(--color-bg-tint);
     padding: $padding;
-    margin: 2 * $spacer 0;
+    margin-block: 2 * $spacer;
 
     img[src*="icons"] {
         float: inline-end;
