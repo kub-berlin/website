@@ -5,20 +5,20 @@ $indentation: 1.5rem;
 $gutter: 3rem;
 
 :root {
-	--color-fg: #111;
-	--color-bg: #fff;
-	--color-backdrop: #eee;
+    --color-fg: #111;
+    --color-bg: #fff;
+    --color-backdrop: #eee;
 
-	--color-brand: #005c5e;
-	--color-brand-light: #a8cfd0;
-	--color-brand-dark: #003738;
+    --color-brand: #005c5e;
+    --color-brand-light: #a8cfd0;
+    --color-brand-dark: #003738;
 
-	--color-bg-tint: color-mix(in srgb, var(--color-bg), var(--color-brand-light) 30%);
-	--color-border: var(--color-fg);
-	--color-link: var(--color-brand);
-	--color-link-focus: var(--color-brand-dark);
+    --color-bg-tint: color-mix(in srgb, var(--color-bg), var(--color-brand-light) 30%);
+    --color-border: var(--color-fg);
+    --color-link: var(--color-brand);
+    --color-link-focus: var(--color-brand-dark);
 
-	--padding: #{$padding};
-	--spacer: #{$spacer};
-	--indentation: #{$indentation};
+    --padding: #{$padding};
+    --spacer: #{$spacer};
+    --indentation: #{$indentation};
 }
