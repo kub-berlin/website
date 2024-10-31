@@ -6,7 +6,7 @@ html {
 
 @media screen {
     html.website {
-        background-color: #eee;
+        background-color: var(--color-backdrop);
         padding: 0;
     }
 }
