@@ -21,6 +21,7 @@
 
 .alert {
     background-color: #fb0;
+    color: var(--color-dark);
     padding: $padding;
 
     :last-child {
