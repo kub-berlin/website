@@ -1,6 +1,6 @@
 .button-light {
-    --btn-color: var(--color-brand-light);
-    --btn-focus: color-mix(in oklch, var(--color-brand-light), var(--color-fg) 10%);
+    --btn-color: var(--color-brand-tint);
+    --btn-focus: color-mix(in oklch, var(--color-brand-tint), var(--color-fg) 10%);
     --btn-contrast: var(--color-fg);
 }
 

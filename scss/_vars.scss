@@ -10,10 +10,10 @@ $gutter: 3rem;
     --color-backdrop: #eee;
 
     --color-brand: #005c5e;
-    --color-brand-light: #a8cfd0;
+    --color-brand-tint: #a8cfd0;
     --color-brand-dark: #003738;
 
-    --color-bg-tint: color-mix(in srgb, var(--color-bg), var(--color-brand-light) 30%);
+    --color-bg-tint: color-mix(in srgb, var(--color-bg), var(--color-brand-tint) 30%);
     --color-border: var(--color-fg);
     --color-link: var(--color-brand);
     --color-link-focus: var(--color-brand-dark);
