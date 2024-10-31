@@ -16,6 +16,7 @@ $gutter: 3rem;
     --color-brand-dark: #003738;
 
     --color-bg-tint: color-mix(in srgb, var(--color-bg), var(--color-brand-tint) 30%);
+    --color-bg-tint-border: var(--color-brand-tint);
     --color-border: var(--color-fg);
     --color-link: var(--color-brand);
     --color-link-focus: var(--color-brand-dark);
@@ -23,4 +24,22 @@ $gutter: 3rem;
     --padding: #{$padding};
     --spacer: #{$spacer};
     --indentation: #{$indentation};
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --color-dark: #222;
+        --color-fg: var(--color-light);
+        --color-bg: var(--color-dark);
+        --color-backdrop: #000;
+        --color-brand-tint: var(--color-brand-dark);
+        --color-bg-tint: #191b1a;
+        --color-bg-tint-border: var(--color-backdrop);
+    }
+
+    .file-list__icon,
+    .brand-link img {
+        filter: invert(100%) hue-rotate(180deg);
+    }
 }
