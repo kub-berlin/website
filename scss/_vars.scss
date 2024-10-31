@@ -36,10 +36,19 @@ $gutter: 3rem;
         --color-brand-tint: var(--color-brand-dark);
         --color-bg-tint: #191b1a;
         --color-bg-tint-border: var(--color-backdrop);
+        --color-link: #64adae;
+        --color-link-focus: #448e8f;
     }
 
     .file-list__icon,
     .brand-link img {
         filter: invert(100%) hue-rotate(180deg);
     }
+}
+
+.button, button, [type="button"], [type="submit"] {
+    // use color-brand instead of color-link
+    --btn-color: var(--color-brand);
+    --btn-focus: var(--color-brand-dark);
+    --btn-contrast: var(--color-light);
 }
