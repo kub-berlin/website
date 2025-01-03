@@ -203,6 +203,7 @@
 						<?php add_content($navpage, $lang) ?>
 						<li><a href="<?php e("$baseurl/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
 					<?php endforeach ?>
+					<li><a href="/wiki/"><?php e($lang['wiki']) ?></a></li>
 				</ul>
 			</nav>
 
