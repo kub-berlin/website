@@ -209,7 +209,7 @@
 
 			<div class="footer-logos">
 				<a href="<?php e("$baseurl/${lang['code']}/ueber-die-kub/transparenz/") ?>">
-					<img src="/images/Logos/Transparente_Zivilgesellschaft_bw_inverted.svg" alt="Initiative Transparente Zivilgesellschaft">
+					<img src="/images/Logos/Transparente_Zivilgesellschaft_bw_inverted.svg" alt="Initiative Transparente Zivilgesellschaft" width="537.2" height="145.9">
 				</a>
 			</div>
 		</footer>
