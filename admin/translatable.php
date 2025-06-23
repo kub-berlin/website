@@ -4,6 +4,7 @@
 // transifex.
 
 include_once('../datasource.php');
+include('auth.php');
 
 $translation = get_translation($_GET['page'], $_GET['lang']);
 

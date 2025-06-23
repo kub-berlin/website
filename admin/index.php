@@ -2,6 +2,7 @@
 
 include_once('../datasource.php');
 include_once('csrf.php');
+include('auth.php');
 
 function render_side_nav($page=null, $maxdepth=10)
 {
