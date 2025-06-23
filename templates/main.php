@@ -156,6 +156,10 @@
 					<aside class="l-side">
 						<?php spenden('foerderkreis/tw656d9a25844ef') ?>
 					</aside>
+				<?php elseif ($page['layout'] === 'foerderkreis-briefaktion') : ?>
+					<aside class="l-side">
+						<?php spenden('foerderkreis-briefaktion/tw684bcdc396b26') ?>
+					</aside>
 				<?php elseif (has_side_nav()) : ?>
 					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
