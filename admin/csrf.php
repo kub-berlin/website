@@ -2,8 +2,8 @@
 
 function sign($s)
 {
-	global $secret;
-	return hash_hmac('sha256', $s, $secret);
+	global $csrf_secret;
+	return hash_hmac('sha256', $s, $csrf_secret);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
