@@ -135,6 +135,7 @@
 									<?php add_content($p, $lang) ?>
 									<li><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
 								<?php endforeach ?>
+							</ul>
 						<?php endif ?>
 					<?php elseif ($page['layout'] === 'tandem') : ?>
 						<?php include('tandem.php') ?>
