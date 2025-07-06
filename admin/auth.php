@@ -20,7 +20,7 @@ function forbidden()
 {
     session_destroy();
     header('HTTP/1.1 403 Forbidden');
-    echo "403 Forbidden";
+    echo "403 Forbidden\n";
     exit;
 }
 
@@ -46,8 +46,8 @@ function sha256($bytes)
     return b64(hash('sha256', $bytes, true));
 }
 
-if (isset($_SERVER['Authorization']) && str_starts_with($_SERVER['Authorization'], 'Bearer')) {
-    if ($_SERVER['Authorization'] !== "Bearer ${auth['token']}") {
+if (isset($_SERVER['HTTP_AUTHORIZATION']) && str_starts_with($_SERVER['HTTP_AUTHORIZATION'], 'Bearer')) {
+    if ($_SERVER['HTTP_AUTHORIZATION'] !== "Bearer ${auth['token']}") {
         forbidden();
     }
 } elseif (isset($_GET['code'])) {
