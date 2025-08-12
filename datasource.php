@@ -7,8 +7,10 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, true);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
+/* HACK to make this compatible with both mysql and sqlite
+ * see https://stackoverflow.com/a/41028314 */
 $db->query("CREATE TABLE IF NOT EXISTS pages (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	id INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */,
 	slug VARCHAR(32),
 	layout VARCHAR(32),
 	order_by INTEGER,
@@ -16,16 +18,16 @@ $db->query("CREATE TABLE IF NOT EXISTS pages (
 	show_in_nav BOOLEAN,
 	parent INTEGER,
 	FOREIGN KEY (parent) REFERENCES pages(id) ON DELETE CASCADE,
-	UNIQUE KEY (slug, parent)
+	UNIQUE (slug, parent)
 );");
 $db->query("CREATE TABLE IF NOT EXISTS translations (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	id INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */,
 	title TEXT,
 	body TEXT,
 	page INTEGER NOT NULL,
 	lang VARCHAR(2) NOT NULL,
 	FOREIGN KEY (page) REFERENCES pages(id) ON DELETE CASCADE,
-	UNIQUE KEY (page, lang)
+	UNIQUE (page, lang)
 );");
 
 function fetch_or_404($stmt)
