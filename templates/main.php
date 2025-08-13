@@ -45,9 +45,9 @@
 			<nav id="nav">
 				<ul>
 					<?php foreach (array('/', '/angebote/', '/mitmachen/', '/spenden/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
+						<?php endif ?>
 					<?php endforeach ?>
 				</ul>
 			</nav>
@@ -63,14 +63,14 @@
 						['/angebote/deutschkurse/anmeldung-und-stundenplan/', '/images/icons/Deutschkurse.svg', false],
 						['/angebote/deutschkurse/sprach-tandem/', '/images/icons/Sprachtandem.svg', false],
 					] as [$navpath, $icon, $mirror]) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li>
-							<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
-								<img src="<?php e($icon) ?>" alt="" width="100" height="100" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
-								<span class="image-title"><?php e($navpage['title']) ?></span>
-							</a>
-						</li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li>
+								<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
+									<img src="<?php e($icon) ?>" alt="" width="100" height="100" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
+									<span class="image-title"><?php e($navpage['title']) ?></span>
+								</a>
+							</li>
+						<?php endif ?>
 					<?php endforeach ?>
 				</ul>
 			</nav>
@@ -204,9 +204,9 @@
 						'/datenschutz/',
 						'/impressum/',
 					) as $navpath) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li><a href="<?php e("$baseurl/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li><a href="<?php e("$baseurl/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
+						<?php endif ?>
 					<?php endforeach ?>
 					<li><a href="/wiki/"><?php e($lang['wiki']) ?></a></li>
 				</ul>
