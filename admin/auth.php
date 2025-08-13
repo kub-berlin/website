@@ -46,7 +46,9 @@ function sha256($bytes)
     return b64(hash('sha256', $bytes, true));
 }
 
-if (isset($_SERVER['HTTP_AUTHORIZATION']) && str_starts_with($_SERVER['HTTP_AUTHORIZATION'], 'Bearer')) {
+if (!$auth) {
+    // do nothing
+} elseif (isset($_SERVER['HTTP_AUTHORIZATION']) && str_starts_with($_SERVER['HTTP_AUTHORIZATION'], 'Bearer')) {
     if ($_SERVER['HTTP_AUTHORIZATION'] !== "Bearer ${auth['token']}") {
         forbidden();
     }
