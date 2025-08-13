@@ -30,6 +30,13 @@ $db->query("CREATE TABLE IF NOT EXISTS translations (
 	UNIQUE (page, lang)
 );");
 
+try {
+	$db->query("INSERT INTO pages
+		(id, slug, layout, order_by, published, show_in_nav, parent)
+		VALUES (1, '', 'home', 10, 1, 0, NULL)
+	;");
+} catch (PDOException) {}
+
 function fetch_or_404($stmt)
 {
 	$result = $stmt->fetch();
