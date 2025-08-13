@@ -2,7 +2,7 @@
 
 ini_set('display_errors', 'On');
 
-$baseurl = '/xi';
+$baseurl = '';
 $csrf_secret = 'CHANGEME';
 $fallback_lang_code = 'de';
 $db_dsn = 'sqlite:'.__DIR__.'/db.sqlite';
