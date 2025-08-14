@@ -69,7 +69,7 @@ function get_module($slug, $include_pub=false)
 	$stmt->execute(array('slug' => $slug));
 	$page = $stmt->fetch();
 	if (!$page) {
-		return '';
+		return null;
 	}
 	// do not add modules inside modules to avoid infinite loops
 	add_content($page, $lang, false);

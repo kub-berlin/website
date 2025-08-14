@@ -14,7 +14,9 @@
 		<?php e($lang['subway']) ?>: <bdi>U8 Moritzplatz</bdi><br />
 		<?php e($lang['bus']) ?>: <bdi>M29 Moritzplatz</bdi>
 	</p>
-	<div property="openingHoursSpecification" content="Mo 09:00-13:00, Mo 14:00-17:00, Tu 09:00-13:00, Th 09:00-13:00, Th 14:00-17:00, Fr 09:00-13:00">
-		<?php echo get_module('opening-hours')['body'] ?>
-	</div>
+	<?php if ($mod = get_module('opening-hours')) : ?>
+		<div property="openingHoursSpecification" content="Mo 09:00-13:00, Mo 14:00-17:00, Tu 09:00-13:00, Th 09:00-13:00, Th 14:00-17:00, Fr 09:00-13:00">
+			<?php echo $mod['body'] ?>
+		</div>
+	<?php endif ?>
 </address>

@@ -31,9 +31,11 @@
 						<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
 					</a>
 				</h1>
-				<div id="header-bottom">
-					<?php echo get_module('header-bottom')['body'] ?>
-				</div>
+				<?php if ($mod = get_module('header-bottom')) : ?>
+					<div id="header-bottom">
+						<?php echo $mod['body'] ?>
+					</div>
+				<?php endif ?>
 				<nav id="language-nav" aria-label="<?php e($lang['languages']) ?>">
 					<ul>
 						<?php foreach (get_langs() as $l): ?>
