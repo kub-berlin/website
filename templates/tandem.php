@@ -24,7 +24,7 @@ $url = "/sprach-tandem/index.php?lang=${lang['code']}&action=$action&tid=$id&a=$
 <iframe
     src="<?php e($url) ?>"
     width="100%"
-    height="1600"
+    height="600"
     frameborder="0"
     scrolling="auto">
 </iframe>
