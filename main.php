@@ -89,7 +89,7 @@ function has_side_nav()
 
 function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 {
-	global $path, $lang, $area, $areapage, $baseurl;
+	global $path, $lang, $area, $areapage;
 	if (empty($area)) {
 		return;
 	}
@@ -109,7 +109,7 @@ function render_side_nav($root=null, $rootpath='', $maxdepth=4)
 		$ppath = $rootpath . $p['slug'] . '/';
 		?>
 			<li>
-				<a <?php if ($ppath === $path) : ?>class="active"<?php endif ?> href="<?php e("$baseurl/${lang['code']}$ppath") ?>"><?php e($p['title']) ?></a>
+				<a <?php if ($ppath === $path) : ?>class="active"<?php endif ?> href="<?php e("/${lang['code']}$ppath") ?>"><?php e($p['title']) ?></a>
 				<?php if ($maxdepth > 0) : ?>
 					<?php render_side_nav($p, $ppath, $maxdepth - 1) ?>
 				<?php endif ?>
