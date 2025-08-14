@@ -1,25 +1,35 @@
 <Files ~ "(^\.ht|\.sqlite|\.php$)">
 	Deny from all
 </Files>
-<Files "cache.php">
-	Allow from all
-</Files>
 
 RewriteEngine On
 
+# if the file exists, serve the file
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule . - [L]
 
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule . - [L]
 
-RewriteRule ^.*[^/]$ /xi/$0/ [L,R=301]
+# map sitemap and favicon
+RewriteRule ^sitemap.xml$ website/sitemap.php [L]
+RewriteRule ^favicon.ico$ website/static/favicon.ico [L]
 
-RewriteCond %{REQUEST_URI} !^/xi/../.*
-RewriteRule ^(.*)$ xi/negotiation.php?path=$1 [QSA,L]
+# map static files
+RewriteCond %{REQUEST_URI} ^/static/(.*)$
+RewriteCond %{DOCUMENT_ROOT}/website/static/%1 -f
+RewriteRule . website/static/%1 [L]
 
-RewriteCond %{REQUEST_URI} ^/xi/(.*)/$
-RewriteCond %{DOCUMENT_ROOT}/xi/cache/%1/index.html -f
-RewriteRule . cache/%1/index.html [L]
+# add trailing slash
+RewriteRule ^.*[^/]$ /$0/ [L,R=301]
 
-RewriteRule ^(.*)$ cache.php?path=$1 [QSA]
+# if path does not start with a 2-letter language code, use content negotiation
+RewriteCond %{REQUEST_URI} !^/../.*
+RewriteRule ^(.*)$ website/negotiation.php?path=$1 [QSA,L]
+
+# use cache if it exists
+RewriteCond %{REQUEST_URI} ^/(.*)/$
+RewriteCond %{DOCUMENT_ROOT}/website/cache/%1/index.html -f
+RewriteRule . website/cache/%1/index.html [L]
+
+RewriteRule ^(.*)$ website/cache.php?path=$1 [QSA]

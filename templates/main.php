@@ -31,9 +31,11 @@
 						<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
 					</a>
 				</h1>
-				<div id="header-bottom">
-					<?php echo get_module('header-bottom')['body'] ?>
-				</div>
+				<?php if ($mod = get_module('header-bottom')) : ?>
+					<div id="header-bottom">
+						<?php echo $mod['body'] ?>
+					</div>
+				<?php endif ?>
 				<nav id="language-nav" aria-label="<?php e($lang['languages']) ?>">
 					<ul>
 						<?php foreach (get_langs() as $l): ?>
@@ -45,9 +47,9 @@
 			<nav id="nav">
 				<ul>
 					<?php foreach (array('/', '/angebote/', '/mitmachen/', '/spenden/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
+						<?php endif ?>
 					<?php endforeach ?>
 				</ul>
 			</nav>
@@ -63,14 +65,14 @@
 						['/angebote/deutschkurse/anmeldung-und-stundenplan/', '/images/icons/Deutschkurse.svg', false],
 						['/angebote/deutschkurse/sprach-tandem/', '/images/icons/Sprachtandem.svg', false],
 					] as [$navpath, $icon, $mirror]) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li>
-							<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
-								<img src="<?php e($icon) ?>" alt="" width="100" height="100" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
-								<span class="image-title"><?php e($navpage['title']) ?></span>
-							</a>
-						</li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li>
+								<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
+									<img src="<?php e($icon) ?>" alt="" width="100" height="100" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
+									<span class="image-title"><?php e($navpage['title']) ?></span>
+								</a>
+							</li>
+						<?php endif ?>
 					<?php endforeach ?>
 				</ul>
 			</nav>
@@ -204,9 +206,9 @@
 						'/datenschutz/',
 						'/impressum/',
 					) as $navpath) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li><a href="<?php e("$baseurl/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li><a href="<?php e("$baseurl/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
+						<?php endif ?>
 					<?php endforeach ?>
 					<li><a href="/wiki/"><?php e($lang['wiki']) ?></a></li>
 				</ul>

@@ -50,6 +50,16 @@ function add_content(&$page, $lang, $add_modules=true)
 	$page['truncated'] = truncate($body, true);
 }
 
+function get_page($path, $lang) {
+	try {
+		$page = get_page_by_path($path);
+		add_content($page, $lang);
+		return $page;
+	} catch (HttpException) {
+		return null;
+	}
+}
+
 function get_module($slug, $include_pub=false)
 {
 	global $db, $lang;
@@ -59,7 +69,7 @@ function get_module($slug, $include_pub=false)
 	$stmt->execute(array('slug' => $slug));
 	$page = $stmt->fetch();
 	if (!$page) {
-		return '';
+		return null;
 	}
 	// do not add modules inside modules to avoid infinite loops
 	add_content($page, $lang, false);
