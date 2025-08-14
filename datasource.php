@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-include_once('common.php');
+include_once('utils.php');
 
 $db = new PDO($db_dsn, $db_user, $db_password);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-include_once('../common.php');
+include_once('../utils.php');
 include('auth.php');
 
 $root = '../../images';
