@@ -2,14 +2,6 @@
 
 include_once('../config.php');
 
-session_set_cookie_params([
-    'path' => $auth['base_path'],
-    'secure' => true,
-    'httponly' => true,
-    'samesite' => 'Lax',
-]);
-session_start();
-
 function redirect($url)
 {
     header("Location: $url", true, 303);
@@ -46,47 +38,57 @@ function sha256($bytes)
     return b64(hash('sha256', $bytes, true));
 }
 
-if (isset($_SERVER['HTTP_AUTHORIZATION']) && str_starts_with($_SERVER['HTTP_AUTHORIZATION'], 'Bearer')) {
-    if ($_SERVER['HTTP_AUTHORIZATION'] !== "Bearer ${auth['token']}") {
-        forbidden();
-    }
-} elseif (isset($_GET['code'])) {
-    if (time() - $_SESSION['started'] > 5 * 60) {
-        forbidden();
-    }
-    if ($_GET['state'] !== $_SESSION['state']) {
-        forbidden();
-    }
-    $response = post($auth['token_endpoint'], [
-        'client_id' => $auth['client_id'],
-        'client_secret' => $auth['client_secret'],
-        'grant_type' => 'authorization_code',
-        'code' => $_GET['code'],
-        'code_verifier' => $_SESSION['code_verifier'],
+if ($auth) {
+    session_set_cookie_params([
+        'path' => $auth['base_path'],
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Lax',
     ]);
-    if ($response) {
-        $_SESSION['last_activity'] = time();
-        $_SESSION['logged_in_at'] = time();
-        redirect($auth['base_path']);
-    } else {
-        forbidden();
+    session_start();
+
+    if (isset($_SERVER['HTTP_AUTHORIZATION']) && str_starts_with($_SERVER['HTTP_AUTHORIZATION'], 'Bearer')) {
+        if ($_SERVER['HTTP_AUTHORIZATION'] !== "Bearer ${auth['token']}") {
+            forbidden();
+        }
+    } elseif (isset($_GET['code'])) {
+        if (time() - $_SESSION['started'] > 5 * 60) {
+            forbidden();
+        }
+        if ($_GET['state'] !== $_SESSION['state']) {
+            forbidden();
+        }
+        $response = post($auth['token_endpoint'], [
+            'client_id' => $auth['client_id'],
+            'client_secret' => $auth['client_secret'],
+            'grant_type' => 'authorization_code',
+            'code' => $_GET['code'],
+            'code_verifier' => $_SESSION['code_verifier'],
+        ]);
+        if ($response) {
+            $_SESSION['last_activity'] = time();
+            $_SESSION['logged_in_at'] = time();
+            redirect($auth['base_path']);
+        } else {
+            forbidden();
+        }
+    } elseif (
+        !isset($_SESSION['last_activity'])
+        || !isset($_SESSION['logged_in_at'])
+        || time() - $_SESSION['last_activity'] > 60 * 30
+        || time() - $_SESSION['logged_in_at'] > 60 * 60 * 8
+    ) {
+        $_SESSION['started'] = time();
+        $_SESSION['state'] = b64(random_bytes(32));
+        $_SESSION['code_verifier'] = b64(random_bytes(64));
+        redirect($auth['authorization_endpoint'] . '?' . http_build_query([
+            'client_id' => $auth['client_id'],
+            'redirect_uri' => "https://${_SERVER['HTTP_HOST']}${auth['base_path']}",
+            'response_type' => 'code',
+            'scope' => 'openid',
+            'state' => $_SESSION['state'],
+            'code_challenge' => sha256($_SESSION['code_verifier']),
+            'code_challenge_method' => 'S256',
+        ]));
     }
-} elseif (
-    !isset($_SESSION['last_activity'])
-    || !isset($_SESSION['logged_in_at'])
-    || time() - $_SESSION['last_activity'] > 60 * 30
-    || time() - $_SESSION['logged_in_at'] > 60 * 60 * 8
-) {
-    $_SESSION['started'] = time();
-    $_SESSION['state'] = b64(random_bytes(32));
-    $_SESSION['code_verifier'] = b64(random_bytes(64));
-    redirect($auth['authorization_endpoint'] . '?' . http_build_query([
-        'client_id' => $auth['client_id'],
-        'redirect_uri' => "https://${_SERVER['HTTP_HOST']}${auth['base_path']}",
-        'response_type' => 'code',
-        'scope' => 'openid',
-        'state' => $_SESSION['state'],
-        'code_challenge' => sha256($_SESSION['code_verifier']),
-        'code_challenge_method' => 'S256',
-    ]));
 }

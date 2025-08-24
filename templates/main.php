@@ -10,7 +10,7 @@
 
 	<?php foreach (get_langs() as $l): ?>
 		<?php if ($l['code'] !== $lang['code']) : ?>
-			<link href="<?php e("https://${_SERVER['HTTP_HOST']}$baseurl/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" rel="<?php e($l['code'] == 'de' ? 'canonical' : 'alternate') ?>" />
+			<link href="<?php e("https://${_SERVER['HTTP_HOST']}/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" rel="<?php e($l['code'] == 'de' ? 'canonical' : 'alternate') ?>" />
 		<?php endif ?>
 	<?php endforeach ?>
 </head>
@@ -27,17 +27,19 @@
 		<header>
 			<div id="header">
 				<h1 class="brand">
-					<a href="<?php e("$baseurl/${lang['code']}/") ?>" class="brand-link" rel="home">
+					<a href="<?php e("/${lang['code']}/") ?>" class="brand-link" rel="home">
 						<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
 					</a>
 				</h1>
-				<div id="header-bottom">
-					<?php echo get_module('header-bottom')['body'] ?>
-				</div>
+				<?php if ($mod = get_module('header-bottom')) : ?>
+					<div id="header-bottom">
+						<?php echo $mod['body'] ?>
+					</div>
+				<?php endif ?>
 				<nav id="language-nav" aria-label="<?php e($lang['languages']) ?>">
 					<ul>
 						<?php foreach (get_langs() as $l): ?>
-							<li><a href="<?php e("$baseurl/${l['code']}$path") ?>" lang="<?php e($l['code']) ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
+							<li><a href="<?php e("/${l['code']}$path") ?>" lang="<?php e($l['code']) ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
 						<?php endforeach ?>
 					</ul>
 				</nav>
@@ -45,9 +47,9 @@
 			<nav id="nav">
 				<ul>
 					<?php foreach (array('/', '/angebote/', '/mitmachen/', '/spenden/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li><a href="<?php e("$baseurl/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li><a href="<?php e("/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
+						<?php endif ?>
 					<?php endforeach ?>
 				</ul>
 			</nav>
@@ -63,14 +65,14 @@
 						['/angebote/deutschkurse/anmeldung-und-stundenplan/', '/images/icons/Deutschkurse.svg', false],
 						['/angebote/deutschkurse/sprach-tandem/', '/images/icons/Sprachtandem.svg', false],
 					] as [$navpath, $icon, $mirror]) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li>
-							<a href="<?php e("$baseurl/${lang['code']}$navpath")?>">
-								<img src="<?php e($icon) ?>" alt="" width="100" height="100" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
-								<span class="image-title"><?php e($navpage['title']) ?></span>
-							</a>
-						</li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li>
+								<a href="<?php e("/${lang['code']}$navpath")?>">
+									<img src="<?php e($icon) ?>" alt="" width="100" height="100" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
+									<span class="image-title"><?php e($navpage['title']) ?></span>
+								</a>
+							</li>
+						<?php endif ?>
 					<?php endforeach ?>
 				</ul>
 			</nav>
@@ -204,16 +206,16 @@
 						'/datenschutz/',
 						'/impressum/',
 					) as $navpath) : ?>
-						<?php $navpage = get_page_by_path($navpath) ?>
-						<?php add_content($navpage, $lang) ?>
-						<li><a href="<?php e("$baseurl/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
+						<?php if ($navpage = get_page($navpath, $lang)) : ?>
+							<li><a href="<?php e("/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
+						<?php endif ?>
 					<?php endforeach ?>
 					<li><a href="/wiki/"><?php e($lang['wiki']) ?></a></li>
 				</ul>
 			</nav>
 
 			<div class="footer-logos">
-				<a href="<?php e("$baseurl/${lang['code']}/ueber-die-kub/transparenz/") ?>">
+				<a href="<?php e("/${lang['code']}/ueber-die-kub/transparenz/") ?>">
 					<img src="/images/Logos/Transparente_Zivilgesellschaft_bw_inverted.svg" alt="Initiative Transparente Zivilgesellschaft" width="537.2" height="145.9">
 				</a>
 			</div>

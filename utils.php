@@ -71,7 +71,6 @@ function e($string)
 
 function cachebust($path)
 {
-	global $baseurl;
 	$hash = hash_file('md5', __DIR__.$path);
-	e("$baseurl$path?$hash");
+	e("$path?$hash");
 }
