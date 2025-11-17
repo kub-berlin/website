@@ -54,8 +54,8 @@ dd {
     margin: 0;
     padding: 0;
     display: grid;
-    grid-gap: $spacer;
-    grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
     align-items: center;
 }
 
