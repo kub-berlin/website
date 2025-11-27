@@ -1,5 +1,5 @@
 <address class="homeRow-address">
-	<strong property="name"><bdi>Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V.</bdi></strong>
+	<strong property="name"><bdi>Kontakt- und Beratungsstelle für Geflüchtete und Migrant*innen e.V.</bdi></strong>
 	<p property="address" typeof="PostalAddress">
 		<bdi property="streetAddress">Oranienstr. 159</bdi><br />
 		<bdi><span property="postalCode">10969</span> <span property="addressLocality">Berlin-Kreuzberg</span></bdi>

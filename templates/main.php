@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-src 'self' https://spenden.twingle.de">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?php e($page['title'])?> &middot; Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e. V.</title>
+	<title><?php e($page['title'])?> &middot; Kontakt- und Beratungsstelle für Geflüchtete und Migrant*innen e. V.</title>
 	<link href="<?php cachebust('/static/favicon.ico') ?>" rel="icon">
 	<link href="<?php cachebust("/static/kub.css") ?>" rel="stylesheet" type="text/css" />
 
@@ -28,7 +28,7 @@
 			<div id="header">
 				<h1 class="brand">
 					<a href="<?php e("/${lang['code']}/") ?>" class="brand-link" rel="home">
-						<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Flüchtlinge und Migrant_innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
+						<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Geflüchtete und Migrant*innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
 					</a>
 				</h1>
 				<?php if ($mod = get_module('header-bottom')) : ?>
