@@ -10,7 +10,7 @@
 
 	<?php foreach (get_langs() as $l): ?>
 		<?php if ($l['code'] !== $lang['code']) : ?>
-			<link href="<?php e("https://${_SERVER['HTTP_HOST']}/${l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" rel="<?php e($l['code'] == 'de' ? 'canonical' : 'alternate') ?>" />
+			<link href="<?php e("https://{$_SERVER['HTTP_HOST']}/{$l['code']}$path") ?>" hreflang="<?php e($l['code']) ?>" rel="<?php e($l['code'] == 'de' ? 'canonical' : 'alternate') ?>" />
 		<?php endif ?>
 	<?php endforeach ?>
 </head>
@@ -27,7 +27,7 @@
 		<header>
 			<div id="header">
 				<h1 class="brand">
-					<a href="<?php e("/${lang['code']}/") ?>" class="brand-link" rel="home">
+					<a href="<?php e("/{$lang['code']}/") ?>" class="brand-link" rel="home">
 						<img lang="de" alt="Logo: KuB - Kontakt- und Beratungsstelle für Geflüchtete und Migrant*innen e.V." src="<?php cachebust('/static/logo.svg') ?>" width="331" height="100" />
 					</a>
 				</h1>
@@ -39,7 +39,7 @@
 				<nav id="language-nav" aria-label="<?php e($lang['languages']) ?>">
 					<ul>
 						<?php foreach (get_langs() as $l): ?>
-							<li><a href="<?php e("/${l['code']}$path") ?>" lang="<?php e($l['code']) ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
+							<li><a href="<?php e("/{$l['code']}$path") ?>" lang="<?php e($l['code']) ?>" hreflang="<?php e($l['code']) ?>" <?php if ($l['code'] === $lang['code']) : ?>class="selected"<?php endif ?>><?php e($l['name']) ?></a></li>
 						<?php endforeach ?>
 					</ul>
 				</nav>
@@ -48,7 +48,7 @@
 				<ul>
 					<?php foreach (array('/', '/angebote/', '/mitmachen/', '/spenden/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
 						<?php if ($navpage = get_page($navpath, $lang)) : ?>
-							<li><a href="<?php e("/${lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
+							<li><a href="<?php e("/{$lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
 						<?php endif ?>
 					<?php endforeach ?>
 				</ul>
@@ -67,7 +67,7 @@
 					] as [$navpath, $icon, $mirror]) : ?>
 						<?php if ($navpage = get_page($navpath, $lang)) : ?>
 							<li>
-								<a href="<?php e("/${lang['code']}$navpath")?>">
+								<a href="<?php e("/{$lang['code']}$navpath")?>">
 									<img src="<?php e($icon) ?>" alt="" width="100" height="100" class="<?php e($mirror ? 'rtl-mirror' : '') ?>">
 									<span class="image-title"><?php e($navpage['title']) ?></span>
 								</a>
@@ -108,7 +108,7 @@
 						<ul class="subpages">
 							<?php foreach (get_subpages($page['id']) as $p) : ?>
 								<?php add_content($p, $lang) ?>
-								<li><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
+								<li><a href="<?php e("{$p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
 							<?php endforeach ?>
 						</ul>
 					<?php elseif ($page['layout'] === 'blog') : ?>
@@ -116,7 +116,7 @@
 						<?php foreach (array_slice($articles, 0, $blog_featured_articles) as $p) : ?>
 							<?php add_content($p, $lang) ?>
 							<article>
-								<h3><a href="<?php e("${p['slug']}/") ?>" class="nolink"><?php e($p['title']) ?></a></h3>
+								<h3><a href="<?php e("{$p['slug']}/") ?>" class="nolink"><?php e($p['title']) ?></a></h3>
 								<?php if (!empty($p['body_fallback'])) : ?>
 									<p><em><?php e($lang['missing']) ?></em></p>
 									<div dir="ltr" lang="de" class="untranslated">
@@ -126,7 +126,7 @@
 									<?php echo $p['truncated'] ?>
 								<?php endif ?>
 								<?php if ($p['truncated'] !== $p['body']) : ?>
-									<p><a href="<?php e("${p['slug']}/") ?>"><?php e($lang['readmore']) ?>: <?php e($p['title']) ?></a></p>
+									<p><a href="<?php e("{$p['slug']}/") ?>"><?php e($lang['readmore']) ?>: <?php e($p['title']) ?></a></p>
 								<?php endif ?>
 							</article>
 						<?php endforeach ?>
@@ -135,7 +135,7 @@
 							<ul>
 								<?php foreach (array_slice($articles, $blog_featured_articles) as $p) : ?>
 									<?php add_content($p, $lang) ?>
-									<li><a href="<?php e("${p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
+									<li><a href="<?php e("{$p['slug']}/") ?>"><?php e($p['title']) ?></a></li>
 								<?php endforeach ?>
 							</ul>
 						<?php endif ?>
@@ -207,7 +207,7 @@
 						'/impressum/',
 					) as $navpath) : ?>
 						<?php if ($navpage = get_page($navpath, $lang)) : ?>
-							<li><a href="<?php e("/${lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
+							<li><a href="<?php e("/{$lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
 						<?php endif ?>
 					<?php endforeach ?>
 					<li><a href="/wiki/"><?php e($lang['wiki']) ?></a></li>
@@ -215,7 +215,7 @@
 			</nav>
 
 			<div class="footer-logos">
-				<a href="<?php e("/${lang['code']}/ueber-die-kub/transparenz/") ?>">
+				<a href="<?php e("/{$lang['code']}/ueber-die-kub/transparenz/") ?>">
 					<img src="/images/Logos/Transparente_Zivilgesellschaft_bw_inverted.svg" alt="Initiative Transparente Zivilgesellschaft" width="537.2" height="145.9">
 				</a>
 			</div>

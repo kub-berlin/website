@@ -9,7 +9,7 @@ function render_sitemap($parent_id, $parent_url)
 	</url>
 <?php
 	foreach (get_subpages($parent_id, true, false) as $p) {
-		render_sitemap($p['id'], "$parent_url${p['slug']}/");
+		render_sitemap($p['id'], "$parent_url{$p['slug']}/");
 	}
 }
 

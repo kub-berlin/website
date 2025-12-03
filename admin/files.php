@@ -16,13 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (!in_array($ext, $allowed_extensions)) {
 			throw new HttpException('Invalid File Extension', 400);
 		}
-		move_uploaded_file($file['tmp_name'], "$root$path${file['name']}");
+		move_uploaded_file($file['tmp_name'], "$root$path{$file['name']}");
 		header('Location: ', true, 302);
 	} elseif (isset($_POST['folder'])) {
-		mkdirp("$root$path${_POST['folder']}");
+		mkdirp("$root$path{$_POST['folder']}");
 		header('Location: ', true, 302);
 	} elseif (isset($_POST['delete'])) {
-		rrm("$root$path${_POST['name']}");
+		rrm("$root$path{$_POST['name']}");
 		header('Location: ', true, 302);
 	}
 	exit();

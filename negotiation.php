@@ -42,4 +42,4 @@ function get_preferred_language()
 }
 
 $lang = get_preferred_language();
-header("Location: /$lang/${_GET['path']}");
+header("Location: /$lang/{$_GET['path']}");

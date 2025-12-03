@@ -33,7 +33,7 @@ function add_content(&$page, $lang, $add_modules = true)
 			$page[$key] = $translation[$key];
 		} elseif ($fallback && $fallback[$key] !== '') {
 			if ($key === 'body') {
-				$page[$key] = str_replace("/${fallback_lang['code']}/", "/${lang['code']}/", $fallback[$key]);
+				$page[$key] = str_replace("/{$fallback_lang['code']}/", "/{$lang['code']}/", $fallback[$key]);
 				$page[$key.'_fallback'] = true;
 			} else {
 				$page[$key] = $fallback[$key];
@@ -111,7 +111,7 @@ function render_side_nav($root = null, $rootpath = '', $maxdepth = 4)
 		$ppath = $rootpath . $p['slug'] . '/';
 		?>
 			<li>
-				<a <?php if ($ppath === $path) : ?>class="active"<?php endif ?> href="<?php e("/${lang['code']}$ppath") ?>"><?php e($p['title']) ?></a>
+				<a <?php if ($ppath === $path) : ?>class="active"<?php endif ?> href="<?php e("/{$lang['code']}$ppath") ?>"><?php e($p['title']) ?></a>
 				<?php if ($maxdepth > 0) : ?>
 					<?php render_side_nav($p, $ppath, $maxdepth - 1) ?>
 				<?php endif ?>

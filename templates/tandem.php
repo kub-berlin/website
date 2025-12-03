@@ -19,7 +19,7 @@ if (isset($_GET["action"])) {
 	$action = "table";
 }
 
-$url = "/sprach-tandem/index.php?lang=${lang['code']}&action=$action&tid=$id&a=$a";
+$url = "/sprach-tandem/index.php?lang={$lang['code']}&action=$action&tid=$id&a=$a";
 ?>
 <iframe
 	src="<?php e($url) ?>"

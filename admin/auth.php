@@ -48,7 +48,7 @@ if ($auth) {
 	session_start();
 
 	if (isset($_SERVER['HTTP_AUTHORIZATION']) && str_starts_with($_SERVER['HTTP_AUTHORIZATION'], 'Bearer')) {
-		if ($_SERVER['HTTP_AUTHORIZATION'] !== "Bearer ${auth['token']}") {
+		if ($_SERVER['HTTP_AUTHORIZATION'] !== "Bearer {$auth['token']}") {
 			forbidden();
 		}
 	} elseif (isset($_GET['code'])) {
@@ -83,7 +83,7 @@ if ($auth) {
 		$_SESSION['code_verifier'] = b64(random_bytes(64));
 		redirect($auth['authorization_endpoint'] . '?' . http_build_query([
 			'client_id' => $auth['client_id'],
-			'redirect_uri' => "https://${_SERVER['HTTP_HOST']}${auth['base_path']}",
+			'redirect_uri' => "https://{$_SERVER['HTTP_HOST']}{$auth['base_path']}",
 			'response_type' => 'code',
 			'scope' => 'openid',
 			'state' => $_SESSION['state'],

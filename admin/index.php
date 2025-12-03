@@ -15,7 +15,7 @@ function render_side_nav($page = null, $maxdepth = 10)
 ?>
 	<?php if ($page !== null) : ?>
 		<li>
-			<a <?php if ($page['id'] == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page=${page['id']}") ?>">
+			<a <?php if ($page['id'] == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page={$page['id']}") ?>">
 				<span class="langs-available">
 					<?php foreach ($translations as $code => $exists) : ?>
 						<?php e($exists ? $code : '') ?>
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$stmt = $db->prepare('INSERT INTO pages (slug, parent, order_by, published, show_in_nav) VALUES (:slug, :parent, 10, 1, 1)');
 		$stmt->execute(array('slug' => $_POST['slug'], 'parent' => $parent));
 		$id = $db->lastInsertId();
-		header("Location: ?page=$id&lang=${lang['code']}", true, 302);
+		header("Location: ?page=$id&lang={$lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'delete-page') {
 		$stmt = $db->prepare('DELETE FROM pages WHERE id=:id');
 		$stmt->execute(array('id' => $page_id));
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'show_in_nav' => isset($_POST['show_in_nav']),
 			'id' => $page_id,
 		));
-		header("Location: ?page=$page_id&lang=${lang['code']}", true, 302);
+		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'edit-translation') {
 		$stmt = $db->prepare('UPDATE translations SET title=:title, body=:body WHERE page=:page AND lang=:lang');
 		$stmt->execute(array(
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'page' => $page_id,
 			'lang' => $lang['code'],
 		));
-		header("Location: ?page=$page_id&lang=${lang['code']}", true, 302);
+		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
 	}
 
 	exit();
@@ -102,12 +102,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 	<nav class="nav-langs" aria-label="Languages">
 		<?php foreach (get_langs(true) as $l) : ?>
-			<a href="<?php e("?page=$page_id&lang=${l['code']}") ?>" class="button <?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
+			<a href="<?php e("?page=$page_id&lang={$l['code']}") ?>" class="button <?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
 		<?php endforeach ?>
 	</nav>
 
 	<main>
-		<form method="post" action="<?php e("?action=edit-translation&page=$page_id&lang=${lang['code']}") ?>">
+		<form method="post" action="<?php e("?action=edit-translation&page=$page_id&lang={$lang['code']}") ?>">
 			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 
 			<label>
@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	</main>
 
 	<aside>
-		<form method="post" action="<?php e("?action=edit-page&page=$page_id&lang=${lang['code']}") ?>">
+		<form method="post" action="<?php e("?action=edit-page&page=$page_id&lang={$lang['code']}") ?>">
 			<h3>Edit this page</h3>
 			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 
