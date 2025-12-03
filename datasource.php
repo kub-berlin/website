@@ -56,7 +56,7 @@ function get_lang($code)
 	return $lang;
 }
 
-function get_langs($include_incomplete=false)
+function get_langs($include_incomplete = false)
 {
 	$langs = array();
 	$codes = array('de', 'en', 'fr', 'es', 'ar', 'fa', 'ru');
@@ -74,7 +74,7 @@ function get_page_by_id($id)
 	return fetch_or_404($stmt);
 }
 
-function get_page_by_path($path, $include_pub=false)
+function get_page_by_path($path, $include_pub = false)
 {
 	global $db;
 	if ($path === '/') {
@@ -90,7 +90,7 @@ function get_page_by_path($path, $include_pub=false)
 	return fetch_or_404($stmt);
 }
 
-function get_subpages($id, $include_nav=false, $include_pub=false)
+function get_subpages($id, $include_nav = false, $include_pub = false)
 {
 	global $db;
 	$sql = 'SELECT * FROM pages WHERE ';

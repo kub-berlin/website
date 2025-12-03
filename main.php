@@ -21,7 +21,7 @@ function add_modules($body)
 	}, $body);
 }
 
-function add_content(&$page, $lang, $add_modules=true)
+function add_content(&$page, $lang, $add_modules = true)
 {
 	global $fallback_lang;
 	$translation = get_translation($page['id'], $lang['code']);
@@ -60,7 +60,7 @@ function get_page($path, $lang) {
 	}
 }
 
-function get_module($slug, $include_pub=false)
+function get_module($slug, $include_pub = false)
 {
 	global $db, $lang;
 	$sql = 'SELECT * FROM pages WHERE slug=:slug AND parent IS NULL';
@@ -87,7 +87,7 @@ function has_side_nav()
 	return count($subpages) > 0;
 }
 
-function render_side_nav($root=null, $rootpath='', $maxdepth=4)
+function render_side_nav($root = null, $rootpath = '', $maxdepth = 4)
 {
 	global $path, $lang, $area, $areapage;
 	if (empty($area)) {
