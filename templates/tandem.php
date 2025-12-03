@@ -2,9 +2,9 @@
 $error = 'nocache';
 
 if (isset($_GET["tid"])) {
-	$id= $_GET["tid"];
+	$id = $_GET["tid"];
 } else {
-	$id= "";
+	$id = "";
 }
 
 if (isset($_GET["a"])) {
@@ -14,9 +14,9 @@ if (isset($_GET["a"])) {
 }
 
 if (isset($_GET["action"])) {
-	$action= $_GET["action"];
+	$action = $_GET["action"];
 } else {
-	$action= "table";
+	$action = "table";
 }
 
 $url = "/sprach-tandem/index.php?lang=${lang['code']}&action=$action&tid=$id&a=$a";

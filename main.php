@@ -2,7 +2,8 @@
 
 include_once('datasource.php');
 
-function truncate($body, $truncate) {
+function truncate($body, $truncate)
+{
 	$marker = '|<hr class="system-read-more" */?>|';
 	$parts = preg_split($marker, $body);
 	if ($truncate) {
@@ -50,7 +51,8 @@ function add_content(&$page, $lang, $add_modules = true)
 	$page['truncated'] = truncate($body, true);
 }
 
-function get_page($path, $lang) {
+function get_page($path, $lang)
+{
 	try {
 		$page = get_page_by_path($path);
 		add_content($page, $lang);
