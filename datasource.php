@@ -29,13 +29,21 @@ $db->query("CREATE TABLE IF NOT EXISTS translations (
 	FOREIGN KEY (page) REFERENCES pages(id) ON DELETE CASCADE,
 	UNIQUE (page, lang)
 );");
-
 try {
 	$db->query("INSERT INTO pages
 		(id, slug, layout, order_by, published, show_in_nav, parent)
 		VALUES (1, '', 'home', 10, 1, 0, NULL)
 	;");
 } catch (PDOException) {}
+
+/* add twingle campaigns table */
+$db->query("CREATE TABLE IF NOT EXISTS campaigns (
+    id INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */,
+    page INTEGER NOT NULL,
+    twid VARCHAR(50) NOT NULL,
+    FOREIGN KEY (page) REFERENCES pages(id) ON DELETE CASCADE,
+    UNIQUE (page, twid)
+);");
 
 function fetch_or_404($stmt)
 {
