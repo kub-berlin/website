@@ -56,13 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$stmt->execute(array('id' => $page_id));
 		header("Location: ?", true, 302);
 	} elseif ($_GET['action'] === 'edit-page') {
-		$stmt = $db->prepare('UPDATE pages SET slug=:slug, layout=:layout, order_by=:order_by, published=:published, show_in_nav=:show_in_nav WHERE id=:id');
+		$stmt = $db->prepare('UPDATE pages SET slug=:slug, layout=:layout, order_by=:order_by, published=:published, show_in_nav=:show_in_nav, twingle_id=:twingle_id WHERE id=:id');
 		$stmt->execute(array(
 			'slug' => $_POST['slug'],
 			'layout' => $_POST['layout'],
 			'order_by' => $_POST['order_by'],
 			'published' => isset($_POST['published']),
 			'show_in_nav' => isset($_POST['show_in_nav']),
+			'twingle_id' => !empty($_POST['twingle_id']) ? $_POST['twingle_id'] : null,
 			'id' => $page_id,
 		));
 		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
@@ -137,10 +138,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<label>
 				Layout
 				<select name="layout">
-					<?php foreach (array('default', 'overview', 'blog', 'home', 'contact', 'accordion', 'tandem', 'spenden', 'spenden-ccv', 'foerderkreis', 'foerderkreis-briefaktion') as $value) : ?>
+					<?php foreach (array('default', 'overview', 'blog', 'home', 'contact', 'accordion', 'tandem') as $value): ?>
 						<option <?php if ($page['layout'] === $value) : ?>selected<?php endif ?>><?php e($value) ?></option>
 					<?php endforeach ?>
 				</select>
+			</label>
+
+			<label>
+				Spenden ID (Twingle)
+				<input name="twingle_id" type="text" value="<?php e($page['twingle_id']) ?>">
 			</label>
 
 			<label>

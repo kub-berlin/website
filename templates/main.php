@@ -147,26 +147,15 @@
 					<aside class="l-side">
 						<?php include('map.php') ?>
 					</aside>
-				<?php elseif ($page['layout'] === 'spenden') : ?>
-					<aside class="l-side">
-						<?php spenden('kub-spenden-allgemein/tw64df2b7d9f960') ?>
-					</aside>
-				<?php elseif ($page['layout'] === 'spenden-ccv') : ?>
-					<aside class="l-side">
-						<?php spenden('kub-ccvossel/tw65fc34564f0c6') ?>
-					</aside>
-				<?php elseif ($page['layout'] === 'foerderkreis') : ?>
-					<aside class="l-side">
-						<?php spenden('foerderkreis/tw656d9a25844ef') ?>
-					</aside>
-				<?php elseif ($page['layout'] === 'foerderkreis-briefaktion') : ?>
-					<aside class="l-side">
-						<?php spenden('foerderkreis-briefaktion/tw684bcdc396b26') ?>
-					</aside>
 				<?php elseif (has_side_nav()) : ?>
 					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
 					</nav>
+				<?php endif ?>
+				<?php if (!empty($page['twingle_id'])) : ?>
+					<aside class="l-side">
+						<?php spenden($page['twingle_id']) ?>
+					</aside>
 				<?php endif ?>
 			<?php endif ?>
 		</div>
