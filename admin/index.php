@@ -81,6 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
 	$page = get_page_by_id($page_id);
 	$root = get_page_by_id(1);
+	$campaign = null;
+	if ($page['layout'] === 'spenden') {
+		$campaign = get_campaign_by_page_id($page_id);
+	}
 
 	$translation = get_translation($page_id, $lang['code']);
 	if (!$translation) {
@@ -137,11 +141,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<label>
 				Layout
 				<select name="layout">
-					<?php foreach (array('default', 'overview', 'blog', 'home', 'contact', 'accordion', 'tandem', 'spenden', 'spenden-ccv', 'foerderkreis', 'foerderkreis-briefaktion') as $value) : ?>
+					<?php foreach (array('default', 'overview', 'blog', 'home', 'contact', 'accordion', 'tandem', 'spenden') as $value): ?>
 						<option <?php if ($page['layout'] === $value) : ?>selected<?php endif ?>><?php e($value) ?></option>
 					<?php endforeach ?>
 				</select>
 			</label>
+
+			<?php if ($page['layout'] === 'spenden'): ?>
+				<label>
+					Twingle ID
+					<input name="twid" type="text" value="<?php e($campaign['twid']) ?? '' ?>" required>
+				</label>
+			<?php endif ?>
 
 			<label>
 				Order
