@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</label>
 
 			<label id="twid">
-				Twingle ID
+				Spenden ID (Twingle)
 				<input name="twid" id="twid_input" type="text" value="<?php e($page['twid']) ?>">
 			</label>
 
