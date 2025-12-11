@@ -140,19 +140,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			<label>
 				Layout
-				<select name="layout">
+				<select name="layout" id="layout">
 					<?php foreach (array('default', 'overview', 'blog', 'home', 'contact', 'accordion', 'tandem', 'spenden') as $value): ?>
 						<option <?php if ($page['layout'] === $value) : ?>selected<?php endif ?>><?php e($value) ?></option>
 					<?php endforeach ?>
 				</select>
 			</label>
 
-			<?php if ($page['layout'] === 'spenden'): ?>
-				<label>
-					Twingle ID
-					<input name="twid" type="text" value="<?php e($campaign['twid']) ?? '' ?>" required>
-				</label>
-			<?php endif ?>
+			<label id="twid" style="display: none;">
+				Twingle ID
+				<?php $value = $campaign ? $campaign['twid'] : '' ?>
+				<input name="twid" id="twid_input" type="text" value="<?php e($value) ?>">
+			</label>
 
 			<label>
 				Order

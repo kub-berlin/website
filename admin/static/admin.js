@@ -65,3 +65,26 @@ if (textarea) {
 		},
 	});
 }
+
+// show/hide the twingle id field based on layout selection
+const layout = document.getElementById("layout");
+const twid = document.getElementById("twid");
+const twidInput = document.getElementById("twid_input");
+function showOrHideTwingle() {
+  const value = layout.value;
+  if (value === "spenden") {
+    // show element and make required
+    twid.style.display = "";
+    twidInput.setAttribute("required", "");
+    twidInput.focus();
+  } else {
+    // hide element and remove requirement
+    twid.style.display = "none";
+    twidInput.removeAttribute("required");
+    twidInput.value = "";
+  }
+}
+// run on change
+layout.addEventListener("change", showOrHideTwingle);
+// run on initial load
+document.addEventListener("DOMContentLoaded", showOrHideTwingle);

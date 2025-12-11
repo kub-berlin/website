@@ -82,6 +82,14 @@ function get_page_by_id($id)
 	return fetch_or_404($stmt);
 }
 
+function get_campaign_by_page_id($id)
+{
+	global $db;
+	$stmt = $db->prepare('SELECT * FROM campaigns WHERE page=:page');
+	$stmt->execute(array('page' => $id));
+	return $stmt->fetch();
+}
+
 function get_page_by_path($path, $include_pub = false)
 {
 	global $db;
