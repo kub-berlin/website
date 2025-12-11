@@ -65,6 +65,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'show_in_nav' => isset($_POST['show_in_nav']),
 			'id' => $page_id,
 		));
+		// add or update twingle id for campaign pages
+		if (isset($_POST['twid'])) {
+			$campaign = get_campaign_by_page_id($page_id);
+			if ($campaign) {
+				$updateStmt = $db->prepare('UPDATE campaigns SET twid=:twid WHERE page=:page');
+				$updateStmt->execute(array(
+					'twid' => $_POST['twid'],
+					'page' => $page_id
+				));
+			} else {
+				$insertStmt = $db->prepare('INSERT INTO campaigns (page, twid) VALUES (:page, :twid)');
+				$insertStmt->execute(array(
+					'page' => $page_id,
+					'twid' => $_POST['twid']
+				));
+			}
+		}
 		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'edit-translation') {
 		$stmt = $db->prepare('UPDATE translations SET title=:title, body=:body WHERE page=:page AND lang=:lang');

@@ -76,7 +76,6 @@ function showOrHideTwingle() {
     // show element and make required
     twid.style.display = "";
     twidInput.setAttribute("required", "");
-    twidInput.focus();
   } else {
     // hide element and remove requirement
     twid.style.display = "none";
