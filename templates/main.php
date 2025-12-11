@@ -149,21 +149,10 @@
 					</aside>
 				<?php elseif ($page['layout'] === 'spenden') : ?>
 					<aside class="l-side">
-						<?php spenden('kub-spenden-allgemein/tw64df2b7d9f960') ?>
+						<!-- load campaigns dynamically -->
+						<?php spenden($page['twid']) ?>
 					</aside>
-				<?php elseif ($page['layout'] === 'spenden-ccv') : ?>
-					<aside class="l-side">
-						<?php spenden('kub-ccvossel/tw65fc34564f0c6') ?>
-					</aside>
-				<?php elseif ($page['layout'] === 'foerderkreis') : ?>
-					<aside class="l-side">
-						<?php spenden('foerderkreis/tw656d9a25844ef') ?>
-					</aside>
-				<?php elseif ($page['layout'] === 'foerderkreis-briefaktion') : ?>
-					<aside class="l-side">
-						<?php spenden('foerderkreis-briefaktion/tw684bcdc396b26') ?>
-					</aside>
-				<?php elseif (has_side_nav()) : ?>
+				<?php elseif (has_side_nav()): ?>
 					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
 					</nav>
