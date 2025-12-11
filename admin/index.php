@@ -56,32 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$stmt->execute(array('id' => $page_id));
 		header("Location: ?", true, 302);
 	} elseif ($_GET['action'] === 'edit-page') {
-		$stmt = $db->prepare('UPDATE pages SET slug=:slug, layout=:layout, order_by=:order_by, published=:published, show_in_nav=:show_in_nav WHERE id=:id');
+		$stmt = $db->prepare('UPDATE pages SET slug=:slug, layout=:layout, order_by=:order_by, published=:published, show_in_nav=:show_in_nav, twid=:twid WHERE id=:id');
 		$stmt->execute(array(
 			'slug' => $_POST['slug'],
 			'layout' => $_POST['layout'],
 			'order_by' => $_POST['order_by'],
 			'published' => isset($_POST['published']),
 			'show_in_nav' => isset($_POST['show_in_nav']),
+			'twid' => !empty($_POST['twid']) ? $_POST['twid'] : null,
 			'id' => $page_id,
 		));
-		// add or update twingle id for campaign pages
-		if (isset($_POST['twid'])) {
-			$campaign = get_campaign_by_page_id($page_id);
-			if ($campaign) {
-				$updateStmt = $db->prepare('UPDATE campaigns SET twid=:twid WHERE page=:page');
-				$updateStmt->execute(array(
-					'twid' => $_POST['twid'],
-					'page' => $page_id
-				));
-			} else {
-				$insertStmt = $db->prepare('INSERT INTO campaigns (page, twid) VALUES (:page, :twid)');
-				$insertStmt->execute(array(
-					'page' => $page_id,
-					'twid' => $_POST['twid']
-				));
-			}
-		}
 		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'edit-translation') {
 		$stmt = $db->prepare('UPDATE translations SET title=:title, body=:body WHERE page=:page AND lang=:lang');
@@ -98,10 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
 	$page = get_page_by_id($page_id);
 	$root = get_page_by_id(1);
-	$campaign = null;
-	if ($page['layout'] === 'spenden') {
-		$campaign = get_campaign_by_page_id($page_id);
-	}
 
 	$translation = get_translation($page_id, $lang['code']);
 	if (!$translation) {
@@ -164,10 +144,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				</select>
 			</label>
 
-			<label id="twid" style="display: none;">
+			<label id="twid">
 				Twingle ID
-				<?php $value = $campaign ? $campaign['twid'] : '' ?>
-				<input name="twid" id="twid_input" type="text" value="<?php e($value) ?>">
+				<input name="twid" id="twid_input" type="text" value="<?php e($page['twid']) ?>">
 			</label>
 
 			<label>

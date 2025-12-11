@@ -74,11 +74,11 @@ function showOrHideTwingle() {
   const value = layout.value;
   if (value === "spenden") {
     // show element and make required
-    twid.style.display = "";
+    twid.hidden = false;
     twidInput.setAttribute("required", "");
   } else {
     // hide element and remove requirement
-    twid.style.display = "none";
+    twid.hidden = true;
     twidInput.removeAttribute("required");
     twidInput.value = "";
   }

@@ -144,13 +144,6 @@ try {
 	validate_path($path);
 
 	$page = get_page_by_path($path);
-
-	// add twingle id for campaign pages
-	if($page['layout'] === 'spenden') {
-		$campaign = get_campaign_by_page_id($page['id']);
-		$page['twid'] = $campaign['twid'] ?? null;
-	}
-
 	add_content($page, $lang);
 	$area = path_shift($path)[0];
 	if (!empty($area)) {
