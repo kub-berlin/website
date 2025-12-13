@@ -17,7 +17,7 @@ $db->query("CREATE TABLE IF NOT EXISTS pages (
 	published BOOLEAN,
 	show_in_nav BOOLEAN,
 	parent INTEGER,
-    twid VARCHAR(50),
+    twingle_id VARCHAR(50),
 	FOREIGN KEY (parent) REFERENCES pages(id) ON DELETE CASCADE,
 	UNIQUE (slug, parent)
 );");

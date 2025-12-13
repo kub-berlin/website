@@ -147,15 +147,15 @@
 					<aside class="l-side">
 						<?php include('map.php') ?>
 					</aside>
-				<?php elseif ($page['layout'] === 'spenden') : ?>
-					<aside class="l-side">
-						<!-- load campaigns dynamically -->
-						<?php spenden($page['twid']) ?>
-					</aside>
 				<?php elseif (has_side_nav()): ?>
 					<nav id="section-nav" class="l-side" aria-label="<?php e($areapage['title']) ?>">
 						<?php render_side_nav() ?>
 					</nav>
+				<?php endif ?>
+				<?php if (!empty($page['twingle_id'])) : ?>
+					<aside class="l-side">
+						<?php spenden($page['twingle_id']) ?>
+					</aside>
 				<?php endif ?>
 			<?php endif ?>
 		</div>

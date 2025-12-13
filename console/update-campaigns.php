@@ -3,10 +3,10 @@
 include_once(__DIR__ . '/../datasource.php');
 
 /** 
- * This script adds a 'twid' column to the 'pages' table and fills it
+ * This script adds a 'twingle_id' column to the 'pages' table and fills it
  * with the twingle ID's of the respective campaign-related layouts.
  * It also updates the layout names of the 'pages' entries
- * to a unified 'spenden' layout.
+ * to 'default'.
  * 
  * Run in terminal via `php console/update-campaigns.php` 
  */
@@ -15,14 +15,18 @@ include_once(__DIR__ . '/../datasource.php');
 const CAMPAIGN_LAYOUTS = ["spenden", "spenden-ccv", "foerderkreis", "foerderkreis-briefaktion"];
 
 const VALUES = [
-    ['slug' => 'spenden', 'twid' => 'kub-spenden-allgemein/tw64df2b7d9f960'],
-    ['slug' => 'ccvossel', 'twid' => 'kub-ccvossel/tw65fc34564f0c6'],
-    ['slug' => 'foerderkreis', 'twid' => 'foerderkreis/tw656d9a25844ef'],
-    ['slug' => 'foerderkreis-briefaktion', 'twid' => 'foerderkreis-briefaktion/tw684bcdc396b26'],
+    ['slug' => 'spenden', 'twingle_id' => 'kub-spenden-allgemein/tw64df2b7d9f960'],
+    ['slug' => 'ccvossel', 'twingle_id' => 'kub-ccvossel/tw65fc34564f0c6'],
+    ['slug' => 'foerderkreis', 'twingle_id' => 'foerderkreis/tw656d9a25844ef'],
+    ['slug' => 'foerderkreis-briefaktion', 'twingle_id' => 'foerderkreis-briefaktion/tw684bcdc396b26'],
 ];
 
 $db->query("DROP TABLE IF EXISTS campaigns");
-//$db->query("ALTER TABLE pages DROP COLUMN twid;"); // reset for testing purposes
+//$db->query("ALTER TABLE pages DROP COLUMN twingle_id;"); // reset for testing purposes
+
+
+// add twingle_id column to pages table
+$db->query("ALTER TABLE pages ADD twingle_id VARCHAR(50);");
 
 // fetch pages with campaign layouts
 $placeholders = implode(',', array_fill(0, count(CAMPAIGN_LAYOUTS), '?'));
@@ -35,33 +39,28 @@ if (count($donatePages) < 1) {
     echo "No campaign layouts found.\nExiting without changes.\n";
 }
 
-// update layout names in pages table to unified 'spenden' layout
-echo "\nUnifying campaign layouts to 'spenden'...\n";
 foreach ($donatePages as $page) {
+    echo "Updating page with slug '" . $page['slug'] . "'...\n";
     try {
+        // update layout names in pages table to 'default' layout
+        echo "  setting 'default' layout...\n";
         $renameStmt = $db->prepare("UPDATE pages SET layout=:layout WHERE id=:id;");
-        $renameStmt->execute(['layout' => 'spenden', 'id' => $page['id']]);
+        $renameStmt->execute(['layout' => 'default', 'id' => $page['id']]);
+
+        // write twingle_id values for existing campaign pages
+        echo "  writing twingle_id...\n";
+        $updateStmt = $db->prepare("UPDATE pages SET twingle_id=:twingle_id WHERE id=:id;");
+        foreach (VALUES as $row) {
+            if( $row['slug'] === $page['slug'] ) {
+                $row['id'] = $page['id'];
+                unset($row['slug']);
+                $updateStmt->execute($row);
+                $updateStmt->closeCursor();
+            }
+        }
     } catch (PDOException $e) {
-        echo "\nError updating layout: " . $e->getMessage() . "\n";
+        echo "\nError updating page entry: " . $e->getMessage() . "\n";
     }
-}
-
-// add twid column to pages table
-echo "Adding new 'twid' column to the 'pages' table...\n";
-$db->query("ALTER TABLE pages ADD twid VARCHAR(50);");
-
-// write twid values for existing campaign pages
-$updateStmt = $db->prepare("UPDATE pages SET twid=:twid WHERE slug=:slug AND layout=:layout;");
-echo "Writing 'twid' values to 'pages' table...\n";
-try {
-    foreach (VALUES as $row) {
-        $row['layout'] = 'spenden';
-        $updateStmt->execute($row);
-        $updateStmt->closeCursor();
-    }
-} catch (PDOException $e) {
-    echo "\nError writing twingle IDs: " . $e->getMessage() . "\n";
-    exit(0);
 }
 
 echo "\nDone.\n";
