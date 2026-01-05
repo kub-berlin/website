@@ -112,3 +112,26 @@ function get_translation($page_id, $lang_code)
 	$stmt->execute(array('page' => $page_id, 'lang' => $lang_code));
 	return $stmt->fetch();
 }
+
+/**
+ * Fetch translations where 'de' 
+ * is newer than any other language for the same page.
+ * 
+ * @return array[]
+ */
+function get_legacy_translations()
+{
+	global $db;
+	$stmt = $db->query("SELECT t1.title, t1.page, t1.lang, t1.updated_at
+		FROM translations t1
+		WHERE t1.lang = 'de'
+		AND t1.updated_at > COALESCE((
+			SELECT MAX(t2.updated_at)
+			FROM translations t2
+			WHERE t2.page = t1.page
+			AND t2.lang != 'de'
+		), t1.updated_at);"
+	);
+	$legacy = $stmt->fetchAll();
+	return $legacy;
+}
