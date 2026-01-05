@@ -27,6 +27,7 @@ $db->query("CREATE TABLE IF NOT EXISTS translations (
 	body TEXT,
 	page INTEGER NOT NULL,
 	lang VARCHAR(2) NOT NULL,
+	updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (page) REFERENCES pages(id) ON DELETE CASCADE,
 	UNIQUE (page, lang)
 );");
@@ -110,4 +111,31 @@ function get_translation($page_id, $lang_code)
 	$stmt = $db->prepare('SELECT * FROM translations WHERE page=:page AND lang=:lang');
 	$stmt->execute(array('page' => $page_id, 'lang' => $lang_code));
 	return $stmt->fetch();
+}
+
+/**
+ * Fetch translations that are older than 'de'.
+ * Save in same order as in get_langs().
+ * @return array[]
+ */
+function get_outdated_translations()
+{
+	global $db;
+	$stmt = $db->query("
+		SELECT t1.page, t1.lang, t1.updated_at
+		FROM translations t1, translations t2
+		WHERE t1.page = t2.page
+		AND t1.lang != 'de'
+		AND t2.lang = 'de'
+		AND TRIM(COALESCE(t1.body, '')) != ''
+		AND t1.updated_at < t2.updated_at;"
+	);
+	$outdated = $stmt->fetchAll();
+	
+	$ordered = [];
+	foreach ($outdated as $row) {
+		$ordered[$row['page']][] = $row['lang'];
+	}
+	
+	return $ordered;
 }
