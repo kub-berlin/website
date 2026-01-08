@@ -122,16 +122,25 @@ function get_translation($page_id, $lang_code)
 function get_legacy_translations()
 {
 	global $db;
-	$stmt = $db->query("SELECT t1.title, t1.page, t1.lang, t1.updated_at
+	$stmt = $db->query("
+		SELECT t1.page, t1.lang, t1.updated_at, t3.slug
 		FROM translations t1
-		WHERE t1.lang = 'de'
-		AND t1.updated_at > COALESCE((
-			SELECT MAX(t2.updated_at)
+		JOIN pages t3 ON t1.page = t3.id
+		WHERE t1.lang != 'de'
+		AND t1.body != ''
+		AND t1.body IS NOT NULL
+		AND t1.updated_at < (
+			SELECT t2.updated_at
 			FROM translations t2
 			WHERE t2.page = t1.page
-			AND t2.lang != 'de'
-		), t1.updated_at);"
+			AND t2.lang = 'de'
+		);"
 	);
 	$legacy = $stmt->fetchAll();
-	return $legacy;
+
+	$ordered = [];
+	foreach ($legacy as $row) {
+		$ordered[$row['page']][] = $row['lang'];
+	}
+	return $ordered;
 }

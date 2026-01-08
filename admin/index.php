@@ -7,6 +7,8 @@ include('auth.php');
 function render_side_nav($page = null, $maxdepth = 10)
 {
 	global $page_id, $langs;
+	$legacy = get_legacy_translations();
+	$legacyNote = "Einige Übersetzungen sind älter als die deutsche Version.";
 	$translations = array();
 	foreach ($langs as $lang) {
 		$translation = get_translation($page['id'] ?? null, $lang['code']);
@@ -15,10 +17,19 @@ function render_side_nav($page = null, $maxdepth = 10)
 ?>
 	<?php if ($page !== null) : ?>
 		<li>
+			<?php if (array_key_exists($page['id'], $legacy)): ?>
+				<div class="legacy-tooltip" tabindex="0">&#9888;
+  					<span class="tooltiptext"><?php e($legacyNote) ?></span>
+				</div>
+			<?php endif ?>
 			<a <?php if ($page['id'] == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page={$page['id']}") ?>">
 				<span class="langs-available">
 					<?php foreach ($translations as $code => $exists) : ?>
-						<?php e($exists ? $code : '') ?>
+						<?php if (array_key_exists($page['id'], $legacy) && in_array($code, $legacy[$page['id']])): ?>
+							<span class="legacy-mark"><?php e($exists ? $code : '') ?></span>
+						<?php else: ?>
+							<?php e($exists ? $code : '') ?>
+						<?php endif ?>
 					<?php endforeach ?>
 				</span>
 				<?php if ($page['published']) : ?>
