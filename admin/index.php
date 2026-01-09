@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 				<div class="update-outdated-container">
 					<span>Bitte Übersetzungen auf Aktualität prüfen:
-						<?php foreach ($outdatedTranslations as $trans): ?>
+						<?php foreach ($outdatedCurrent as $trans): ?>
 							<span class="check-lang"><?php e($trans) ?></span>
 						<?php endforeach ?>
 					</span>
