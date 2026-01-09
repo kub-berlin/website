@@ -7,8 +7,8 @@ include('auth.php');
 function render_side_nav($page = null, $maxdepth = 10)
 {
 	global $page_id, $langs;
-	$legacy = get_legacy_translations();
-	$legacyNote = "Einige Übersetzungen sind älter als die deutsche Version.";
+	$outdated = get_outdated_translations();
+	$outdatedNote = "Bitte Übersetzungen auf Aktualität prüfen";
 	$translations = array();
 	foreach ($langs as $lang) {
 		$translation = get_translation($page['id'] ?? null, $lang['code']);
@@ -17,16 +17,16 @@ function render_side_nav($page = null, $maxdepth = 10)
 ?>
 	<?php if ($page !== null) : ?>
 		<li>
-			<?php if (array_key_exists($page['id'], $legacy)): ?>
-				<div class="legacy-tooltip" tabindex="0">&#9888;
-  					<span class="tooltiptext"><?php e($legacyNote) ?></span>
+			<?php if (array_key_exists($page['id'], $outdated)): ?>
+				<div class="outdated-sign" tabindex="0">&#9888;
+  					<span class="outdated-tooltip"><?php e($outdatedNote) ?></span>
 				</div>
 			<?php endif ?>
 			<a <?php if ($page['id'] == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page={$page['id']}") ?>">
 				<span class="langs-available">
 					<?php foreach ($translations as $code => $exists) : ?>
-						<?php if (array_key_exists($page['id'], $legacy) && in_array($code, $legacy[$page['id']])): ?>
-							<span class="legacy-mark"><?php e($exists ? $code : '') ?></span>
+						<?php if (array_key_exists($page['id'], $outdated) && in_array($code, $outdated[$page['id']])): ?>
+							<span class="outdated-mark"><?php e($exists ? $code : '') ?></span>
 						<?php else: ?>
 							<?php e($exists ? $code : '') ?>
 						<?php endif ?>
@@ -87,6 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'lang' => $lang['code'],
 		));
 		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
+	} elseif ($_GET['action'] === 'update-timestamps') {
+		$stmt = $db->prepare('UPDATE translations SET updated_at=CURRENT_TIMESTAMP WHERE page=:page;');
+		$stmt->execute(['page' => $page_id]);
+		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
 	}
 
 	exit();
@@ -100,6 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$stmt = $db->prepare('INSERT INTO translations (page, lang, title, body) VALUES (:page, :lang, :title, :body)');
 		$stmt->execute($translation);
 	}
+
+	$datetime = date("d.m.Y, H:i", strtotime($translation['updated_at']));
+	$outdatedAll = get_outdated_translations();
+	$outdatedCurrent = array_key_exists($page_id, $outdatedAll) ? $outdatedAll[$page_id] : [];
+	$resetTooltip = "Alle Zeitstempel werden aktualisiert. Der Hinweis wird dann nicht mehr angezeigt.";
 }
 
 ?>
@@ -113,6 +122,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 	<nav class="nav-langs" aria-label="Languages">
+		<?php if (!empty($outdatedCurrent)): ?>
+			<form method="post" action="<?php e("?action=update-timestamps&page=$page_id") ?>">
+				<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
+				<div class="update-outdated-container">
+					<span>Bitte Übersetzungen auf Aktualität prüfen:
+						<?php foreach ($outdatedTranslations as $trans): ?>
+							<span class="check-lang"><?php e($trans) ?></span>
+						<?php endforeach ?>
+					</span>
+					<button class="update-timestamps">Alle als aktuell markieren
+						<span class="update-timestamps-tooltip"><?php e($resetTooltip) ?></span>
+					</button>
+				</div>
+			</form>
+		<?php endif ?>
+	
 		<?php foreach (get_langs(true) as $l) : ?>
 			<a href="<?php e("?page=$page_id&lang={$l['code']}") ?>" class="button <?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
 		<?php endforeach ?>
@@ -121,6 +146,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<main>
 		<form method="post" action="<?php e("?action=edit-translation&page=$page_id&lang={$lang['code']}") ?>">
 			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
+
+			<label>
+				Last Update
+				<input value="<?php e($datetime) ?>" disabled>
+			</label>
 
 			<label>
 				Title

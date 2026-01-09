@@ -154,13 +154,11 @@ html.admin {
     inline-size: 0 !important;
 }
 
-.legacy-mark {
+.outdated-mark {
     color: red !important;
-    /* text-decoration: underline!important;
-    font-weight: bold!important; */
 }
 
-.legacy-tooltip {
+.outdated-sign {
     color: red !important;
     float: inline-start;
     margin: 5px;
@@ -170,8 +168,10 @@ html.admin {
     vertical-align: middle;
 }
 
-.tooltiptext {
+.outdated-tooltip {
     visibility: hidden;
+    position: absolute;
+    z-index: 1;
     width: 130px;
     background-color: black;
     color: #fff;
@@ -179,12 +179,51 @@ html.admin {
     border-radius: 6px;
     padding: 10px;
     margin-left: 10px;
+    font-size: 0.8em;
+    line-height: 1.3;
+}
+
+.outdated-sign:hover .outdated-tooltip,
+.outdated-sign:focus .outdated-tooltip {
+    visibility: visible;
+}
+
+.update-outdated-container {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
+
+.update-timestamps-tooltip {
+    visibility: hidden;
     position: absolute;
     z-index: 1;
     font-size: 0.8em;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 2em 0 0 -4em;
 }
 
-.legacy-tooltip:hover .tooltiptext,
-.legacy-tooltip:focus .tooltiptext {
+.update-timestamps:hover .update-timestamps-tooltip,
+.update-timestamps:focus .update-timestamps-tooltip {
     visibility: visible;
+}
+
+.check-lang {
+    display: inline-block;
+    padding: 5px 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0.3em;
 }

@@ -114,12 +114,11 @@ function get_translation($page_id, $lang_code)
 }
 
 /**
- * Fetch translations where 'de' 
- * is newer than any other language for the same page.
- * 
+ * Fetch translations that are older than 'de'.
+ * Save in same order as in get_langs().
  * @return array[]
  */
-function get_legacy_translations()
+function get_outdated_translations()
 {
 	global $db;
 	$stmt = $db->query("
@@ -136,11 +135,17 @@ function get_legacy_translations()
 			AND t2.lang = 'de'
 		);"
 	);
-	$legacy = $stmt->fetchAll();
+	$outdated = $stmt->fetchAll();
 
+	$codes = ['en', 'fr', 'es', 'ar', 'fa', 'ru'];
 	$ordered = [];
-	foreach ($legacy as $row) {
-		$ordered[$row['page']][] = $row['lang'];
+
+	foreach ($codes as $lang) {
+		foreach ($outdated as $row) {
+			if ($row['lang'] === $lang) {
+				$ordered[$row['page']][] = $row['lang'];
+			}
+		}
 	}
 	return $ordered;
 }
