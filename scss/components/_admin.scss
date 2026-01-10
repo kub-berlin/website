@@ -155,11 +155,11 @@ html.admin {
 }
 
 .outdated-mark {
-    color: red !important;
+    color: red;
 }
 
 .outdated-sign {
-    color: red !important;
+    color: red;
     float: inline-start;
     margin: 5px;
     cursor: pointer;
@@ -184,7 +184,9 @@ html.admin {
 }
 
 .outdated-sign:hover .outdated-tooltip,
-.outdated-sign:focus .outdated-tooltip {
+.outdated-mark:hover .outdated-tooltip,
+.outdated-sign:focus .outdated-tooltip,
+.outdated-mark:focus .outdated-tooltip {
     visibility: visible;
 }
 

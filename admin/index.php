@@ -107,7 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$datetime = date("d.m.Y, H:i", strtotime($translation['updated_at']));
 	$outdatedAll = get_outdated_translations();
 	$outdatedCurrent = array_key_exists($page_id, $outdatedAll) ? $outdatedAll[$page_id] : [];
+	$checkForUpdateMessage = 'Bitte Übersetzungen auf Aktualität prüfen.';
 	$resetTooltip = "Alle Zeitstempel werden aktualisiert. Der Hinweis wird dann nicht mehr angezeigt.";
+	$outdatedHint = "Möglicherweise veraltet";
 }
 
 ?>
@@ -125,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<form method="post" action="<?php e("?action=update-timestamps&page=$page_id") ?>">
 				<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 				<div class="outdated-alert">
-					<span>&#9888; Bitte Übersetzungen auf Aktualität prüfen</span>
+					<span><?php e($checkForUpdateMessage) ?></span>
 					<button class="update-timestamps">Alle als aktuell markieren
 						<span class="update-timestamps-tooltip"><?php e($resetTooltip) ?></span>
 					</button>
@@ -138,7 +140,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>">
 				<?php e($l['code']) ?>
 				<?php if (!empty($outdatedCurrent) && in_array($l['code'], $outdatedCurrent)): ?>
-					<span class="outdated-mark">&#9888;</span>
+					<span class="outdated-mark" tabindex="0">&#9888;
+  						<span class="outdated-tooltip"><?php e($outdatedHint) ?></span>
+					</span>
 				<?php endif ?>
 			</a>
 		<?php endforeach ?>
@@ -150,7 +154,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			<label>
 				Last Update
-				<input value="<?php e($datetime) ?>" disabled>
+				<?php if (!empty($outdatedCurrent) && in_array($lang['code'], $outdatedCurrent)): ?>
+					<span class="outdated-mark">(<?php e($outdatedHint) ?>)</span>
+				<?php endif ?>
+				<input value="<?php e($datetime) ?>" readonly>
 			</label>
 
 			<label>
