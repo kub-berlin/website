@@ -8,7 +8,6 @@ function render_side_nav($page = null, $maxdepth = 10)
 {
 	global $page_id, $langs;
 	$outdated = get_outdated_translations();
-	$outdatedNote = "Bitte Übersetzungen auf Aktualität prüfen";
 	$translations = array();
 	foreach ($langs as $lang) {
 		$translation = get_translation($page['id'] ?? null, $lang['code']);
@@ -19,7 +18,7 @@ function render_side_nav($page = null, $maxdepth = 10)
 		<li>
 			<?php if (array_key_exists($page['id'], $outdated)): ?>
 				<div class="outdated-sign" tabindex="0">&#9888;
-  					<span class="outdated-tooltip"><?php e($outdatedNote) ?></span>
+  					<span class="outdated-tooltip">Bitte Übersetzungen auf Aktualität prüfen</span>
 				</div>
 			<?php endif ?>
 			<a <?php if ($page['id'] == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page={$page['id']}") ?>">
@@ -125,12 +124,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<?php if (!empty($outdatedCurrent)): ?>
 			<form method="post" action="<?php e("?action=update-timestamps&page=$page_id") ?>">
 				<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
-				<div class="update-outdated-container">
-					<span>Bitte Übersetzungen auf Aktualität prüfen:
-						<?php foreach ($outdatedCurrent as $trans): ?>
-							<span class="check-lang"><?php e($trans) ?></span>
-						<?php endforeach ?>
-					</span>
+				<div class="outdated-alert">
+					<span>&#9888; Bitte Übersetzungen auf Aktualität prüfen</span>
 					<button class="update-timestamps">Alle als aktuell markieren
 						<span class="update-timestamps-tooltip"><?php e($resetTooltip) ?></span>
 					</button>
@@ -139,7 +134,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<?php endif ?>
 	
 		<?php foreach (get_langs(true) as $l) : ?>
-			<a href="<?php e("?page=$page_id&lang={$l['code']}") ?>" class="button <?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>"><?php e($l['code']) ?></a>
+			<a href="<?php e("?page=$page_id&lang={$l['code']}") ?>" class="button 
+				<?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>">
+				<?php e($l['code']) ?>
+				<?php if (!empty($outdatedCurrent) && in_array($l['code'], $outdatedCurrent)): ?>
+					<span class="outdated-mark">&#9888;</span>
+				<?php endif ?>
+			</a>
 		<?php endforeach ?>
 	</nav>
 
