@@ -4,9 +4,14 @@ include_once('../datasource.php');
 include_once('csrf.php');
 include('auth.php');
 
-$outdatedTranslations = get_outdated_translations();
+$outdated = [
+	'translations' => get_outdated_translations(),
+	'checkOutdatedMessage' => "Bitte Übersetzungen auf Aktualität prüfen.",
+	'outdatedNote' => "Möglicherweise veraltet.",
+	'resetTooltip' => "Alle Zeitstempel werden aktualisiert. Der Hinweis wird dann nicht mehr angezeigt."
+];
 
-function render_side_nav($outdatedTranslations, $page = null, $maxdepth = 10)
+function render_side_nav($outdated, $page = null, $maxdepth = 10)
 {
 	global $page_id, $langs;
 	$translations = array();
@@ -14,18 +19,17 @@ function render_side_nav($outdatedTranslations, $page = null, $maxdepth = 10)
 		$translation = get_translation($page['id'] ?? null, $lang['code']);
 		$translations[$lang['code']] = $translation && !empty($translation['body']);
 	}
-	$outdatedMessage = 'Bitte Übersetzungen auf Aktualität prüfen.';
 ?>
 	<?php if ($page !== null) : ?>
 		<li>
-			<?php if (array_key_exists($page['id'], $outdatedTranslations)): ?>
-				<div class="outdated-sign" title="<?php e($outdatedMessage) ?>">&#9888;</div>
+			<?php if (array_key_exists($page['id'], $outdated['translations'])): ?>
+				<div class="outdated-sign" title="<?php e($outdated['checkOutdatedMessage']) ?>">&#9888;</div>
 			<?php endif ?>
 			<a <?php if ($page['id'] == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page={$page['id']}") ?>">
 				<span class="langs-available">
 					<?php foreach ($translations as $code => $exists) : ?>
-						<?php if (array_key_exists($page['id'], $outdatedTranslations) && in_array($code, $outdatedTranslations[$page['id']])): ?>
-							<s title="<?php e($outdatedMessage) ?>"><?php e($exists ? $code : '') ?></s>
+						<?php if (array_key_exists($page['id'], $outdated['translations']) && in_array($code, $outdated['translations'][$page['id']])): ?>
+							<s title="<?php e($outdated['outdatedNote']) ?>"><?php e($exists ? $code : '') ?></s>
 						<?php else: ?>
 							<?php e($exists ? $code : '') ?>
 						<?php endif ?>
@@ -42,7 +46,7 @@ function render_side_nav($outdatedTranslations, $page = null, $maxdepth = 10)
 	<ul>
 		<?php if ($maxdepth > 0) : ?>
 			<?php foreach (get_subpages($page['id'] ?? null, true, true) as $p) : ?>
-				<?php render_side_nav($outdatedTranslations, $p, $maxdepth - 1) ?>
+				<?php render_side_nav($outdated, $p, $maxdepth - 1) ?>
 			<?php endforeach ?>
 		<?php endif ?>
 	</ul>
@@ -105,10 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 	$datetime = date("d.m.Y, H:i", strtotime($translation['updated_at']));
-	$outdatedCurrent = array_key_exists($page_id, $outdatedTranslations) ? $outdatedTranslations[$page_id] : [];
-	$checkForUpdateMessage = 'Bitte Übersetzungen auf Aktualität prüfen.';
-	$resetTooltip = "Alle Zeitstempel werden aktualisiert. Der Hinweis wird dann nicht mehr angezeigt.";
-	$outdatedHint = "Möglicherweise veraltet";
+	$outdatedCurrent = array_key_exists($page_id, $outdated['translations']) ? $outdated['translations'][$page_id] : [];
 }
 
 ?>
@@ -126,8 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<form method="post" action="<?php e("?action=update-timestamps&page=$page_id") ?>">
 				<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 				<div class="infobox space-between">
-					<?php e($checkForUpdateMessage) ?>
-					<button class="update-timestamps" title="<?php e($resetTooltip) ?>">Alle als aktuell markieren</button>
+					<?php e($outdated['checkOutdatedMessage']) ?>
+					<button class="update-timestamps" title="<?php e($outdated['resetTooltip']) ?>">Alle als aktuell markieren</button>
 				</div>
 			</form>
 		<?php endif ?>
@@ -137,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>">
 				<?php e($l['code']) ?>
 				<?php if (!empty($outdatedCurrent) && in_array($l['code'], $outdatedCurrent)): ?>
-					<span role="img" title="<?php e($outdatedHint) ?>">&#9888;</span>
+					<span role="img" title="<?php e($outdated['outdatedNote']) ?>">&#9888;</span>
 				<?php endif ?>
 			</a>
 		<?php endforeach ?>
@@ -233,7 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	</aside>
 
 	<nav id="section-nav" class="nav-pages" aria-label="Pages">
-		<?php render_side_nav($outdatedTranslations) ?>
+		<?php render_side_nav($outdated) ?>
 	</nav>
 
 	<script src="tinymce/tinymce.js"></script>
