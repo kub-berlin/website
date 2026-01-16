@@ -14,17 +14,18 @@ function render_side_nav($outdatedTranslations, $page = null, $maxdepth = 10)
 		$translation = get_translation($page['id'] ?? null, $lang['code']);
 		$translations[$lang['code']] = $translation && !empty($translation['body']);
 	}
+	$outdatedMessage = 'Bitte Übersetzungen auf Aktualität prüfen.';
 ?>
 	<?php if ($page !== null) : ?>
 		<li>
 			<?php if (array_key_exists($page['id'], $outdatedTranslations)): ?>
-				<div class="outdated-sign warning" title="Bitte Übersetzungen auf Aktualität prüfen">&#9888;</div>
+				<div class="outdated-sign" title="<?php e($outdatedMessage) ?>">&#9888;</div>
 			<?php endif ?>
 			<a <?php if ($page['id'] == $page_id) : ?>class="active"<?php endif ?> href="<?php e("?page={$page['id']}") ?>">
 				<span class="langs-available">
 					<?php foreach ($translations as $code => $exists) : ?>
 						<?php if (array_key_exists($page['id'], $outdatedTranslations) && in_array($code, $outdatedTranslations[$page['id']])): ?>
-							<s><?php e($exists ? $code : '') ?></s>
+							<s title="<?php e($outdatedMessage) ?>"><?php e($exists ? $code : '') ?></s>
 						<?php else: ?>
 							<?php e($exists ? $code : '') ?>
 						<?php endif ?>
@@ -124,8 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<?php if (!empty($outdatedCurrent)): ?>
 			<form method="post" action="<?php e("?action=update-timestamps&page=$page_id") ?>">
 				<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
-				<div class="infobox">
-					<p><?php e($checkForUpdateMessage) ?></p>
+				<div class="infobox space-between">
+					<?php e($checkForUpdateMessage) ?>
 					<button class="update-timestamps" title="<?php e($resetTooltip) ?>">Alle als aktuell markieren</button>
 				</div>
 			</form>
@@ -136,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<?php if ($l['code'] !== $lang['code']) : ?>button-light<?php endif ?>">
 				<?php e($l['code']) ?>
 				<?php if (!empty($outdatedCurrent) && in_array($l['code'], $outdatedCurrent)): ?>
-					<span class="warning" title="<?php e($outdatedHint) ?>">&#9888;</span>
+					<span role="img" title="<?php e($outdatedHint) ?>">&#9888;</span>
 				<?php endif ?>
 			</a>
 		<?php endforeach ?>

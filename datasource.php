@@ -131,16 +131,11 @@ function get_outdated_translations()
 		AND t1.updated_at < t2.updated_at;"
 	);
 	$outdated = $stmt->fetchAll();
-
-	$codes = ['en', 'fr', 'es', 'ar', 'fa', 'ru'];
+	
 	$ordered = [];
-
-	foreach ($codes as $lang) {
-		foreach ($outdated as $row) {
-			if ($row['lang'] === $lang) {
-				$ordered[$row['page']][] = $row['lang'];
-			}
-		}
+	foreach ($outdated as $row) {
+		$ordered[$row['page']][] = $row['lang'];
 	}
+	
 	return $ordered;
 }
