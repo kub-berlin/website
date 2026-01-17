@@ -28,7 +28,7 @@ function add_content(&$page, $lang, $add_modules = true)
 	$translation = get_translation($page['id'], $lang['code']);
 	$fallback = get_translation($page['id'], $fallback_lang['code']);
 
-	foreach (array('title', 'body') as $key) {
+	foreach (['title', 'body'] as $key) {
 		if ($translation && $translation[$key] !== '') {
 			$page[$key] = $translation[$key];
 		} elseif ($fallback && $fallback[$key] !== '') {
@@ -68,7 +68,7 @@ function get_module($slug, $include_pub = false)
 	$sql = 'SELECT * FROM pages WHERE slug=:slug AND parent IS NULL';
 	$sql .= $include_pub ? '' : ' AND published=1';
 	$stmt = $db->prepare($sql);
-	$stmt->execute(array('slug' => $slug));
+	$stmt->execute(['slug' => $slug]);
 	$page = $stmt->fetch();
 	if (!$page) {
 		return null;

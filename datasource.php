@@ -60,8 +60,8 @@ function get_lang($code)
 
 function get_langs($include_incomplete = false)
 {
-	$langs = array();
-	$codes = array('de', 'en', 'fr', 'es', 'ar', 'fa', 'ru');
+	$langs = [];
+	$codes = ['de', 'en', 'fr', 'es', 'ar', 'fa', 'ru'];
 	foreach ($codes as $code) {
 		$langs[] = get_lang($code);
 	}
@@ -72,7 +72,7 @@ function get_page_by_id($id)
 {
 	global $db;
 	$stmt = $db->prepare('SELECT * FROM pages WHERE id=:id');
-	$stmt->execute(array('id' => $id));
+	$stmt->execute(['id' => $id]);
 	return fetch_or_404($stmt);
 }
 
@@ -87,7 +87,7 @@ function get_page_by_path($path, $include_pub = false)
 		$sql = 'SELECT * FROM pages WHERE slug=:slug AND parent=:parent';
 		$sql .= $include_pub ? '' : ' AND published=1';
 		$stmt = $db->prepare($sql);
-		$stmt->execute(array('slug' => $slug, 'parent' => $parent['id']));
+		$stmt->execute(['slug' => $slug, 'parent' => $parent['id']]);
 	}
 	return fetch_or_404($stmt);
 }
@@ -101,7 +101,7 @@ function get_subpages($id, $include_nav = false, $include_pub = false)
 	$sql .= $include_pub ? '' : ' AND published=1';
 	$sql .= ' ORDER BY order_by';
 	$stmt = $db->prepare($sql);
-	$stmt->execute(array('parent' => $id));
+	$stmt->execute(['parent' => $id]);
 	return $stmt->fetchAll();
 }
 
@@ -109,7 +109,7 @@ function get_translation($page_id, $lang_code)
 {
 	global $db;
 	$stmt = $db->prepare('SELECT * FROM translations WHERE page=:page AND lang=:lang');
-	$stmt->execute(array('page' => $page_id, 'lang' => $lang_code));
+	$stmt->execute(['page' => $page_id, 'lang' => $lang_code]);
 	return $stmt->fetch();
 }
 

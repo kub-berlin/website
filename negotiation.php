@@ -2,7 +2,7 @@
 
 function parse_accept_language($accept_language)
 {
-	$result = array();
+	$result = [];
 	$parts = array_map('trim', explode(',', $accept_language));
 	foreach (array_reverse($parts) as $part) {
 		if (str_contains($part, ';q=')) {

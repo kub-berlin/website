@@ -39,25 +39,25 @@ function get_files($path)
 {
 	global $root, $root_url;
 
-	$files = array();
+	$files = [];
 	$p = $root . $path;
 	$u = $root_url . $path;
 	foreach (scandir($p) as $name) {
 		if ($name === '..' && $path !== '/') {
 			$parent = path_pop($path)[0];
-			$files[] = array(
+			$files[] = [
 				'name' => $name,
 				'path' => $parent,
 				'is_file' => false,
-			);
+			];
 		} elseif ($name !== '.' && $name !== '..') {
-			$files[] = array(
+			$files[] = [
 				'name' => $name,
 				'path' => "$path$name/",
 				'url' => "$u$name",
 				'is_file' => is_file("$p$name"),
 				'is_image' => is_image("$p$name"),
-			);
+			];
 		}
 	}
 	return $files;

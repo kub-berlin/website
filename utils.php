@@ -25,7 +25,7 @@ function path_pop($path)
 	}
 	array_push($parts, $tmp);
 	$head = implode('/', $parts);
-	return array($head, $tail);
+	return [$head, $tail];
 }
 
 function path_shift($path)
@@ -38,7 +38,7 @@ function path_shift($path)
 	}
 	array_unshift($parts, $tmp);
 	$tail = implode('/', $parts);
-	return array($head, $tail);
+	return [$head, $tail];
 }
 
 function rrm($path)

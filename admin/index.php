@@ -7,7 +7,7 @@ include('auth.php');
 function render_side_nav($outdated, $page = null, $maxdepth = 10)
 {
 	global $page_id, $langs;
-	$translations = array();
+	$translations = [];
 	foreach ($langs as $lang) {
 		$translation = get_translation($page['id'] ?? null, $lang['code']);
 		$translations[$lang['code']] = $translation && !empty($translation['body']);
@@ -54,16 +54,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if ($_GET['action'] === 'create-page') {
 		$parent = isset($_GET['page']) ? $page_id : null;
 		$stmt = $db->prepare('INSERT INTO pages (slug, parent, order_by, published, show_in_nav) VALUES (:slug, :parent, 10, 1, 1)');
-		$stmt->execute(array('slug' => $_POST['slug'], 'parent' => $parent));
+		$stmt->execute(['slug' => $_POST['slug'], 'parent' => $parent]);
 		$id = $db->lastInsertId();
 		header("Location: ?page=$id&lang={$lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'delete-page') {
 		$stmt = $db->prepare('DELETE FROM pages WHERE id=:id');
-		$stmt->execute(array('id' => $page_id));
+		$stmt->execute(['id' => $page_id]);
 		header("Location: ?", true, 302);
 	} elseif ($_GET['action'] === 'edit-page') {
 		$stmt = $db->prepare('UPDATE pages SET slug=:slug, layout=:layout, order_by=:order_by, published=:published, show_in_nav=:show_in_nav, twingle_id=:twingle_id WHERE id=:id');
-		$stmt->execute(array(
+		$stmt->execute([
 			'slug' => $_POST['slug'],
 			'layout' => $_POST['layout'],
 			'order_by' => $_POST['order_by'],
@@ -71,16 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'show_in_nav' => isset($_POST['show_in_nav']),
 			'twingle_id' => !empty($_POST['twingle_id']) ? $_POST['twingle_id'] : null,
 			'id' => $page_id,
-		));
+		]);
 		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'edit-translation') {
 		$stmt = $db->prepare('UPDATE translations SET title=:title, body=:body, updated_at=CURRENT_TIMESTAMP WHERE page=:page AND lang=:lang');
-		$stmt->execute(array(
+		$stmt->execute([
 			'title' => $_POST['title'],
 			'body' => $_POST['body'],
 			'page' => $page_id,
 			'lang' => $lang['code'],
-		));
+		]);
 		header("Location: ?page=$page_id&lang={$lang['code']}", true, 302);
 	} elseif ($_GET['action'] === 'update-timestamps') {
 		$stmt = $db->prepare('UPDATE translations SET updated_at=CURRENT_TIMESTAMP WHERE page=:page;');
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	$translation = get_translation($page_id, $lang['code']);
 	if (!$translation) {
-		$translation = array('page' => $page_id, 'lang' => $lang['code'], 'title' => '', 'body' => '');
+		$translation = ['page' => $page_id, 'lang' => $lang['code'], 'title' => '', 'body' => ''];
 		$stmt = $db->prepare('INSERT INTO translations (page, lang, title, body) VALUES (:page, :lang, :title, :body)');
 		$stmt->execute($translation);
 	}
@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<label>
 				Layout
 				<select name="layout">
-					<?php foreach (array('default', 'overview', 'blog', 'home', 'contact', 'accordion', 'tandem') as $value): ?>
+					<?php foreach (['default', 'overview', 'blog', 'home', 'contact', 'accordion', 'tandem'] as $value): ?>
 						<option <?php if ($page['layout'] === $value) : ?>selected<?php endif ?>><?php e($value) ?></option>
 					<?php endforeach ?>
 				</select>

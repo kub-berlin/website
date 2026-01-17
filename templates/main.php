@@ -46,7 +46,7 @@
 			</div>
 			<nav id="nav">
 				<ul>
-					<?php foreach (array('/', '/angebote/', '/mitmachen/', '/spenden/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/') as $navpath) : ?>
+					<?php foreach (['/', '/angebote/', '/mitmachen/', '/spenden/', '/ueber-die-kub/', '/aktuelles/', '/kontakt/'] as $navpath) : ?>
 						<?php if ($navpage = get_page($navpath, $lang)) : ?>
 							<li><a href="<?php e("/{$lang['code']}$navpath")?>" <?php if (trim($navpath, '/') === $area) : ?>class="active" aria-current="page"<?php endif ?>><?php e($navpage['title']) ?></a></li>
 						<?php endif ?>
@@ -191,10 +191,10 @@
 			</nav>
 			<nav aria-label="<?php e($lang['legal']) ?>">
 				<ul>
-					<?php foreach (array(
+					<?php foreach ([
 						'/datenschutz/',
 						'/impressum/',
-					) as $navpath) : ?>
+					] as $navpath) : ?>
 						<?php if ($navpage = get_page($navpath, $lang)) : ?>
 							<li><a href="<?php e("/{$lang['code']}$navpath") ?>"><?php e($navpage['title']) ?></a></li>
 						<?php endif ?>
