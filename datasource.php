@@ -113,16 +113,11 @@ function get_translation($page_id, $lang_code)
 	return $stmt->fetch();
 }
 
-/**
- * Fetch translations that are older than 'de'.
- * Save in same order as in get_langs().
- * @return array[]
- */
 function get_outdated_translations()
 {
 	global $db;
 	$stmt = $db->query("
-		SELECT t1.page, t1.lang, t1.updated_at
+		SELECT t1.page, t1.lang
 		FROM translations t1, translations t2
 		WHERE t1.page = t2.page
 		AND t1.lang != 'de'
@@ -131,11 +126,10 @@ function get_outdated_translations()
 		AND t1.updated_at < t2.updated_at;"
 	);
 	$outdated = $stmt->fetchAll();
-	
+
 	$ordered = [];
 	foreach ($outdated as $row) {
 		$ordered[$row['page']][] = $row['lang'];
 	}
-	
 	return $ordered;
 }
