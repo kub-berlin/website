@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 	<nav class="nav-langs" aria-label="Languages">
-		<?php if (in_array($page_id, $outdated)) : ?>
+		<?php if (array_key_exists($page_id, $outdated)) : ?>
 			<form method="post" class="infobox space-between" action="<?php e("?action=update-timestamps&page=$page_id") ?>">
 				<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 				<span>Bitte Übersetzungen auf Aktualität prüfen.</span>
