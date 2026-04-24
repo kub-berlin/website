@@ -1,7 +1,11 @@
 <?php declare(strict_types=1);
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_SERVER['HTTP_SEC_FETCH_SITE'] ?? '') !== 'same-origin') {
+	http_response_code(403);
+	die();
+}
+
 include_once('../datasource.php');
-include_once('csrf.php');
 include('auth.php');
 
 function render_side_nav($outdated, $page = null, $maxdepth = 10)
@@ -115,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<nav class="nav-langs" aria-label="Languages">
 		<?php if (array_key_exists($page_id, $outdated)) : ?>
 			<form method="post" class="infobox space-between" action="<?php e("?action=update-timestamps&page=$page_id") ?>">
-				<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 				<span>Bitte Übersetzungen auf Aktualität prüfen.</span>
 				<button>Alle als aktuell markieren</button>
 			</form>
@@ -133,8 +136,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	<main>
 		<form method="post" action="<?php e("?action=edit-translation&page=$page_id&lang={$lang['code']}") ?>">
-			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
-
 			<label>
 				Title
 				<input name="title" value="<?php e($translation['title']) ?>" lang="<?php e($lang['code']) ?>" dir="<?php e($lang['dir']) ?>" required>
@@ -152,7 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<aside>
 		<form method="post" action="<?php e("?action=edit-page&page=$page_id&lang={$lang['code']}") ?>">
 			<h3>Edit this page</h3>
-			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 
 			<label>
 				Slug
@@ -193,13 +193,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		<form method="post" action="<?php e("?action=delete-page&page=$page_id") ?>" data-js="confirm">
 			<h3>Delete this page</h3>
-			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 			<button>Delete</button>
 		</form>
 
 		<form method="post" action="<?php e("?action=create-page&page=$page_id") ?>">
 			<h3>Create a new subpage</h3>
-			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 			<label>
 				Slug
 				<input name="slug" required>
@@ -209,7 +207,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		<form method="post" action="<?php e("?action=create-page") ?>">
 			<h3>Create a new module</h3>
-			<input type="hidden" name="csrf_token" value="<?php e($GLOBALS['csrf_token']) ?>">
 			<label>
 				Slug
 				<input name="slug" required>
