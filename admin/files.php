@@ -1,5 +1,10 @@
 <?php declare(strict_types=1);
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_SERVER['HTTP_SEC_FETCH_SITE'] ?? '') !== 'same-origin') {
+	http_response_code(403);
+	die();
+}
+
 include_once('../utils.php');
 include('auth.php');
 
